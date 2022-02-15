@@ -1,5 +1,6 @@
 
 ###> symfony/framework-bundle ###
+/.env
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -7,14 +8,24 @@
 /public/bundles/
 /var/
 /vendor/
+/config/jwt/*
+/.composer
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
+.phpunit
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/.idea/
+.bash_history
+/logs/belearning/*
+/logs/nginx/*
+###> lexik/jwt-authentication-bundle ###
+#/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###
