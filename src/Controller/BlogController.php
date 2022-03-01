@@ -24,14 +24,17 @@ class BlogController extends AbstractController
 
     }
     /**
-     * @Route("/blog/{id}", name="bolg_show")
+     * @Route("/blog/categories/{categorie_id}/article/{id}", name="bolg_show")
      */
-    public function show( int $id)
+    public function show( int $categorie_id, int $id )
     {
 
         return $this->render('Blog/article.html.twig',
             [
-                'id' => $id
+                'id' => $id,
+                'categorie_id' => $categorie_id
+
             ]);
     }
+
 }

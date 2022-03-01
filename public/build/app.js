@@ -163,7 +163,7 @@ var _default = /*#__PURE__*/function (_Controller) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _styles_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/app.scss */ "./assets/styles/app.scss");
+/* harmony import */ var _styles_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/app.scss */ "./assets/styles/app.scss");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bootstrap */ "./assets/bootstrap.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./assets/styles/app.scss":
 /*!********************************!*\
-  !*** ./assets/styles/app.scss ***!
+  !*** ./assets/css/app.scss ***!
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
