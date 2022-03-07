@@ -13,7 +13,7 @@ class courrierController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('courrier/history.html.twig');
+        return $this->render('courrier/history.html.twig', ['name' => "nawras"]);
     }
 
     /**
