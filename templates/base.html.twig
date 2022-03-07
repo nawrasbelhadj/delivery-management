@@ -6,8 +6,7 @@
 
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/css.css') }}" >
+         <link rel="stylesheet" href="{{ asset('css/css.css') }}" >
             <link rel="stylesheet" href="{{ asset('vendors/feather/feather.css')}}"/>
             <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css')}}"/>
 
@@ -22,18 +21,7 @@
             <link rel="stylesheet" href="{{ asset('css/vertical-layout-light/style.css')}}"/>
 
             <link rel="shortcut icon" href="{{ asset('images/favicon.png')}}" />
-            {#            {{ encore_entry_link_tags('app') }}#}
-            <!-- Renders a link tag (if your module requires any CSS)
-                 <link rel="stylesheet" href="/build/app.css"> -->
-        {% endblock %}
-
-        {% block javascripts %}
-
-{#            {{ encore_entry_script_tags('app') }}#}
-            <!-- Renders app.js & a webpack runtime.js file
-                <script src="/build/runtime.js" defer></script>
-                <script src="/build/app.js" defer></script>
-                See note below about the "defer" attribute -->
+        {% block stylesheets %}
         {% endblock %}
     </head>
     <body>
@@ -83,5 +71,19 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div> 
+        <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}" ></script>
+        <script src="{{ asset('vendors/chart.js/Chart.min.js') }}" ></script>
+        <script src="{{ asset('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}" ></script>
+        <script src="{{ asset('vendors/progressbar.js/progressbar.min.js') }}" ></script>
+        <script src="{{ asset('js/off-canvas.js') }}" ></script>
+        <script src="{{ asset('js/hoverable-collapse.js') }}" ></script>
+        <script src="{{ asset('js/template.js') }}" ></script>
+        <script src="{{ asset('js/settings.js') }}" ></script>
+        <script src="{{ asset('js/todolist.js') }}" ></script>
+        <script src="{{ asset('js/jquery.cookie.js') }}" ></script>
+        <script src="{{ asset('js/dashboard.js') }}" ></script>
+        <script src="{{ asset('js/Chart.roundedBarCharts.js') }}" ></script>
+        {% block javascripts %}
+        {% endblock %}
 </body>
 </html>
