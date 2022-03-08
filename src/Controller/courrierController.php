@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class courrierController extends AbstractController
 {
     /**
-     * @Route("/history", name="history_courrier")
+     * @Route("/courrier/history", name="history_courrier")
      */
     public function index(): Response
     {
@@ -17,27 +17,27 @@ class courrierController extends AbstractController
     }
 
     /**
-     * @Route("/alert", name="alert_courrier")
+     * @Route("/courrier/alert", name="alert_courrier")
      */
     public function list(): Response
     {
-        return $this->render('courrier/alert.html.twig');
+        return $this->render('courrier/alert.html.twig', ['name' => "nawras"]);
     }
 
 
     /**
-     * @Route("/timeline", name="timeline_courrier")
+     * @Route("/courrier/timeline", name="timeline_courrier")
      */
     public function show(): Response
     {
-        return $this->render('courrier/timeline.html.twig');
+        return $this->render('courrier/timeline.html.twig', ['name' => "nawras"]);
     }
 
     /**
-     * @Route("/archive", name="archive_courrier")
+     * @Route("/courrier/archive", name="archive_courrier")
      */
     public function search(): Response
     {
-        return $this->render('courrier/archive.html.twig');
+        return $this->render('courrier/archive.html.twig', ['name' => "nawras"]);
     }
 }
