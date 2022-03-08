@@ -5,15 +5,28 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\CourrierService;
 
-class courrierController extends AbstractController
+class CourrierController extends AbstractController
 {
+    private CourrierService $courrierService;
+
+    public function __construct(CourrierService $courrierService)
+    {
+        $this->courrierService = $courrierService;
+    }
+
     /**
      * @Route("/courrier/history", name="history_courrier")
      */
     public function index(): Response
     {
-        return $this->render('courrier/history.html.twig', ['name' => "nawras"]);
+        $courriers = $this->courrierService->getListeCourriers();
+        
+        return $this->render('courrier/history.html.twig', [
+            'name' => "nawras",
+            'courriers' => $courriers
+        ]);
     }
 
     /**
@@ -39,5 +52,19 @@ class courrierController extends AbstractController
     public function search(): Response
     {
         return $this->render('courrier/archive.html.twig', ['name' => "nawras"]);
+    }
+
+    /**
+     * @Route("/courrier/showcourrier/{id}", name="showdemo_courrier")
+     */
+    public function showCorrier($id): Response
+    {
+        $courrier = $this->courrierService->getCourrier($id);
+
+        return $this->render('courrier/showcourrier.html.twig', [
+            'name' => "Nawras",
+            'courrier' => $courrier
+        ]);
+
     }
 }
