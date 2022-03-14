@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Courrier;
 use App\Repository\CourrierRepository;
 
 class CourrierService {
@@ -28,4 +29,23 @@ class CourrierService {
         return $this->courrierRepository->find($id);
     }
 
+
+    /**
+     * @param $id
+     * @return void
+     */
+    public function deleteCourrier($id): void
+    {
+        $courrier =  $this->courrierRepository->find($id);
+        $this->courrierRepository->deleteCourrier($courrier);
+    }
+
+    /**
+     * @param Courrier $courrier
+     * @return Courrier
+     */
+    public function saveCourrier(Courrier $courrier): Courrier
+    {
+        return $this->courrierRepository->saveCourrier($courrier);
+    }
 }

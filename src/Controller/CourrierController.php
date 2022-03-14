@@ -2,7 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Courrier;
+use App\Form\AddCourrierFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\CourrierService;
@@ -67,4 +73,56 @@ class CourrierController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/courrier/addcourrier", name="addcourrier_courrier")
+     */
+    public function addCourrier(Request $request): Response
+    {
+        $courrier = new Courrier();
+        $form = $this->createForm(AddCourrierFormType::class, $courrier);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->courrierService->saveCourrier($courrier);
+            $this->addFlash('success', "OK");
+
+            return $this->redirectToRoute('history_courrier');
+        }
+
+        return $this->renderForm('courrier/addCourrier.html.twig', [
+            'name' => "Nawras",
+            'form' => $form
+        ]);
+    }
+
+    /**
+     * @Route("/courrier/updatecourrier/{id}", name="updatecourrier_courrier")
+     */
+    public function updateCourrier($id): Response
+    {
+        $courrier = $this->courrierService->getCourrier($id);
+        $form = $this->createForm(AddCourrierFormType::class, $courrier);
+
+
+
+        return $this->renderForm('courrier/addCourrier.html.twig', [
+            'name' => "Nawras",
+            'form' => $form
+        ]);
+
+    }
+
+    /**
+     * @Route("/courrier/deletecourrier/{id}", name="delete_courrier")
+     */
+    public function deleteCourrier($id): Response
+    {
+        $courrier = $this->courrierService->getCourrier($id);
+        $this->courrierService->deleteCourrier($courrier);
+        $this->addFlash('success', 'Article Created! Knowledge is power!');
+
+        return $this->redirectToRoute('history_courrier');
+    }
+
 }
