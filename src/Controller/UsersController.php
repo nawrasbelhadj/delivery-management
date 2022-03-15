@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\UserService;
 
-class UsersController extends AbstractController
+class UsersController extends BackendController
 {
     private UserService $userService;
 
@@ -21,8 +21,7 @@ class UsersController extends AbstractController
     {
         $Users = $this->userService->getListeUsers();
 
-        return $this->render('users/users.html.twig', [
-            'name' => "nawras",
+        return $this->renderViewBackend('users/users.html.twig', [
             'users' => $Users
         ]);
     }

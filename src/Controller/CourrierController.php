@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\CourrierService;
 
-class CourrierController extends AbstractController
+class CourrierController extends BackendController
 {
     private CourrierService $courrierService;
 
