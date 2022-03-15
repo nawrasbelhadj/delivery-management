@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="d-sm-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 class="card-title card-title-dash">Add user</h4>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{ form_start(form, {'action': path('add_user'), 'method': 'POST'}) }}
+                    <div class="col">
+                        <label>{{ form_label(form.id) }}</label>
+                        {{ form_widget(form.id) }}
+                    </div>
+{#                    <div class="col">#}
+{#                        <label>{{ form_label(form.fullname) }}</label>#}
+{#                        {{ form_widget(form.fullname) }}#}
+{#                    </div>#}
+                    <div class="col">
+                        <label>{{ form_label(form.email) }}</label>
+                        {{ form_widget(form.email) }}
+                    </div>
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-icon-text'}}) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
