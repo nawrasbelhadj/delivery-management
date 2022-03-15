@@ -19,19 +19,26 @@ class BackendController extends AbstractController
         $prefix = self::PREFIX;
         $separator = self::SEPARATOR;
 
-        if (in_array('title', $parameters) === true) {
+
+        if (array_key_exists('title', $parameters) === true) {
             $title = $parameters["title"];
+            unset($parameters["title"]);
         }
 
-        if (in_array('prefix', $parameters) === true) {
+        if (array_key_exists('prefix', $parameters) === true) {
             $prefix = $parameters["prefix"];
+            unset($parameters["prefix"]);
+
         }
 
-        if (in_array('separator', $parameters)) {
+        if (array_key_exists('separator', $parameters ) === true) {
             $separator = $parameters["separator"];
+            unset($parameters["separator"]);
+
         }
 
         $this->setPageTitle($title, $prefix, $separator);
+
 
         return $this->render($view, array_merge($this->getDefaultParamatres() , $parameters));
     }

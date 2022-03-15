@@ -27,7 +27,7 @@ class UsersController extends BackendController
         return $this->renderViewBackend('users/users.html.twig', [
             'users' => $Users,
             'title' => "Liste users",
-            'prefix' => "test",
+
             'separator' => ' | ',
         ]);
     }
