@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 class BackendController extends AbstractController
 {
     private const PREFIX = "Delevery Manager";
+    private const SEPARATOR =  "-";
     private $defaultParamtres = [];
 
 
@@ -16,6 +17,7 @@ class BackendController extends AbstractController
         $this->setDefaultParamtres();
         $title = "";
         $prefix = self::PREFIX;
+        $separator = self::SEPARATOR;
 
         if (in_array('title', $parameters) === true) {
             $title = $parameters["title"];
@@ -25,7 +27,11 @@ class BackendController extends AbstractController
             $prefix = $parameters["prefix"];
         }
 
-        $this->setPageTitle($title, $prefix);
+        if (in_array('separator', $parameters)) {
+            $separator = $parameters["separator"];
+        }
+
+        $this->setPageTitle($title, $prefix, $separator);
 
         return $this->render($view, array_merge($this->getDefaultParamatres() , $parameters));
     }
@@ -47,9 +53,9 @@ class BackendController extends AbstractController
         $this->defaultParamtres[$key] = $value;
     }
 
-    public function setPageTitle(string $title = "", string $prefix = self::PREFIX): void
+    public function setPageTitle(string $title = "", string $prefix = self::PREFIX, string $separator = self::SEPARATOR): void
     {
-        $this->defaultParamtres['title'] = $prefix . $title;
+        $this->defaultParamtres['title'] = $prefix . $separator .$title;
     }
 
 }
