@@ -13,7 +13,7 @@
                             <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
                         </div>
                         <div>
-                            <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("addcourrier_courrier") }}"><i class="mdi mdi-account-plus"></i>Ajouter Courrier</a>
+                            <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("addcourrier_courrier") }}"><i class="mdi mdi-plus-circle-outline"></i>Ajouter Courrier</a>
                         </div>
                     </div>
                     <div class="table-responsive pt-3">
@@ -41,7 +41,8 @@
                                     <td>{{ courrier.codeBarre }}</td>
                                     <td>{{ courrier.postDeparture }}</td>
                                     <td>
-                                        <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('updatecourrier_courrier', {'id' : courrier.id}) }}"><i class="ti-eye text-danger"></i></a>
+                                        <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('timeline_courrier', {'id' : courrier.id}) }}"><i class="ti-eye text-danger"></i></a>
+                                        <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('updatecourrier_courrier', {'id' : courrier.id}) }}"><i class="ti-pencil text-danger"></i></a>
                                         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('delete_courrier', {'id' : courrier.id}) }}"><i class="ti-trash text-danger"></i></a>
                                     </td>
                                 </tr>
