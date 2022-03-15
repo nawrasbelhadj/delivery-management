@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 use App\Entity\User;
+use App\Form\UserFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\UserService;
@@ -32,7 +34,7 @@ class UsersController extends AbstractController
     /**
      * @Route("/user/add", name="add_user")
      */
-    public function adduser(): Response
+    public function adduser(Request $request): Response
     {
 
 
@@ -54,9 +56,9 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/user/info", name="info_user")
+     * @Route("/user/info/{id}", name="info_user")
      */
-    public function infouser(): Response
+    public function infouser($id): Response
     {
 
 
