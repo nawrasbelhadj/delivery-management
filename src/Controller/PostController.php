@@ -13,7 +13,7 @@ class PostController extends BackendController
      */
     public function index(): Response
     {
-        return $this->render('post/post1.html.twig', ['name' => "nawras"]);
+        return $this->renderViewBackend('post/post1.html.twig', ['name' => "nawras"]);
     }
 
     /**
@@ -21,6 +21,6 @@ class PostController extends BackendController
      */
     public function index2(): Response
     {
-        return $this->render('post/post2.html.twig', ['name' => "nawras"]);
+        return $this->renderViewBackend('post/post2.html.twig', ['name' => "nawras"]);
     }
 }

@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
+{#    <link rel="stylesheet" href="{{ asset('css/material-design-iconic-font.min.css') }}">#}
+{#    <link rel="stylesheet" href="{{ asset('css/adduserstyle.com') }}">#}
 {% endblock %}
 
 {% block body %}
@@ -15,23 +17,56 @@
                         <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
                     </div>
                 </div>
-                <div class="form-group row">
+                <form  class="appointment-form" id="appointment-form">
                     {{ form_start(form, {'action': path('add_user'), 'method': 'POST'}) }}
-                    <div class="col">
-                        <label>{{ form_label(form.id) }}</label>
-                        {{ form_widget(form.id) }}
+
+                    <div class="form-group-1">
+                        <div class="col">
+                            <input type="text" name="title" id="title" placeholder="Title" required > </div>
+                            {{ form_widget(form.id) }}
+                        </div>
+
+                        <input type="text" name="name" id="name" placeholder="Your Name" required />
+                        <in class="col">
+{#                            <input type="email" name="email" id="email" placeholder="Email" required />#}
+                            <input type="email" name="email_user" id="email" placeholder="Email" required > {{ form(form.email) }} </input>
+{#                            {{ form_widget(form.email) }}#}
+                        </div>
+                        <input type="number" name="phone_number" id="phone_number" placeholder="Phone number" required />
+                        <div class="select-list">
+                            <select name="course_type" id="course_type">
+                                <option slected value="">Course Type</option>
+                                <option value="society">Society</option>
+                                <option value="language">Language</option>
+                            </select>
+                        </div>
                     </div>
-{#                    <div class="col">#}
-{#                        <label>{{ form_label(form.fullname) }}</label>#}
-{#                        {{ form_widget(form.fullname) }}#}
-{#                    </div>#}
-                    <div class="col">
-                        <label>{{ form_label(form.email) }}</label>
-                        {{ form_widget(form.email) }}
+                    <div class="form-group-2">
+                        <h3>How would you like to bo located ?</h3>
+                        <div class="select-list">
+                            <select name="confirm_type" id="confirm_type">
+                                <option seleected value="">By phone</option>
+                                <option value="by_email">By email</option>
+                            </select>
+                        </div>
+                        <div class="select-list">
+                            <select name="hour_appointment" id="hour_appointment">
+                                <option seleected value="">Hours : 8am 10pm</option>
+                                <option value="9h-11h">Hours : 9am 11pm</option>
+                            </select>
+                        </div>
                     </div>
+
                     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-icon-text'}}) }}
                     {{ form_end(form) }}
-                </div>
+                </form>
+
+
+
+
+
+
+
             </div>
         </div>
     </div>

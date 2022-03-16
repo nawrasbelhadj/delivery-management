@@ -29,7 +29,7 @@ class CourrierController extends BackendController
     {
         $courriers = $this->courrierService->getListeCourriers();
         
-        return $this->render('courrier/history.html.twig', [
+        return $this->renderViewBackend('courrier/history.html.twig', [
             'name' => "nawras",
             'courriers' => $courriers
         ]);
@@ -40,7 +40,7 @@ class CourrierController extends BackendController
      */
     public function list(): Response
     {
-        return $this->render('courrier/alert.html.twig', ['name' => "nawras"]);
+        return $this->renderViewBackend('courrier/alert.html.twig', ['name' => "nawras"]);
     }
 
 
@@ -49,7 +49,7 @@ class CourrierController extends BackendController
      */
     public function show(): Response
     {
-        return $this->render('courrier/timeline.html.twig', ['name' => "nawras"]);
+        return $this->renderViewBackend('courrier/timeline.html.twig', ['name' => "nawras"]);
     }
 
     /**
@@ -57,7 +57,7 @@ class CourrierController extends BackendController
      */
     public function search(): Response
     {
-        return $this->render('courrier/archive.html.twig', ['name' => "nawras"]);
+        return $this->renderViewBackend('courrier/archive.html.twig', ['name' => "nawras"]);
     }
 
     /**
@@ -67,7 +67,7 @@ class CourrierController extends BackendController
     {
         $courrier = $this->courrierService->getCourrier($id);
 
-        return $this->render('courrier/showcourrier.html.twig', [
+        return $this->renderViewBackend('courrier/showcourrier.html.twig', [
             'name' => "Nawras",
             'courrier' => $courrier
         ]);
