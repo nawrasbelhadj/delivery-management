@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-{#    <link rel="stylesheet" href="{{ asset('css/material-design-iconic-font.min.css') }}">#}
-{#    <link rel="stylesheet" href="{{ asset('css/adduserstyle.com') }}">#}
+  <link rel="stylesheet" href="{{ asset('css/material-design-iconic-font.min.css') }} >
+  <link rel="stylesheet" href="{{ asset('css/adduserstyle.css') }} >
 {% endblock %}
 
 {% block body %}
@@ -17,49 +17,47 @@
                         <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
                     </div>
                 </div>
-                <form  class="appointment-form" id="appointment-form">
+
                     {{ form_start(form, {'action': path('add_user'), 'method': 'POST'}) }}
 
                     <div class="form-group-1">
                         <div class="col">
-                            <input type="text" name="title" id="title" placeholder="Title" required > </div>
-                            {{ form_widget(form.id) }}
+
+                            {{ form_widget(form.cin, { 'attr': {'class': "span12", 'placeholder': "cin"} }) }}
+                        </div>
+                        <div class="col">
+
+                            {{ form_widget(form.email, { 'attr': {'class': "span12", 'placeholder': "Email"} }) }}
                         </div>
 
-                        <input type="text" name="name" id="name" placeholder="Your Name" required />
-                        <in class="col">
-{#                            <input type="email" name="email" id="email" placeholder="Email" required />#}
-                            <input type="email" name="email_user" id="email" placeholder="Email" required > {{ form(form.email) }} </input>
-{#                            {{ form_widget(form.email) }}#}
+                        {{ form_widget(form.firstName, { 'attr': {'class': "span12", 'placeholder': "First Name"} }) }}
+                        <div class="col">
+
+                            {{ form_widget(form.lastName, { 'attr': {'class': "span12", 'placeholder': "Last Name"} }) }}
                         </div>
-                        <input type="number" name="phone_number" id="phone_number" placeholder="Phone number" required />
-                        <div class="select-list">
-                            <select name="course_type" id="course_type">
-                                <option slected value="">Course Type</option>
-                                <option value="society">Society</option>
-                                <option value="language">Language</option>
-                            </select>
-                        </div>
+                        {{ form_widget(form.phoneNumber, { 'attr': {'class': "span12", 'placeholder': "Phone Number"} }) }}
+
+
                     </div>
                     <div class="form-group-2">
-                        <h3>How would you like to bo located ?</h3>
+                        <h3>Region ?</h3>
                         <div class="select-list">
-                            <select name="confirm_type" id="confirm_type">
-                                <option seleected value="">By phone</option>
-                                <option value="by_email">By email</option>
+                            <select name="region" id="region">
+                                <option seleected value="region1">Tunis</option>
+                                <option value="region2">Gabes</option>
                             </select>
                         </div>
-                        <div class="select-list">
-                            <select name="hour_appointment" id="hour_appointment">
-                                <option seleected value="">Hours : 8am 10pm</option>
-                                <option value="9h-11h">Hours : 9am 11pm</option>
-                            </select>
-                        </div>
+{#                        <div class="select-list">#}
+{#                            <select name="hour_appointment" id="hour_appointment">#}
+{#                                <option seleected value="">Hours : 8am 10pm</option>#}
+{#                                <option value="9h-11h">Hours : 9am 11pm</option>#}
+{#                            </select>#}
+{#                        </div>#}
                     </div>
 
                     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-icon-text'}}) }}
                     {{ form_end(form) }}
-                </form>
+
 
 
 

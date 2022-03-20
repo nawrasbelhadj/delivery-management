@@ -21,4 +21,23 @@ class UserService
     {
         return $this->userRepository->findAll();
     }
+
+    /**
+     * @param $id
+     * @return void
+     */
+    public function deleteUser($id): void
+    {
+        $user =  $this->userRepository->find($id);
+        $this->userRepository->deleteCourrier($user);
+    }
+
+    /**
+     * @param User $user
+     * @return User
+     */
+    public function saveUser(User $user): User
+    {
+        return $this->userRepository->saveUser($user);
+    }
 }
