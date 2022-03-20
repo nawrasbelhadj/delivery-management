@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\AddUserFormType;
-use App\Form\UserFormType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\UserService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\UserService;
 
 class UsersController extends BackendController
 {
