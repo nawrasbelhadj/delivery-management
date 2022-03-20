@@ -27,6 +27,9 @@ class Courrier
     #[ORM\Column(type: 'date')]
     private $departureDate;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $creationDate;
+
     #[ORM\Column(type: 'string', length: 15)]
     private $typeCourrier;
 
@@ -122,6 +125,24 @@ class Courrier
     public function setSituation(string $situation): self
     {
         $this->situation = $situation;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreationDate(): ?\DateTimeInterface
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @param mixed $creationDate
+     */
+    public function setCreationDate(DateTimeInterface $creationDate): self
+    {
+        $this->creationDate = $creationDate;
 
         return $this;
     }

@@ -165,8 +165,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // TODO: Implement getSalt() method.
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
-        // TODO: Implement getUsername() method.
+        return $this->getLastName() . " " . $this->getFirstName();
     }
 }

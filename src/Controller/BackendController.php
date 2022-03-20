@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class BackendController extends AbstractController
 {
@@ -46,8 +45,10 @@ class BackendController extends AbstractController
 
     public function setDefaultParamtres(): void
     {
+        $user = $this->getUser();
+
         $this->defaultParamtres = [
-            'name' => "Nawras",
+            'name' => $user->getUsername(),
         ];
     }
 
