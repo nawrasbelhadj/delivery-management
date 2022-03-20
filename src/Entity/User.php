@@ -110,7 +110,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-<<<<<<< Updated upstream
+
     public function getFirstName(): ?string
     {
         return $this->firstName;
@@ -159,8 +159,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-=======
->>>>>>> Stashed changes
+
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
