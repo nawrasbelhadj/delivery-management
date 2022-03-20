@@ -6,14 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PostController extends AbstractController
+class PostController extends BackendController
 {
     /**
      * @Route("/post/post1", name="post1")
      */
     public function index(): Response
     {
-        return $this->render('post/post1.html.twig', ['name' => "nawras"]);
+        return $this->renderViewBackend('post/post1.html.twig', ['name' => "nawras"]);
     }
 
     /**
@@ -21,6 +21,6 @@ class PostController extends AbstractController
      */
     public function index2(): Response
     {
-        return $this->render('post/post2.html.twig', ['name' => "nawras"]);
+        return $this->renderViewBackend('post/post2.html.twig', ['name' => "nawras"]);
     }
 }

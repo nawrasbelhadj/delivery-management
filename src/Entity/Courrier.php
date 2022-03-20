@@ -19,6 +19,23 @@ class Courrier
     #[ORM\Column(type: 'string', length: 255)]
     private $postDeparture;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $postArrival;
+
+
+
+    #[ORM\Column(type: 'date')]
+    private $departureDate;
+
+    #[ORM\Column(type: 'string', length: 15)]
+    private $typeCourrier;
+
+    #[ORM\Column(type: 'string', length: 20)]
+    private $status;
+
+    #[ORM\Column(type: 'string', length: 20)]
+    private $situation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +61,67 @@ class Courrier
     public function setPostDeparture(string $postDeparture): self
     {
         $this->postDeparture = $postDeparture;
+
+        return $this;
+    }
+
+    public function getPostArrival(): ?string
+    {
+        return $this->postArrival;
+    }
+
+    public function setPostArrival(string $postArrival): self
+    {
+        $this->postArrival = $postArrival;
+
+        return $this;
+    }
+
+
+    public function getDepartureDate(): ?\DateTimeInterface
+    {
+        return $this->departureDate;
+    }
+
+    public function setDepartureDate(\DateTimeInterface $departureDate): self
+    {
+        $this->departureDate = $departureDate;
+
+        return $this;
+    }
+
+    public function getTypeCourrier(): ?string
+    {
+        return $this->typeCourrier;
+    }
+
+    public function setTypeCourrier(string $typeCourrier): self
+    {
+        $this->typeCourrier = $typeCourrier;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSituation(): ?string
+    {
+        return $this->situation;
+    }
+
+    public function setSituation(string $situation): self
+    {
+        $this->situation = $situation;
 
         return $this;
     }

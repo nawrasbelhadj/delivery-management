@@ -19,6 +19,21 @@ class CourrierRepository extends ServiceEntityRepository
         parent::__construct($registry, Courrier::class);
     }
 
+    public function deleteCourrier(Courrier $courrier) :void
+    {
+     $this->getEntityManager()->remove($courrier);
+     $this->getEntityManager()->flush();
+    }
+
+    public function saveCourrier(Courrier $courrier) :Courrier
+    {
+        $this->getEntityManager()->persist($courrier);
+        $this->getEntityManager()->flush();
+
+        return $courrier;
+    }
+
+
     // /**
     //  * @return Courrier[] Returns an array of Courrier objects
     //  */
