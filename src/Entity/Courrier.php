@@ -24,11 +24,11 @@ class Courrier
 
 
 
-    #[ORM\Column(type: 'date')]
-    private $departureDate;
-
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private $creationDate;
+//    #[ORM\Column(type: 'date')]
+//    private $departureDate;
+//
+//    #[ORM\Column(type: 'date', nullable: true)]
+//    private $creationDate;
 
     #[ORM\Column(type: 'string', length: 15)]
     private $typeCourrier;
@@ -81,17 +81,17 @@ class Courrier
     }
 
 
-    public function getDepartureDate(): ?\DateTimeInterface
-    {
-        return $this->departureDate;
-    }
-
-    public function setDepartureDate(\DateTimeInterface $departureDate): self
-    {
-        $this->departureDate = $departureDate;
-
-        return $this;
-    }
+//    public function getDepartureDate(): ?\DateTimeInterface
+//    {
+//        return $this->departureDate;
+//    }
+//
+//    public function setDepartureDate(\DateTimeInterface $departureDate): self
+//    {
+//        $this->departureDate = $departureDate;
+//
+//        return $this;
+//    }
 
     public function getTypeCourrier(): ?string
     {
@@ -132,18 +132,18 @@ class Courrier
     /**
      * @return mixed
      */
-    public function getCreationDate(): ?\DateTimeInterface
-    {
-        return $this->creationDate;
-    }
-
-    /**
-     * @param mixed $creationDate
-     */
-    public function setCreationDate(DateTimeInterface $creationDate): self
-    {
-        $this->creationDate = $creationDate;
-
-        return $this;
-    }
+//    public function getCreationDate(): ?\DateTimeInterface
+//    {
+//        return $this->creationDate;
+//    }
+//
+//    /**
+//     * @param mixed $creationDate
+//     */
+//    public function setCreationDate(DateTimeInterface $creationDate): self
+//    {
+//        $this->creationDate = $creationDate;
+//
+//        return $this;
+//    }
 }
