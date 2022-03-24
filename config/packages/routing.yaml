@@ -10,6 +10,6 @@ when@prod:
     framework:
         router:
             strict_requirements: null
-app_logout:
-    path: /logout
-    methods: GET
+#app_logout:
+#    path: /logout
+#    methods: GET
