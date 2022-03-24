@@ -48,16 +48,14 @@
                     <li class="nav-item">
                         <a class="nav-link"  href="{{ path ("post1") }}" aria-expanded="false" >
                             <i class="menu-icon mdi mdi-blur-linear"></i>
-                            <span class="menu-title">post1</span>
-
+                            <span class="menu-title">List of Posts</span>
                         </a>
-
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link"  href="{{ path ("post2") }}" aria-expanded="false" >
                             <i class="menu-icon mdi mdi-blur-linear"></i>
-                            <span class="menu-title">post2</span>
+                            <span class="menu-title">Add Post</span>
 
                         </a>
 
@@ -66,25 +64,34 @@
 
                     {#                    user#}
                     <li class="nav-item nav-category">USERS</li>
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">#}
+{#                            <i class="menu-icon mdi mdi-account-circle-outline"></i>#}
+{#                            <span class="menu-title">Manage Users  </span>#}
+{#                            <i class="menu-arrow"></i>#}
+{#                        </a>#}
+{#                        <div class="collapse" id="auth">#}
+{#                            <ul class="nav flex-column sub-menu">#}
+{#                                <li class="nav-item"> <a class="nav-link" href="{{ path("users_list") }}"> Users List   </a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <div class="collapse" id="auth">#}
+{#                            <ul class="nav flex-column sub-menu">#}
+{#                                <li class="nav-item"> <a class="nav-link" href="{{ path("add_user") }}"> Add User   </a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+
+{#                    </li>#}
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="true" aria-controls="ui-basic">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">Manage Users  </span>
+                            <span class="menu-title">Manage Users</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse" id="auth">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ path("users_list") }}"> Users List   </a></li>
-                            </ul>
-                        </div>
-                        <div class="collapse" id="auth">
+                        <div class="collapse show" id="ui-basic" style="">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="{{ path("add_user") }}"> Add User   </a></li>
-                            </ul>
-                        </div>
-                        <div class="collapse" id="auth">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ path("remove_user") }}"> Remove User   </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ path("users_list") }}"> Users List   </a></li>
                             </ul>
                         </div>
                     </li>

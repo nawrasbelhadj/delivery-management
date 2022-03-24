@@ -58,9 +58,9 @@ class UsersController extends BackendController
     }
 
     /**
-     * @Route("/user/info/{id}", name="info_user")
+     * @Route("/user/info", name="info_user")
      */
-    public function infouser($id): Response
+    public function infouser(): Response
     {
 
 
