@@ -40,6 +40,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 15)]
     private $region;
 
+    #[ORM\Column(type: 'bigint')]
+    private $cin;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,6 +113,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+
     public function getFirstName(): ?string
     {
         return $this->firstName;
@@ -158,13 +162,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
-        // TODO: Implement getUsername() method.
+        return $this->getLastName() . " " . $this->getFirstName();
+    }
+
+    public function getCin(): ?string
+    {
+        return $this->cin;
+    }
+
+    public function setCin(string $cin): self
+    {
+        $this->cin = $cin;
+
+        return $this;
     }
 }

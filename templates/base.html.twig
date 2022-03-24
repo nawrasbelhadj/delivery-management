@@ -40,6 +40,7 @@
             {{ include('partials/settings-panel.html.twig') }}
             <!-- partial -->
             <!-- partial:partials/sidebar.html -->
+            {% if is_granted('ROLE_ADMIN') %} ... {% endif %}
             {{ include('partials/sidebar.html.twig') }}
             <!-- partial -->
             <div class="main-panel">

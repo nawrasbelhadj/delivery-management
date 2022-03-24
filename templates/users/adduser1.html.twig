@@ -1,181 +1,153 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/material-design-iconic-font.min.css') }} >
-  <link rel="stylesheet" href="{{ asset('css/adduserstyle1.css') }} >
-{% endblock %}
+
 
 {% block body %}
 
-<section class="h-100 h-custom gradient-custom-2">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12">
-                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                        <div class="row g-0">
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <h3 class="fw-normal mb-5" style="color: #4835d4;">General Infomation</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-sm-flex justify-content-between align-items-start">
+                <div>
+                    <h4 class="card-title card-title-dash">Add user</h4>
+                </div>
+                <div>
+                    <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
+                </div>
+            </div>
+{#            <form class="form-sample" method="post">#}
+                {{ form_start(form, {'class': 'form-sample', 'action': path('add_user'), 'method': 'POST'}) }}
+                <p class="card-description">
+                    Personal info
+                </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">CIN</label>
+                            <div class="col-sm-9">
 
-                                    <div class="mb-4 pb-2">
-                                        <select class="select">
-                                            <option value="1">Title</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-4 pb-2">
-
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Examplev2" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form3Examplev2">First name</label>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6 mb-4 pb-2">
-
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Examplev3" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form3Examplev3">Last name</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-4 pb-2">
-                                        <select class="select">
-                                            <option value="1">Position</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-4 pb-2">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Examplev4" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Examplev4">Position</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
-
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Examplev5" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form3Examplev5">Bussines Arena</label>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6">
-
-                                            <select class="select">
-                                                <option value="1">Employees</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                                <option value="4">Four</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-
-                                </div>
+                                {{ form_widget(form.cin, { 'attr': {'class': "form-control", 'placeholder': "CIN"} }) }}
                             </div>
-                            <div class="col-lg-6 bg-indigo text-white">
-                                <div class="p-5">
-                                    <h3 class="fw-normal mb-5">Contact Details</h3>
-
-                                    <div class="mb-4 pb-2">
-                                        <div class="form-outline form-white">
-                                            <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Examplea2">Street + Nr</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-4 pb-2">
-                                        <div class="form-outline form-white">
-                                            <input type="text" id="form3Examplea3" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Examplea3">Additional Information</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-5 mb-4 pb-2">
-
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea4" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form3Examplea4">Zip Code</label>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-7 mb-4 pb-2">
-
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea5" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form3Examplea5">Place</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-4 pb-2">
-                                        <div class="form-outline form-white">
-                                            <input type="text" id="form3Examplea6" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Examplea6">Country</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-5 mb-4 pb-2">
-
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea7" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form3Examplea7">Code +</label>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-7 mb-4 pb-2">
-
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea8" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form3Examplea8">Phone Number</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-4">
-                                        <div class="form-outline form-white">
-                                            <input type="text" id="form3Examplea9" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Examplea9">Your Email</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                                        <input
-                                                class="form-check-input me-3"
-                                                type="checkbox"
-                                                value=""
-                                                id="form2Example3c"
-                                        />
-                                        <label class="form-check-label text-white" for="form2Example3">
-                                            I do accept the <a href="#!" class="text-white"><u>Terms and Conditions</u></a> of your site.
-                                        </label>
-                                    </div>
-
-                                    <button type="button" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Register</button>
-
-                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.email, { 'attr': {'class': "form-control", 'placeholder': "Email"} }) }}
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">First Name</label>
+                            <div class="col-sm-9">
+
+                                {{ form_widget(form.firstName, { 'attr': {'class': "form-control", 'placeholder': "First Name"} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.lastName, { 'attr': {'class': "form-control", 'placeholder': "Last Name"} }) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"> Governorate </label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.region, { 'attr': { 'class': "form-control", 'placeholder': "Choose your gvr"} }) }}
+
+
+                            </div>
+                        </div>
+                    </div>
+{#                    <div class="col-md-6">#}
+{#                        <div class="form-group row">#}
+{#                            <label class="col-sm-3 col-form-label">Role</label>#}
+{#                            <div class="col-sm-4">#}
+{#                                <div class="form-check">#}
+{#                                    <label class="form-check-label">#}
+{#                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="ROLE_ADMIN" checked="">#}
+{#                                        Agent#}
+{#                                        <i class="input-helper"></i></label>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-sm-5">#}
+{#                                <div class="form-check">#}
+{#                                    <label class="form-check-label">#}
+{#                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="ROLE_USER">#}
+{#                                        Deliverer#}
+{#                                        <i class="input-helper"></i></label>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.password.first, { 'attr': {'class': "form-control", 'placeholder': "Password"} }) }}
+                            <br>
+                            <br>
+                            {{ form_widget(form.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
+
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+
+                <p class="card-description">
+                    Optional Info
+                </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Phone Number</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.phoneNumber, { 'attr': {'class': "form-control", 'placeholder': "Phone Number"} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Address </label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.adress, { 'attr': {'class': "form-control", 'placeholder': "Address"} }) }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Postcode</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.postCode, { 'attr': {'class': "form-control", 'placeholder': "Post Code"} }) }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary mb-2'}}) }}
+                {{ form_widget(form.reset, {'attr': {'class': 'btn btn-light'}}) }}
+
+            {{ form_end(form) }}
         </div>
     </div>
-</section>
-
 {% endblock %}

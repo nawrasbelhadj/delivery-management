@@ -45,8 +45,10 @@ class BackendController extends AbstractController
 
     public function setDefaultParamtres(): void
     {
+        $user = $this->getUser();
+
         $this->defaultParamtres = [
-            'name' => "Nawras",
+            'name' => $user->getUsername(),
         ];
     }
 
