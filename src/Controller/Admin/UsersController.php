@@ -27,7 +27,6 @@ class UsersController extends BackendController
         return $this->renderViewBackend('users/users.html.twig', [
             'users' => $Users,
             'title' => "Liste users",
-
             'separator' => ' | ',
         ]);
     }
@@ -38,8 +37,6 @@ class UsersController extends BackendController
      */
     public function adduser(Request $request): Response
     {
-
-
         $user = new User();
         $form = $this->createForm(AddUserFormType::class, $user);
         $form->handleRequest($request);
@@ -50,23 +47,22 @@ class UsersController extends BackendController
 
             return $this->redirectToRoute('users_list');
         }
-
         return $this->renderForm('users/adduser1.html.twig', [
             'name' => "Nawras",
             'form' => $form
         ]);
     }
 
+
     /**
-     * @Route("/user/info", name="info_user")
+     * @Route("/user/info/{id}", name="info_user")
      */
-    public function infouser(): Response
+    public function infouser($id): Response
     {
+        $Users = $this->userService->getUserData($id);
 
-
-        return $this->render('users/infouser.html.twig', [
-            'name' => "nawras",
-
+        return $this->renderViewBackend('users/infouser.html.twig', [
+            'user' => $Users,
         ]);
     }
 
@@ -74,13 +70,12 @@ class UsersController extends BackendController
     /**
      * @Route("/user/remove", name="remove_user")
      */
-    public function rmuser(): Response
+    public function deleteUser($id): Response
     {
+        $user = $this->userService->getUser($id);
+        $this->userService->deleteUser($user);
+        $this->addFlash('success', 'User has been deleted successfully !');
 
-
-        return $this->render('users/users.html.twig', [
-            'name' => "nawras",
-            'users' => $Users
-        ]);
+        return $this->redirectToRoute('users_list');
     }
 }

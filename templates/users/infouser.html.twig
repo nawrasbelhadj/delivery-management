@@ -23,17 +23,7 @@
                     <div class="table-responsive">
                         <table class="table table-user-information">
                             <tbody>
-                            <tr>
-                                <td>
-                                    <strong>
 
-                                        Identificacion
-                                    </strong>
-                                </td>
-                                <td >
-                                    123456789
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <strong>
@@ -41,7 +31,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                        num cin
+                                       {{ user.cin }}
                                 </td>
 
                             </tr>
@@ -53,7 +43,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    Bootdey
+                                   {{ user.firstName }}
                                 </td>
 
                                 <td>
@@ -62,7 +52,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    Bootstrap
+                                      {{ user.lastName }}
                                 </td>
                             </tr>
 
@@ -76,7 +66,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    noreply@email.com
+                                      {{ user.Email }}
                                 </td>
                                 <td>
                                     <strong>
@@ -84,7 +74,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    Admin
+                                     Role
                                 </td>
                             </tr>
                            <tr>
@@ -95,7 +85,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    numero
+                                     {{ user.phoneNumber }}
                                 </td>
                                  <td>
                                     <strong>
@@ -103,7 +93,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    ******
+                                     {{ user.password}}
                                 </td>
                             </tr>
                             <tr>

@@ -29,7 +29,7 @@ class UserService
     public function deleteUser($id): void
     {
         $user =  $this->userRepository->find($id);
-        $this->userRepository->deleteCourrier($user);
+        $this->userRepository->deleteUSer($user);
     }
 
     /**
@@ -40,4 +40,22 @@ class UserService
     {
         return $this->userRepository->saveUser($user);
     }
+
+    /**
+     * @return User[] Returns an array of User objects
+     */
+    public function getUserData($id): User
+    {
+        $user =  $this->userRepository->find($id);
+        return $this->userRepository->find($id);
+    }
+
+    /**
+     * @return Users Returns an User objects
+     */
+    public function getUser($id): ?User
+    {
+        return $this->userRepository->find($id);
+    }
+
 }
