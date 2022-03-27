@@ -21,8 +21,8 @@ class CourrierRepository extends ServiceEntityRepository
 
     public function deleteCourrier(Courrier $courrier) :void
     {
-     $this->getEntityManager()->remove($courrier);
-     $this->getEntityManager()->flush();
+        $this->getEntityManager()->remove($courrier);
+        $this->getEntityManager()->flush();
     }
 
     public function saveCourrier(Courrier $courrier) :Courrier

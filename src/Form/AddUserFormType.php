@@ -24,11 +24,22 @@ class AddUserFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-//            ->add('id', TextType::class)
             ->add('cin', TextType::class )
             ->add('email', TextType::class)
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
+
+            ->add('userRole', type: ChoiceType::class, options: [
+                'placeholder' => 'User Role',
+                'choices'  => [
+                   'Post Agent' => 'ROLE_AGENT',
+                    'Deliverer' => 'ROLE_USER',
+                    'Administrator' => 'ROLE_ADMIN'
+                ],
+                "mapped" => false,
+
+            ])
+
             ->add('phoneNumber', TextType::class, array(
                 'required' => false
             ))
@@ -62,7 +73,6 @@ class AddUserFormType extends AbstractType
                     ],
 
                 ])
-//            ->add('role', RadioType::class)
             ->add('password', RepeatedType::class, options: array(
                 'type' => PasswordType::class,
                 'required' => true,
@@ -74,14 +84,7 @@ class AddUserFormType extends AbstractType
                 'first_options'  => array('label' => 'label.password'),
                 'second_options' => array('label' => 'label.passwordConfirmation'),
             ))
-//            ->add('password', RepeatedType::class, [
-//                'type' => PasswordType::class,
-//                'invalid_message' => 'The password fields must match.',
-//                'options' => ['attr' => ['class' => 'password-field']],
-//                'required' => true,
-//                'first_options'  => ['label' => 'Password'],
-//                'second_options' => ['label' => 'Repeat Password'],
-//            ])
+
             ->add('adress', TextType::class, array(
                 "mapped" => false,
             ))
