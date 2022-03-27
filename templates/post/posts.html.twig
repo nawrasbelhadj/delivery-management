@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+ <div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+   <div class="card-body">
+    <div class="d-sm-flex justify-content-between align-items-start">
+     <div>
+      <h4 class="card-title card-title-dash">List of Posts</h4>
+
+      <p class="card-subtitle card-subtitle-dash">number of posts</p>
+     </div>
+     <div>
+      <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("add_post") }}"><i class="mdi mdi-plus-circle-outline"></i>Add Post</a>
+     </div>
+    </div>
+    <div class="table-responsive pt-3">
+     <table class="table table-bordered">
+      <thead>
+      <tr>
+       <th>
+        Postal Code
+       </th>
+       <th>
+        Governorate
+       </th>
+       <th>
+        Actions
+       </th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for user in users %}
+       <tr>
+        <td>{{ post.codePostal }}</td>
+        <td>{{ post.regionPost }}</td>
+        <td>
+         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('update_post', {'id' : post.id} ) }}"><i class="mdi mdi-pencil text-info "></i></a>
+         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('info_post', {'id' : post.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>
+         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('remove_post', {'id' : post.id}) }}"><i class="ti-trash text-danger"></i></a>
+        </td>
+       </tr>
+      {% endfor %}
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div>
+{% endblock %}

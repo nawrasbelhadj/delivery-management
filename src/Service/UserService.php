@@ -42,7 +42,7 @@ class UserService
     }
 
     /**
-     * @return Users Returns an User objects
+     * @return User Returns an User objects
      */
     public function getUserData($id): User
     {
