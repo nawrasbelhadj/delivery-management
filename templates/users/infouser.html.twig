@@ -21,12 +21,13 @@
                 <div class="col-md-6">
                       <div class="d-sm-flex justify-content-between align-items-start">
                              <div>
-                                     <h4 class="card-title card-title-dash">Add user</h4>
+                                     <h4 class="card-title card-title-dash">User Information</h4>
                              </div>
 
                              <div>
-                                      <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
+                                      <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Listof Users</a>
                              </div>
+
                       </div>
                       <br>
                     <div class="table-responsive">
@@ -41,6 +42,14 @@
                                 </td>
                                 <td >
                                        {{ user.cin }}
+                                </td>
+                                <td>
+                                    <strong>
+                                        Email
+                                    </strong>
+                                </td>
+                                <td >
+                                      {{ user.Email }}
                                 </td>
 
                             </tr>
@@ -69,24 +78,15 @@
 
 
                             <tr>
-                            <td>
-                                    <strong>
-                                        Email
-                                    </strong>
-                                </td>
-                                <td >
-                                      {{ user.Email }}
-                                </td>
+
                                 <td>
                                     <strong>
                                         Role
                                     </strong>
                                 </td>
                                 <td >
-                                     Role
+                                       * show role *
                                 </td>
-                            </tr>
-                           <tr>
                                 <td>
                                     <strong>
 
@@ -96,14 +96,7 @@
                                 <td >
                                      {{ user.phoneNumber }}
                                 </td>
-                                 <td>
-                                    <strong>
-                                       Password
-                                    </strong>
-                                </td>
-                                <td >
-                                     {{ user.password}}
-                                </td>
+
                             </tr>
                             <tr>
                                 <td>
@@ -112,10 +105,8 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    20 jul 20014
+                                   {{ "now"|date("m/d/Y") }}
                                 </td>
-                            </tr>
-                            <tr>
                                 <td>
                                     <strong>
 
@@ -123,12 +114,14 @@
                                     </strong>
                                 </td>
                                 <td >
-                                    20 jul 20014 20:00:00
+                                   {{ "now"|date("m/d/Y") }}
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-
+ <div>
+                                      <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("update_user", {'id' : user.id}) }}"><i class="mdi mdi-pencil-box"></i>Edit </a>
+                             </div>
                     </div>
                 </div>
             </div>

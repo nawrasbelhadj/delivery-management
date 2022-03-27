@@ -19,34 +19,26 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 
-class UpdateUserProfileType extends AbstractType
+class UpdatePasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('cin', TextType::class )
-            ->add('email', TextType::class)
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
 
-            ->add('userRole', type: ChoiceType::class, options: [
-                'placeholder' => 'User Role',
-                'choices'  => [
-                    'Post Agent' => 'ROLE_AGENT',
-                    'Deliverer' => 'ROLE_USER',
-                    'Administrator' => 'ROLE_ADMIN'
-                ],
-                "mapped" => false,
-
-            ])
-
-            ->add('phoneNumber', TextType::class, array(
-                'required' => false
+            ->add('password', RepeatedType::class, options: array(
+                'type' => PasswordType::class,
+                'required' => true,
+                'constraints' => array(
+                    new NotBlank(),
+                    new Length(array('min' => 6)),
+                ),
+                'invalid_message' => 'The password fields must match.',
+                'first_options'  => array('label' => 'label.password'),
+                'second_options' => array('label' => 'label.passwordConfirmation'),
             ))
-            ->add('region', type: TextType::class)
 
 
-            ->add('save', SubmitType::class, ['label' => 'Save Changes'])
+            ->add('save', SubmitType::class, ['label' => 'Save'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);
 
     }

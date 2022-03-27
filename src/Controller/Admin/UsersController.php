@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 use App\Controller\BackendController;
 use App\Entity\User;
 use App\Form\AddUserFormType;
+use App\Form\UpdatePasswordFormType;
+use App\Form\UpdateUserProfileType;
 use App\Service\UserService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,7 +53,7 @@ class UsersController extends BackendController
                 $this->addFlash('errors', $error->getMessage());
             }
         }
-        elseif ($form->isSubmitted() && isValid())
+        elseif ($form->isSubmitted() && $this->isValid())
         {
             $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
@@ -81,16 +83,103 @@ class UsersController extends BackendController
         ]);
     }
 
+    /**
+     * @Route("/user/update/{id}", name="update_user")
+     */
+    public function updateuser($id , Request $request): Response
+    {
+        $User = $this->userService->getUserData($id);
+        $form = $this->createForm(UpdateUserProfileType::class, $User);
+        $form->handleRequest($request);
+        $formPassword = $this->createForm(UpdatePasswordFormType::class, $User);
+        $formPassword->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() == false) {
+
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('errors', $error->getMessage());
+            }
+        } elseif ($form->isSubmitted() && $form->isValid()) {
+          $role = $request->request->get('update_user_profile')['userRole'];
+//            dd($request);
+            $User->setRoles(array($role));
+            $this->userService->saveUser($User);
+            $this->addFlash('success', "OK");
+
+            return $this->redirectToRoute('users_list');
+        }
+
+
+        if ($formPassword->isSubmitted() && $formPassword->isValid() == false) {
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('errors', $error->getMessage());
+            }
+        }
+        elseif
+            ($formPassword->isSubmitted() && $formPassword->isValid()){
+        $hashedPassword = $this->passwordHasher->hashPassword($User, $User->getPassword());
+            $User->setPassword($hashedPassword);
+            $this->userService->saveUser($User);
+            $this->addFlash('success', "OK");
+
+            return $this->redirectToRoute('users_list');
+
+        }
+
+        return $this->renderForm('users/updateuser.html.twig', [
+            'user' => $User,
+            'name' => "Nawras",
+            'form' => $form,
+            'formpassword' => $formPassword
+
+        ]);
+
+    }
+///**
+//     * @Route("/user/update/{id}", name="update_user")
+//     */
+//    public function updatePassword($id): Response
+//    {
+//        $User = new User();
+//        $User = $this->userService->getUserData($id);
+//        $form = $this->createForm(UpdatePasswordFormType::class, $User);
+// //       $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()==false ) {
+//
+//            foreach ($form->getErrors(true) as $error) {
+//                $this->addFlash('errors', $error->getMessage());
+//            }
+//        }
+//        elseif ($form->isSubmitted() && $this->isValid())
+//        {
+//            $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
+//            $user->setPassword($hashedPassword);
+//            $this->userService->saveUser($user);
+//            $this->addFlash('success', "OK");
+//
+//            return $this->redirectToRoute('users_list');
+//        }
+//
+//        return $this->renderForm('users/updateuser.html.twig', [
+//            'user'=>$User,
+//            'name' => "Nawras",
+//            'form' => $form
+//
+//        ]);
+//    }
 
     /**
-     * @Route("/user/remove", name="remove_user")
+     * @Route("/user/remove/{id}", name="remove_user")
      */
     public function deleteUser($id): Response
     {
-        $user = $this->userService->getUser($id);
+        $user = $this->userService->getUserData($id);
         $this->userService->deleteUser($user);
         $this->addFlash('success', 'User has been deleted successfully !');
 
         return $this->redirectToRoute('users_list');
     }
+
+
 }

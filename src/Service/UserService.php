@@ -42,20 +42,19 @@ class UserService
     }
 
     /**
-     * @return User[] Returns an array of User objects
+     * @return Users Returns an User objects
      */
     public function getUserData($id): User
     {
-        $user =  $this->userRepository->find($id);
         return $this->userRepository->find($id);
     }
 
-    /**
-     * @return Users Returns an User objects
-     */
-    public function getUser($id): ?User
-    {
-        return $this->userRepository->find($id);
-    }
+//    /**
+//     * @return Users Returns an User objects
+//     */
+//    public function getUser($id): ?User
+//    {
+//        return $this->userRepository->find($id);
+//    }
 
 }
