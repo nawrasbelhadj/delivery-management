@@ -7,15 +7,18 @@ use App\Form\AddUserFormType;
 use App\Service\UserService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends BackendController
 {
     private UserService $userService;
+    private UserPasswordHasherInterface $passwordHasher;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, UserPasswordHasherInterface $passwordHasher)
     {
         $this->userService = $userService;
+        $this->passwordHasher = $passwordHasher;
     }
     /**
      * @Route("/users", name="users_list")
@@ -41,7 +44,19 @@ class UsersController extends BackendController
         $form = $this->createForm(AddUserFormType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid()==false ) {
+
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('errors', $error->getMessage());
+            }
+        }
+        elseif ($form->isSubmitted() && isValid())
+        {
+            $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
+            $role = $request->request->get('add_user_form')['userRole'];
+            $user->setRoles(array($role));
             $this->userService->saveUser($user);
             $this->addFlash('success', "OK");
 

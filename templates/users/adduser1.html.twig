@@ -64,32 +64,20 @@
                             <label class="col-sm-3 col-form-label"> Governorate </label>
                             <div class="col-sm-9">
                                 {{ form_widget(form.region, { 'attr': { 'class': "form-control", 'placeholder': "Choose your gvr"} }) }}
-
-
                             </div>
                         </div>
                     </div>
-{#                    <div class="col-md-6">#}
-{#                        <div class="form-group row">#}
-{#                            <label class="col-sm-3 col-form-label">Role</label>#}
-{#                            <div class="col-sm-4">#}
-{#                                <div class="form-check">#}
-{#                                    <label class="form-check-label">#}
-{#                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="ROLE_ADMIN" checked="">#}
-{#                                        Agent#}
-{#                                        <i class="input-helper"></i></label>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="col-sm-5">#}
-{#                                <div class="form-check">#}
-{#                                    <label class="form-check-label">#}
-{#                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="ROLE_USER">#}
-{#                                        Deliverer#}
-{#                                        <i class="input-helper"></i></label>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Role</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                        {{ form_widget(form.userRole, { 'attr': { 'class': "form-control"} }) }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             <div class="row">
                 <div class="col-md-6">
@@ -143,10 +131,10 @@
                         </div>
                     </div>
                 </div>
-
-                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary mb-2'}}) }}
-                {{ form_widget(form.reset, {'attr': {'class': 'btn btn-light'}}) }}
-
+                 <div class="d-sm-flex justify-content-between align-items-start">
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg text-white mb-0 me-0 '}}) }}
+                {{ form_widget(form.reset, {'attr': {'class': 'btn btn-light btn-lg  mb-0 me-0'}}) }}
+                 </div>
             {{ form_end(form) }}
         </div>
     </div>

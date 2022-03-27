@@ -19,7 +19,16 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <strong>User Information</strong><br>
+                      <div class="d-sm-flex justify-content-between align-items-start">
+                             <div>
+                                     <h4 class="card-title card-title-dash">Add user</h4>
+                             </div>
+
+                             <div>
+                                      <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
+                             </div>
+                      </div>
+                      <br>
                     <div class="table-responsive">
                         <table class="table table-user-information">
                             <tbody>
@@ -119,6 +128,7 @@
                             </tr>
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
