@@ -36,7 +36,7 @@ class PostService
      * @param Post $Post
      * @return Post
      */
-    public function saveUser(Post $post): Post
+    public function savePost(Post $post): Post
     {
         return $this->postRepository->savePost($post);
     }

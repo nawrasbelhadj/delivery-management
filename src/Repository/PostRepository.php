@@ -19,6 +19,12 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    public function deletePost(Post $post) :void
+    {
+        $this->getEntityManager()->remove($post);
+        $this->getEntityManager()->flush();
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */
