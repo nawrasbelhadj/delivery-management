@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Controller\BackendController;
 use App\Entity\Post;
+use App\Form\post\AddPostFormType;
 use App\Service\PostService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,7 +41,7 @@ class PostController extends BackendController
     }
 
     /**
-     * @Route("/user/post", name="add_post")
+     * @Route("/post/add", name="add_post")
      */
     public function addpost(Request $request): Response
     {
@@ -54,16 +56,16 @@ class PostController extends BackendController
                 $this->addFlash('errors', $error->getMessage());
             }
         }
-        elseif ($form->isSubmitted() && $this->isValid())
+        elseif ($form->isSubmitted() && $form->isValid())
         {
 
 
             $this->postService->savePost($post);
-            $this->addFlash('success', "OK");
+            $this->addFlash('success', "New post added");
 
             return $this->redirectToRoute('list_posts');
         }
-        return $this->renderForm('users/addpost.html.twig', [
+        return $this->renderForm('post/addpost.html.twig', [
             'name' => "Nawras",
             'form' => $form
         ]);
@@ -82,4 +84,6 @@ class PostController extends BackendController
 
         return $this->redirectToRoute('list_posts');
     }
+
+
 }
