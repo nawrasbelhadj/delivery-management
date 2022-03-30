@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\BackendController;
 use App\Entity\Post;
-use App\Form\post\AddPostFormType;
+use App\Form\Post\AddPostFormType;
 use App\Service\PostService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +50,7 @@ class PostController extends BackendController
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid()==false ) {
+        if ($form->isSubmitted() && $form->isValid() === false) {
 
             foreach ($form->getErrors(true) as $error) {
                 $this->addFlash('errors', $error->getMessage());
