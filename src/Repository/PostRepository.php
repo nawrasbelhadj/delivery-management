@@ -19,7 +19,7 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function savePost(Post $post) :Post
+    public function savePost(Post $post): Post
     {
         $this->getEntityManager()->persist($post);
         $this->getEntityManager()->flush();
@@ -27,7 +27,7 @@ class PostRepository extends ServiceEntityRepository
         return $post;
     }
 
-    public function deletePost(Post $post) :void
+    public function deletePost(Post $post): void
     {
         $this->getEntityManager()->remove($post);
         $this->getEntityManager()->flush();

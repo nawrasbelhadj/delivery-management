@@ -41,8 +41,6 @@ class PostService
         return $this->postRepository->savePost($post);
     }
 
-
-
     /**
      * @return Posts Returns an Post objects
      */

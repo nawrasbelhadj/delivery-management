@@ -10,8 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
-
 class AddPostFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -21,10 +19,8 @@ class AddPostFormType extends AbstractType
             ->add('city', TextType::class)
             ->add('street', TextType::class)
             ->add('regionPost', TextType::class)
-
             ->add('save', SubmitType::class, ['label' => 'Save'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -65,8 +65,8 @@ class PostController extends BackendController
 
             return $this->redirectToRoute('list_posts');
         }
+
         return $this->renderForm('post/addpost.html.twig', [
-            'name' => "Nawras",
             'form' => $form
         ]);
     }
