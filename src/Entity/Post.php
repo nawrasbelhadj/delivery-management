@@ -13,8 +13,6 @@ class Post
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $postID;
 
     #[ORM\Column(type: 'bigint')]
     private $codePostal;
@@ -33,17 +31,6 @@ class Post
         return $this->id;
     }
 
-    public function getPostID(): ?int
-    {
-        return $this->postID;
-    }
-
-    public function setPostID(int $postID): self
-    {
-        $this->postID = $postID;
-
-        return $this;
-    }
 
     public function getCodePostal(): ?string
     {

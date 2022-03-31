@@ -68,4 +68,24 @@ class PostController extends BackendController
             'form' => $form
         ]);
     }
+
+
+
+    /**
+     * @Route("/post/remove/{id}", name="remove_post")
+     */
+    public function deletePost($id): Response
+    {
+        $post = $this->postService->getPost($id);
+
+        if ($post === null) {
+            $this->addFlash('errors', 'Post not found !');
+            return $this->redirectToRoute('list_posts');
+        }
+        else{
+        $this->postService->deletePost($post);
+        $this->addFlash('success', 'Post has been deleted successfully !');
+        }
+        return $this->redirectToRoute('list_posts');
+    }
 }
