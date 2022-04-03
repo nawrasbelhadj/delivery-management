@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
+
 use App\Controller\BackendController;
 use App\Entity\User;
 use App\Form\User\AddUserFormType;
@@ -10,6 +11,7 @@ use App\Service\UserService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends BackendController
 {

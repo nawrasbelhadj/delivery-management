@@ -4,8 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Controller\BackendController;
 use App\Entity\Post;
+use App\Form\Post\AddPostFormType;
+use App\Form\Post\UpdatePostFormType;
 use App\Service\PostService;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends BackendController
@@ -69,7 +72,35 @@ class PostController extends BackendController
         ]);
     }
 
+    /**
+     * @Route("/post/update/{id}", name="update_post")
+     */
+    public function updatepost($id , Request $request): Response
+    {
+        $post = $this->postService->getPost($id);
+        $form = $this->createForm(UpdatePostFormType::class, $post);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid() == false) {
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('errors', $error->getMessage());
+            }
+        }
+        elseif ($form->isSubmitted() && $form->isValid()) {
+            $this->postService->savePost($post);
+            $this->addFlash('success', "OK");
+
+            return $this->redirectToRoute('list_posts');
+        }
+
+        return $this->renderForm('post/updatePost.html.twig', [
+            'post' => $post,
+            'name' => "Nawras",
+            'form' => $form,
+
+        ]);
+
+    }
 
     /**
      * @Route("/post/remove/{id}", name="remove_post")

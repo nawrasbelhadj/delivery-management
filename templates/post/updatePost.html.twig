@@ -16,9 +16,7 @@
                 </div>
                 <br>
 
-
-                {{ form_start(form, {'class': 'form-sample', 'action': path('add_post'), 'method': 'POST'}) }}
-
+                {{ form_start(form, {'class': 'form-sample', 'action': path('update_post' , {'id' : post.id}), 'method': 'POST'}) }}
 
                 <div class="form-group-1">
                     <div class="form-group row">
@@ -50,22 +48,12 @@
                             {{ form_widget(form.street, { 'attr': {'class': "form-control", 'placeholder': "Street"} }) }}
                         </div>
                     </div>
-
-
-
                 </div>
 
                 {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg text-white mb-0 me-0'}}) }}
                 {{ form_widget(form.reset, {'attr': {'class': 'btn btn-light btn-lg  mb-0 me-0'}}) }}
 
                 {{ form_end(form) }}
-
-
-
-
-
-
-
 
             </div>
         </div>

@@ -25,6 +25,14 @@ class PostRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
+    public function savePost(Post $post) :Post
+    {
+        $this->getEntityManager()->persist($post);
+        $this->getEntityManager()->flush();
+
+        return $post;
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */

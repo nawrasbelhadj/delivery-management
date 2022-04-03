@@ -15,7 +15,7 @@ class PostService
     }
 
     /**
-     * @return Post[] Returns an array of User objects
+     * @return Post[] Returns an array of Post objects
      */
     public function getListePosts(): array
     {
@@ -33,7 +33,7 @@ class PostService
     }
 
     /**
-     * @param Post $Post
+     * @param Post $post
      * @return Post
      */
     public function savePost(Post $post): Post
@@ -41,10 +41,8 @@ class PostService
         return $this->postRepository->savePost($post);
     }
 
-
-
-    /**
-     * @return Posts Returns an Post objects
+  /**
+     * @return Post Returns a Post objects
      */
     public function getPost($id): ?Post
     {
