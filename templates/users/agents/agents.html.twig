@@ -24,7 +24,10 @@
                                 user id
                             </th>
                             <th>
-                                email
+                                username
+                            </th>
+                            <th>
+                                Post
                             </th>
                             <th>
                                 Actions
@@ -32,14 +35,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for user in users %}
+                        {% for agent in agents %}
                             <tr>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.Email }}</td>
+                                <td>{{ agent.id }}</td>
+                                <td>{{ agent.username }}</td>
+                                <td>{{ agent.postID }}</td>
                                 <td>
-                                    <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('update_user', {'id' : user.id} ) }}"><i class="mdi mdi-pencil text-info "></i></a>
-                                    <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('info_user', {'id' : user.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>
-                                    <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('remove_user', {'id' : user.id}) }}"><i class="ti-trash text-danger"></i></a>
+{#                                    <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('update_user', {'id' : user.id} ) }}"><i class="mdi mdi-pencil text-info "></i></a>#}
+{#                                    <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('info_user', {'id' : user.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>#}
+{#                                    <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('remove_user', {'id' : user.id}) }}"><i class="ti-trash text-danger"></i></a>#}
                                 </td>
                             </tr>
                         {% endfor %}
