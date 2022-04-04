@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="d-sm-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 class="card-title card-title-dash">Add Post</h4>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("list_posts") }}"><i class="mdi mdi-view-list"></i>List of Posts</a>
+                    </div>
+                </div>
+                <br>
+
+
+                {{ form_start(form, {'class': 'form-sample', 'action': path('add_post'), 'method': 'POST'}) }}
+
+
+                <div class="form-group-1">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Postal Code </label>
+                        <div class="col-sm-9">
+
+                            {{ form_widget(form.codePostal, { 'attr': {'class': "form-control", 'placeholder': "Postal Code"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Region</label>
+                        <div class="col-sm-9">
+
+                            {{ form_widget(form.regionPost, { 'attr': {'class': "form-control", 'placeholder': "Region"} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">City</label>
+                        <div class="col-sm-9">
+
+                            {{ form_widget(form.city, { 'attr': {'class': "form-control", 'placeholder': "City"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Street</label>
+                        <div class="col-sm-9">
+
+                            {{ form_widget(form.street, { 'attr': {'class': "form-control", 'placeholder': "Street"} }) }}
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg text-white mb-0 me-0'}}) }}
+                {{ form_widget(form.reset, {'attr': {'class': 'btn btn-light btn-lg  mb-0 me-0'}}) }}
+
+                {{ form_end(form) }}
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
