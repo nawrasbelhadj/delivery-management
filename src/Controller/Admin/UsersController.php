@@ -49,13 +49,12 @@ class UsersController extends BackendController
 
 
         if ($form->isSubmitted() && $form->isValid()==false ) {
-
             foreach ($form->getErrors(true) as $error) {
                 $this->addFlash('errors', $error->getMessage());
             }
         }
-        elseif ($form->isSubmitted() && $this->isValid())
-        {
+
+        if ($form->isSubmitted() && $this->isValid()) {
             $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
             $role = $request->request->get('add_user_form')['userRole'];
@@ -65,8 +64,8 @@ class UsersController extends BackendController
 
             return $this->redirectToRoute('users_list');
         }
+
         return $this->renderForm('users/adduser1.html.twig', [
-            'name' => "Nawras",
             'form' => $form
         ]);
     }
@@ -100,9 +99,10 @@ class UsersController extends BackendController
             foreach ($form->getErrors(true) as $error) {
                 $this->addFlash('errors', $error->getMessage());
             }
-        } elseif ($form->isSubmitted() && $form->isValid()) {
-          $role = $request->request->get('update_user_profile')['userRole'];
-//            dd($request);
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $role = $request->request->get('update_user_profile')['userRole'];
             $User->setRoles(array($role));
             $this->userService->saveUser($User);
             $this->addFlash('success', "OK");
@@ -116,15 +116,14 @@ class UsersController extends BackendController
                 $this->addFlash('errors', $error->getMessage());
             }
         }
-        elseif
-            ($formPassword->isSubmitted() && $formPassword->isValid()){
-        $hashedPassword = $this->passwordHasher->hashPassword($User, $User->getPassword());
+
+        if ($formPassword->isSubmitted() && $formPassword->isValid()) {
+            $hashedPassword = $this->passwordHasher->hashPassword($User, $User->getPassword());
             $User->setPassword($hashedPassword);
             $this->userService->saveUser($User);
             $this->addFlash('success', "OK");
 
             return $this->redirectToRoute('users_list');
-
         }
 
         return $this->renderForm('users/updateuser.html.twig', [
@@ -181,6 +180,4 @@ class UsersController extends BackendController
 
         return $this->redirectToRoute('users_list');
     }
-
-
 }

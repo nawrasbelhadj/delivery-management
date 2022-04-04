@@ -66,10 +66,8 @@ class CourrierController extends BackendController
         $courrier = $this->courrierService->getCourrier($id);
 
         return $this->renderViewBackend('courrier/showcourrier.html.twig', [
-            'name' => "Nawras",
             'courrier' => $courrier
         ]);
-
     }
 
     /**
@@ -102,13 +100,9 @@ class CourrierController extends BackendController
         $courrier = $this->courrierService->getCourrier($id);
         $form = $this->createForm(AddCourrierFormType::class, $courrier);
 
-
-
         return $this->renderForm('courrier/addCourrier.html.twig', [
-            'name' => "Nawras",
             'form' => $form
         ]);
-
     }
 
     /**
@@ -122,5 +116,4 @@ class CourrierController extends BackendController
 
         return $this->redirectToRoute('history_courrier');
     }
-
 }

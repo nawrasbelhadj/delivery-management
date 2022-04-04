@@ -25,6 +25,7 @@ class PostController extends BackendController
     public function index(): Response
     {
         $post = $this->postService->getListePosts();
+
         return $this->renderViewBackend('post/posts.html.twig', [
             'posts' => $post,
             'title' => "Liste posts",
@@ -51,15 +52,12 @@ class PostController extends BackendController
 
 
         if ($form->isSubmitted() && $form->isValid() === false) {
-
             foreach ($form->getErrors(true) as $error) {
                 $this->addFlash('errors', $error->getMessage());
             }
         }
-        elseif ($form->isSubmitted() && $form->isValid())
-        {
 
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->postService->savePost($post);
             $this->addFlash('success', "New post added");
 
@@ -84,6 +82,4 @@ class PostController extends BackendController
 
         return $this->redirectToRoute('list_posts');
     }
-
-
 }
