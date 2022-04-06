@@ -34,17 +34,9 @@ class PostController extends BackendController
     }
 
     /**
-     * @Route("/post/post2", name="post2")
-     */
-    public function index2(): Response
-    {
-        return $this->renderViewBackend('post/post2.html.twig', ['name' => "nawras"]);
-    }
-
-    /**
      * @Route("/post/add", name="add_post")
      */
-    public function addpost(Request $request): Response
+    public function addPost(Request $request): Response
     {
         $post = new Post();
         $form = $this->createForm(AddPostFormType::class, $post);
@@ -64,7 +56,7 @@ class PostController extends BackendController
             return $this->redirectToRoute('list_posts');
         }
 
-        return $this->renderForm('post/addpost.html.twig', [
+        return $this->renderFormBackend('post/addpost.html.twig', [
             'form' => $form
         ]);
     }

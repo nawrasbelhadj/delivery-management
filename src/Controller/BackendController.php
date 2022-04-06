@@ -9,12 +9,43 @@ class BackendController extends AbstractController
 {
     private const PREFIX = "Delevery Manager";
     private const SEPARATOR =  "-";
-    private $defaultParamtres = [];
+    private array $defaultParameters = [];
 
 
     public function renderViewBackend(string $view, array $parameters = []): Response
     {
-        $this->setDefaultParamtres();
+        $this->setDefaultParameters($parameters);
+
+        return $this->render($view, $this->getDefaultParameters());
+    }
+
+    public function renderFormBackend(string $view, array $parameters = []): Response
+    {
+        $this->setDefaultParameters($parameters);
+
+        return $this->renderForm($view, $this->getDefaultParameters());
+    }
+
+    public function setDefaultParameters(array $parameters): void
+    {
+        $this->setPageTitleInDefaultParameters($parameters);
+        $this->setUserNameInDefaultParameters();
+
+        $this->defaultParameters = array_merge($this->defaultParameters, $parameters);
+    }
+
+    public function getDefaultParameters(): array
+    {
+        return $this->defaultParameters;
+    }
+
+    public function updateDefaultParameters($key, $value): void
+    {
+        $this->defaultParameters[$key] = $value;
+    }
+
+    public function setPageTitleInDefaultParameters(&$parameters): void
+    {
         $title = "";
         $prefix = self::PREFIX;
         $separator = self::SEPARATOR;
@@ -28,43 +59,19 @@ class BackendController extends AbstractController
         if (array_key_exists('prefix', $parameters) === true) {
             $prefix = $parameters["prefix"];
             unset($parameters["prefix"]);
-
         }
 
         if (array_key_exists('separator', $parameters ) === true) {
             $separator = $parameters["separator"];
             unset($parameters["separator"]);
-
         }
 
-        $this->setPageTitle($title, $prefix, $separator);
-
-
-        return $this->render($view, array_merge($this->getDefaultParamatres() , $parameters));
+        $this->defaultParameters['title'] = $prefix . $separator . $title;
     }
 
-    public function setDefaultParamtres(): void
+    public  function setUserNameInDefaultParameters(): void
     {
         $user = $this->getUser();
-
-        $this->defaultParamtres = [
-            'name' => $user->getUsername(),
-        ];
+        $this->defaultParameters['name'] = $user->getUsername();
     }
-
-    public function getDefaultParamatres(): array
-    {
-        return $this->defaultParamtres;
-    }
-
-    public function updateDefaultParamtres($key, $value): void
-    {
-        $this->defaultParamtres[$key] = $value;
-    }
-
-    public function setPageTitle(string $title = "", string $prefix = self::PREFIX, string $separator = self::SEPARATOR): void
-    {
-        $this->defaultParamtres['title'] = $prefix . $separator .$title;
-    }
-
 }
