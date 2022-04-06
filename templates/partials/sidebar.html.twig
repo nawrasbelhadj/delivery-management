@@ -9,39 +9,43 @@
 
                     {#                    couriers#}
 
-                    <li class="nav-item nav-category">COURIERS</li>
+
+                    <li class="nav-item nav-category"> COURIERS </li>
+
+                    <div class="collapse show" id="ui-basic" style="">
+                        <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link"  href="{{ path ("timeline_courrier") }}" aria-expanded="false" >
                             <i class="menu-icon mdi mdi-chart-line"></i>
                             <span class="menu-title">Timeline</span>
-
                         </a>
-
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link"  href="{{ path ("history_courrier") }}" aria-expanded="false" >
                             <i class="menu-icon mdi mdi-history"></i>
                             <span class="menu-title">History</span>
-
                         </a>
-
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link"  href="{{ path ("alert_courrier") }}" aria-expanded="false" >
                             <i class="menu-icon mdi mdi-alert"></i>
                             <span class="menu-title">Alert</span>
-
                         </a>
-
                     </li>
-                    <li class="nav-item">
+
+                    <ul class="nav-item">
                         <a class="nav-link"  href="{{ path ("archive_courrier") }}" aria-expanded="false" >
                             <i class="menu-icon mdi mdi-content-save-all"></i>
                             <span class="menu-title">Archive</span>
 
                         </a>
 
-                    </li>
+                    </ul>
+                        </ul>
+                    </div>
+                </li>
 
                     {#                    posts#}
                     <li class="nav-item nav-category">POSTS</li>
@@ -64,24 +68,6 @@
 
                     {#                    user#}
                     <li class="nav-item nav-category">USERS</li>
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">#}
-{#                            <i class="menu-icon mdi mdi-account-circle-outline"></i>#}
-{#                            <span class="menu-title">Manage Users  </span>#}
-{#                            <i class="menu-arrow"></i>#}
-{#                        </a>#}
-{#                        <div class="collapse" id="auth">#}
-{#                            <ul class="nav flex-column sub-menu">#}
-{#                                <li class="nav-item"> <a class="nav-link" href="{{ path("users_list") }}"> Users List   </a></li>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                        <div class="collapse" id="auth">#}
-{#                            <ul class="nav flex-column sub-menu">#}
-{#                                <li class="nav-item"> <a class="nav-link" href="{{ path("add_user") }}"> Add User   </a></li>#}
-{#                            </ul>#}
-{#                        </div>#}
-
-{#                    </li>#}
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="true" aria-controls="ui-basic">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
