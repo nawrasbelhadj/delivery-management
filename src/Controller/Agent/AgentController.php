@@ -28,9 +28,9 @@ class AgentController extends BackendController
      */
     public function index(): Response
     {
-        $Users = $this->agentService->getListeAgents();
+        $agents = $this->agentService->getListeAgents();
 
-        return $this->renderViewBackend('users/agent/agents.html.twig', [
+        return $this->renderViewBackend('users/agents/agents.html.twig', [
             'agents' => $agents,
             'title' => "Agents List",
             'separator' => ' | ',
@@ -65,7 +65,7 @@ class AgentController extends BackendController
 
             return $this->redirectToRoute('users_list');
         }
-        return $this->renderForm('users/agnts/addagent.html.twig', [
+        return $this->renderForm('users/agents/addagent.html.twig', [
             'name' => "Nawras",
             'form' => $form
         ]);
@@ -73,7 +73,7 @@ class AgentController extends BackendController
 
 
 //    /**
-//     * @Route("/user/info/{id}", name="info_user")
+//     * @Route("/agent/info/{id}", name="info_agent")
 //     */
 //    public function infouser($id): Response
 //    {
