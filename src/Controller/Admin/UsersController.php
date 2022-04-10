@@ -85,6 +85,18 @@ class UsersController extends BackendController
     }
 
     /**
+     * @Route("/user/MyProfile/{id}", name="my_profile")
+     */
+    public function myInfo($id): Response
+    {
+        $Users = $this->userService->getUserData($id);
+
+        return $this->renderViewBackend('users/infouser.html.twig', [
+            'user' => $Users,
+        ]);
+    }
+
+    /**
      * @Route("/user/update/{id}", name="update_user")
      */
     public function updateuser($id , Request $request): Response
