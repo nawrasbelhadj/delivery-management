@@ -8,7 +8,7 @@
    <div class="card-body">
     <div class="d-sm-flex justify-content-between align-items-start">
      <div>
-      <h4 class="card-title card-title-dash">List of Posts</h4>
+      <h4 class="card-title card-title-dash">List of Posts - {{ post.regionPost }}</h4>
 
       <p class="card-subtitle card-subtitle-dash">number of posts</p>
      </div>
@@ -24,7 +24,7 @@
         Postal Code
        </th>
        <th>
-        Governorate
+        City
        </th>
        <th>
         Actions
@@ -35,7 +35,9 @@
       {% for post in posts %}
        <tr>
         <td>{{ post.codePostal }}</td>
-        <td>{{ post.regionPost }}</td>
+        <td>
+         <a href="{{ path('list_agents' , {'codePostal' : post.codePostal }) }}"  > {{ post.city }} </a>
+        </td>
         <td>
 {#         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('update_post', {'id' : post.id} ) }}"><i class="mdi mdi-pencil text-info "></i></a>#}
 {#         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('list_agents', {'id' : post.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>#}

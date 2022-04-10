@@ -25,7 +25,7 @@ class AddUserFormType extends AbstractType
             ->add('email', TextType::class)
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-
+//            ->add('type', TextType::class)
             ->add('userRole', type: ChoiceType::class, options: [
                 'placeholder' => 'User Role',
                 'choices'  => [

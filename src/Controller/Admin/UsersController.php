@@ -55,7 +55,7 @@ class UsersController extends BackendController
             }
         }
 
-        if ($form->isSubmitted() && $this->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
             $role = $request->request->get('add_user_form')['userRole'];

@@ -36,9 +36,9 @@ class PostController extends BackendController
     /**
      * @Route("/post/list/{region}", name="list_posts")
      */
-    public function indexposts(): Response
+    public function listPosts($regionPost): Response
     {
-        $post = $this->postService->getListePosts();
+        $post = $this->postService->getListPosts($regionPost);
 
         return $this->renderViewBackend('post/posts.html.twig', [
             'posts' => $post,

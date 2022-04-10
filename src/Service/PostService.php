@@ -15,7 +15,15 @@ class PostService
     }
 
     /**
-     * @return Post[] Returns an array of User objects
+     * @return Post[] Returns an array of Post objects
+     */
+    public function getListPosts($regionPost): array
+    {
+        return $this->postRepository->findBy($regionPost);
+    }
+
+    /**
+     * @return Post[] Returns an array of Post objects
      */
     public function getListePosts(): array
     {
@@ -42,7 +50,7 @@ class PostService
     }
 
     /**
-     * @return Posts Returns an Post objects
+     * @return Posts Returns a Post objects
      */
     public function getPost($id): ?Post
     {
