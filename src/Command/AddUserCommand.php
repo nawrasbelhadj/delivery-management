@@ -162,7 +162,7 @@ class AddUserCommand extends Command
         $user->setPhoneNumber("");
         $user->setRegion("");
         $user->setCin("253621");
-        $user->setType("agent");
+        $user->setType("");
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();

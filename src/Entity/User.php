@@ -206,9 +206,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->updatedAt;
     }
 
-    public function setType(string $string)
+    public function setType(string $type)
     {
+        $this->type = $type;
 
+        return $this;
     }
 
 
