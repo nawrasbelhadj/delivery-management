@@ -4,8 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Agent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,28 +19,19 @@ class AgentRepository extends ServiceEntityRepository
         parent::__construct($registry, Agent::class);
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function add(Agent $entity, bool $flush = true): void
+
+    public function saveAgent(Agent $agent) :Agent
     {
-        $this->_em->persist($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
+        $this->getEntityManager()->persist($agent);
+        $this->getEntityManager()->flush();
+
+        return $agent;
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(Agent $entity, bool $flush = true): void
+    public function deleteAgent(Agent $agent) :void
     {
-        $this->_em->remove($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
+        $this->getEntityManager()->remove($agent);
+        $this->getEntityManager()->flush();
     }
 
     // /**

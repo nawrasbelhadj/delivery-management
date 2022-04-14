@@ -13,7 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 #[ORM\Entity(repositoryClass : UserRepository::class)]
 #[ORM\InheritanceType(value : "JOINED")]
 #[ORM\DiscriminatorColumn(name : 'type', type : 'string' )]
-#[ORM\DiscriminatorMap(value : ["agent" => "Agent", "deliverer" => "Deliverer"])]
+#[ORM\DiscriminatorMap(value : ["user" => "User", "agent" => "Agent", "deliverer" => "Deliverer"])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -47,11 +47,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
-    private $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
-    private $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     public function getId(): ?int
     {
@@ -206,7 +206,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->updatedAt;
     }
 
-    public function setType(string $type)
+    public function setType(string $type): self
     {
         $this->type = $type;
 

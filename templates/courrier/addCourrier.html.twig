@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    {{ form_start(form, {'action': path('addcourrier_courrier'), 'method': 'POST'}) }}
+                    {{ form_start(form, {'action': path('add_courrier'), 'method': 'POST'}) }}
                     <div class="col">
                         <label>{{ form_label(form.codeBarre) }}</label>
                         {{ form_widget(form.codeBarre) }}

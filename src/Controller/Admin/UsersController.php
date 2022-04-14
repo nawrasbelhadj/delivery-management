@@ -25,7 +25,7 @@ class UsersController extends BackendController
         $this->passwordHasher = $passwordHasher;
     }
     /**
-     * @Route("/users", name="users_list")
+     * @Route("/users", name="list_users")
      */
     public function index(): Response
     {

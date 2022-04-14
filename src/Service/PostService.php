@@ -17,9 +17,9 @@ class PostService
     /**
      * @return Post[] Returns an array of Post objects
      */
-    public function getListPosts($regionPost): array
+    public function getListPostsByRegion($regionPost): array
     {
-        return $this->postRepository->findBy($regionPost);
+        return $this->postRepository->findByRegionPost($regionPost);
     }
 
     /**
@@ -50,7 +50,7 @@ class PostService
     }
 
     /**
-     * @return Posts Returns a Post objects
+     * @return Post Returns a Post objects
      */
     public function getPost($id): ?Post
     {

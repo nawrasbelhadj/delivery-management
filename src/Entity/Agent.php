@@ -24,5 +24,4 @@ class Agent extends User
         return $this;
     }
 
-
 }

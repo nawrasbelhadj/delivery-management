@@ -1,91 +1,183 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="/">
-                <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{{ path('dashboard') }}" class="brand-link">
+        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">COURIERS</span>
+    </a>
 
-        {#                    couriers#}
-
-        <li class="nav-item nav-category">COURIERS</li>
-        <li class="nav-item">
-            <a class="nav-link"  href="{{ path ("timeline_courrier") }}" aria-expanded="false" >
-                <i class="menu-icon mdi mdi-chart-line"></i>
-                <span class="menu-title">Timeline</span>
-
-            </a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"  href="{{ path ("history_courrier") }}" aria-expanded="false" >
-                <i class="menu-icon mdi mdi-history"></i>
-                <span class="menu-title">History</span>
-
-            </a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"  href="{{ path ("alert_courrier") }}" aria-expanded="false" >
-                <i class="menu-icon mdi mdi-alert"></i>
-                <span class="menu-title">Alert</span>
-
-            </a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"  href="{{ path ("archive_courrier") }}" aria-expanded="false" >
-                <i class="menu-icon mdi mdi-content-save-all"></i>
-                <span class="menu-title">Archive</span>
-
-            </a>
-
-        </li>
-
-        {#                    posts#}
-        <li class="nav-item nav-category">POSTS</li>
-        <li class="nav-item">
-            <a class="nav-link"  href="{{ path ("list_gov") }}" aria-expanded="false" >
-                <i class="menu-icon mdi mdi-office-building"></i>
-                <span class="menu-title">List of Posts</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link"  href="{{ path ("add_post") }}" aria-expanded="false" >
-                <i class="menu-icon mdi mdi-plus"></i>
-                <span class="menu-title">Add Post</span>
-
-            </a>
-
-        </li>
-
-
-        {#                    user#}
-        <li class="nav-item nav-category">USERS</li>
-
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="true" aria-controls="ui-basic">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">Manage Users</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse show" id="ui-basic" style="">
-                <ul class="nav flex-column sub-menu">
-
-                    <li class="nav-item"> <a class="nav-link" href="{{ path("users_list") }}"> Users List   </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ path("add_user") }}"> Add User   </a></li>
-
-                </ul>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
-        </li>
-        <li class="nav-item nav-category">help</li>
-        <li class="nav-item">
-            <a class="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
-                <i class="menu-icon mdi mdi-file-document"></i>
-                <span class="menu-title">Documentation</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+            <div class="info">
+                <a href="{{ path('my_profile', {'id': app.user.id}) }}" class="d-block"> {{ name }}</a>
+            </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item">
+
+                    <a href="{{ path('dashboard') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Widgets
+
+                        </p>
+                    </a>
+
+                </li>
+
+
+                <!-- Courier -->
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-envelope"></i>
+                        <p>
+                            Courier
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{path('add_courrier')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Courier</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('history_courrier') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>History</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('timeline_courrier') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Timeline</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('alert_courrier') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Alert</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('archive_courrier') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Archive</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Post -->
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>
+                            Post
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('list_posts') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List of Posts</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{path('add_post')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Post</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- User -->
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{path('list_users')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List of Users</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('add_user') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add User</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Deliverer -->
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-truck"></i>
+                        <p>
+                            Deliverer
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{path('list_deliverers')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List of Deliverers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('add_deliverer') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Deliverer</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Documentation</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

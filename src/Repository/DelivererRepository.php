@@ -4,9 +4,10 @@ namespace App\Repository;
 
 use App\Entity\Deliverer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
  * @method Deliverer|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Deliverer[]    findAll()
  * @method Deliverer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DelivererRepository extends ServiceEntityRepository
+class DelivererRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -22,55 +23,31 @@ class DelivererRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * Used to upgrade (rehash) the Deliverer's password automatically over time.
      */
-    public function add(Deliverer $entity, bool $flush = true): void
+    public function upgradePassword(PasswordAuthenticatedUserInterface $deliverer, string $newHashedPassword): void
     {
-        $this->_em->persist($entity);
-        if ($flush) {
-            $this->_em->flush();
+        if (!$deliverer instanceof Deliverer) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($deliverer)));
         }
+
+        $deliverer->setPassword($newHashedPassword);
+        $this->_em->persist($deliverer);
+        $this->_em->flush();
+    }
+    public function saveDeliverer(Deliverer $deliverer) :Deliverer
+    {
+        $this->getEntityManager()->persist($deliverer);
+        $this->getEntityManager()->flush();
+
+        return $deliverer;
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(Deliverer $entity, bool $flush = true): void
+    public function deleteDeliverer(Deliverer $deliverer) :void
     {
-        $this->_em->remove($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
+        $this->getEntityManager()->remove($deliverer);
+        $this->getEntityManager()->flush();
     }
 
-    // /**
-    //  * @return Deliverer[] Returns an array of Deliverer objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Deliverer
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
