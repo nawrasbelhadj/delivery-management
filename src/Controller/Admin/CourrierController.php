@@ -71,7 +71,7 @@ class CourrierController extends BackendController
     }
 
     /**
-     * @Route("/courrier/addcourrier", name="add_courrier")
+     * @Route("/courrier/courrier", name="add_courrier")
      */
     public function addCourrier(Request $request): Response
     {

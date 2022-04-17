@@ -83,9 +83,13 @@ class AddDelivererFormType extends AbstractType
             ->add('adress', TextType::class, array(
                 "mapped" => false,
             ))
-            ->add('postCode', TextType::class, array(
+//            ->add('namePost', TextType::class, array(
+//                "mapped" => false,))
+
+            ->add('city', TextType::class, array(
                 "mapped" => false,
             ))
+
 
             ->add('save', SubmitType::class, ['label' => 'Save'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);

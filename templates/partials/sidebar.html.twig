@@ -2,7 +2,7 @@
 <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ path('dashboard') }}" class="brand-link">
-        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('image/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">COURIERS</span>
     </a>
 
@@ -38,9 +38,9 @@
                 <li class="nav-item">
 
                     <a href="{{ path('dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Widgets
+                            Dashboard
 
                         </p>
                     </a>
@@ -169,10 +169,20 @@
                         </li>
                     </ul>
                 </li>
+
+                <!-- documentation-->
                 <li class="nav-item">
                     <a href="https://adminlte.io/docs/3.1/" class="nav-link">
                         <i class="nav-icon fas fa-file"></i>
                         <p>Documentation</p>
+                    </a>
+                </li>
+
+                <!-- logout -->
+                <li class="nav-item">
+                    <a href="{{ path('app_logout') }}" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Log Out </p>
                     </a>
                 </li>
             </ul>

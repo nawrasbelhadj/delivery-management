@@ -25,7 +25,7 @@ class AgentController extends BackendController
         $this->passwordHasher = $passwordHasher;
     }
     /**
-     * @Route("/post/agents/list", name="agents_list")
+     * @Route("/post/agents/list", name="list_agents")
      */
     public function index(): Response
     {
@@ -61,7 +61,7 @@ class AgentController extends BackendController
             $role = $request->request->get('add_agent_form')['userRole'];
             $agent->setRoles(array($role));
             $this->agentService->saveAgent($agent);
-            $this->addFlash('success', "OK");
+            $this->addFlash('success', "New agent was added");
 
             return $this->redirectToRoute('users_list');
         }
@@ -93,7 +93,7 @@ class AgentController extends BackendController
             $role = $request->request->get('update_user_profile')['userRole'];
             $agent->setRoles(array($role));
             $this->agentService->saveAgent($agent);
-            $this->addFlash('success', "OK");
+            $this->addFlash('success', "Agent updated");
 
             return $this->redirectToRoute('users_list');
         }
@@ -109,13 +109,13 @@ class AgentController extends BackendController
             $hashedPassword = $this->passwordHasher->hashPassword($agent, $agent->getPassword());
             $agent->setPassword($hashedPassword);
             $this->agentService->saveAgent($agent);
-            $this->addFlash('success', "OK");
+            $this->addFlash('success', "Password updated");
 
             return $this->redirectToRoute('users_list');
         }
 
         return $this->renderFormBackend('users/updateagent.html.twig', [
-            'user' => $agent,
+            'agent' => $agent,
             'name' => "Nawras",
             'form' => $form,
             'formpassword' => $formPassword

@@ -83,7 +83,7 @@ class AddAgentFormType extends AbstractType
             ->add('adress', TextType::class, array(
                 "mapped" => false,
             ))
-            ->add('postCode', TextType::class, array(
+            ->add('city', TextType::class, array(
                 "mapped" => false,
             ))
 

@@ -15,7 +15,7 @@ class AddPostFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('codePostal', TextType::class )
+            ->add('namePost', TextType::class )
             ->add('city', TextType::class)
             ->add('street', TextType::class)
             ->add('regionPost', TextType::class)

@@ -66,7 +66,7 @@ class UsersController extends BackendController
             return $this->redirectToRoute('users_list');
         }
 
-        return $this->renderFormBackend('users/adduser1.html.twig', [
+        return $this->renderFormBackend('users/adduser.html.twig', [
             'form' => $form
         ]);
     }

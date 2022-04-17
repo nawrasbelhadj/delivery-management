@@ -1,141 +1,97 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
 
+{% endblock %}
 
 {% block body %}
-
-    <div class="card">
-        <div class="card-body">
-            <div class="d-sm-flex justify-content-between align-items-start">
-                <div>
-                    <h4 class="card-title card-title-dash">Add Agent</h4>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4 class="card-title">Add Agent</h4>
+                    <a href="{{ path("list_deliverers") }}" type="button" class="btn btn-default text-black-50 float-right">List of Deliverers</a>
                 </div>
-                <div>
-                    <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("agents_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
-                </div>
-            </div>
-            {{ form_start(form, {'class': 'form-sample', 'action': path('add_agent'), 'method': 'POST'}) }}
-            <p class="card-description">
-                Personal info
-            </p>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">CIN</label>
-                        <div class="col-sm-9">
-
-                            {{ form_widget(form.cin, { 'attr': {'class': "form-control", 'placeholder': "CIN"} }) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                            {{ form_widget(form.email, { 'attr': {'class': "form-control", 'placeholder': "Email"} }) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">First Name</label>
-                        <div class="col-sm-9">
-
-                            {{ form_widget(form.firstName, { 'attr': {'class': "form-control", 'placeholder': "First Name"} }) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Last Name</label>
-                        <div class="col-sm-9">
-                            {{ form_widget(form.lastName, { 'attr': {'class': "form-control", 'placeholder': "Last Name"} }) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label"> Governorate </label>
-                        <div class="col-sm-9">
-                            {{ form_widget(form.region, { 'attr': { 'class': "form-control", 'placeholder': "Choose your gvr"} }) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Role</label>
-                        <div class="col-sm-4">
-                            <div class="form-check">
-                                {{ form_widget(form.userRole, { 'attr': { 'class': "form-control"} }) }}
+                <!-- /.card-header -->
+                <!-- form start -->
+                {{ form_start(form, { 'action': path('add_deliverer'), 'method': 'POST'}) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >CIN</label>
+                                {{ form_widget(form.cin, { 'attr': {'class': "form-control" , 'placeholder': "CIN"} }) }}
                             </div>
                         </div>
-
+                        <div class="col-sm-6">
+                            <label for="exampleInputEmail1">Email address</label>
+                            {{ form_widget(form.email, { 'attr': {'class': "form-control", 'id' : "exampleInputEmail1" , 'placeholder': "Enter email"} }) }}
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Password</label>
-                        <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >First Name</label>
+                                {{ form_widget(form.firstName, { 'attr': {'class': "form-control" , 'placeholder': "First Name"} }) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="exampleInputEmail1">Last Name</label>
+                            {{ form_widget(form.lastName, { 'attr': {'class': "form-control",  'placeholder': "Last Name"} }) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label >Governorate </label>
+                            {{ form_widget(form.region, { 'attr': {'class': "custom-select form-control-border" , 'placeholder': "Choose Governorate"} }) }}
+                        </div>
+                        <div class="col-sm-6">
+                            <label >Role</label>
+                            {{ form_widget(form.userRole, { 'attr': {'class': "custom-select form-control-border",  'placeholder': "Role"} }) }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label >Password</label>
                             {{ form_widget(form.password.first, { 'attr': {'class': "form-control", 'placeholder': "Password"} }) }}
-                            <br>
-                            <br>
+                        </div>
+                        <div class="col-sm-6">
+                            <label >Confirm Password</label>
                             {{ form_widget(form.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
-
-
                         </div>
                     </div>
-                </div>
-
-            </div>
-
-
-            <p class="card-description">
-                Optional Info
-            </p>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Phone Number</label>
-                        <div class="col-sm-9">
-                            {{ form_widget(form.phoneNumber, { 'attr': {'class': "form-control", 'placeholder': "Phone Number"} }) }}
+                    <br>
+                    <h4>Optional Information</h4>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label >Phone Number </label>
+                            {{ form_widget(form.phoneNumber, { 'attr': {'class': "form-control" , 'placeholder': "Phone Number"} }) }}
+                        </div>
+                        <div class="col-sm-4">
+                            <label > Adress </label>
+                            {{ form_widget(form.adress, { 'attr': {'class': "form-control",  'placeholder': "Adress"} }) }}
+                        </div>
+                        <div class="col-sm-4">
+                            <label >City</label>
+                            {{ form_widget(form.city, { 'attr': {'class': "form-control",  'placeholder': "City"} }) }}
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Address </label>
-                        <div class="col-sm-9">
-                            {{ form_widget(form.adress, { 'attr': {'class': "form-control", 'placeholder': "Address"} }) }}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
 
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Postcode</label>
-                        <div class="col-sm-9">
-                            {{ form_widget(form.postCode, { 'attr': {'class': "form-control", 'placeholder': "Post Code"} }) }}
-
-                        </div>
-                    </div>
                 </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+
+                    {{ form_widget(form.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
+                    {{ form_widget(form.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
+                </div>
+                {{ form_end(form) }}
             </div>
-            <div class="d-sm-flex justify-content-between align-items-start">
-                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg text-white mb-0 me-0 '}}) }}
-                {{ form_widget(form.reset, {'attr': {'class': 'btn btn-light btn-lg  mb-0 me-0'}}) }}
-            </div>
-            {{ form_end(form) }}
         </div>
     </div>
+    <!-- /.card -->
 {% endblock %}

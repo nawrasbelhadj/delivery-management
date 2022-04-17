@@ -17,7 +17,7 @@ class Post
 
 
     #[ORM\Column(type: 'bigint')]
-    private $codePostal;
+    private $namePost;
 
     #[ORM\Column(type: 'string', length: 50)]
     private $city;
@@ -46,14 +46,14 @@ class Post
     }
 
 
-    public function getCodePostal(): ?string
+    public function getNamePost(): ?string
     {
-        return $this->codePostal;
+        return $this->namePost;
     }
 
-    public function setCodePostal(string $codePostal): self
+    public function setNamePost(string $namePost): self
     {
-        $this->codePostal = $codePostal;
+        $this->namePost = $namePost;
 
         return $this;
     }

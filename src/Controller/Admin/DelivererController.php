@@ -66,7 +66,7 @@ class DelivererController extends BackendController
             return $this->redirectToRoute('deliverers_list');
         }
 
-        return $this->renderFormBackend('deliverer/adddeliverer.html.twig', [
+        return $this->renderFormBackend('users/deliverers/adddeliverer.html.twig', [
             'form' => $form
         ]);
     }
