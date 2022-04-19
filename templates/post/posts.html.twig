@@ -36,7 +36,7 @@
        <tr>
         <td>{{ post.namePost }}</td>
         <td>
-         <a href="{{ path('list_agents') }}" > {{ post.city }} </a>
+         <a href="{{ path('list_agents', {'postid': post.id}) }}" > {{ post.city }} </a>
         </td>
         <td>
 {#         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('update_post', {'id' : post.id} ) }}"><i class="mdi mdi-pencil text-info "></i></a>#}

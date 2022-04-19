@@ -11,11 +11,11 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <h4 class="card-title">Add Agent</h4>
-                    <a href="{{ path("list_agents") }}" type="button" class="btn btn-default text-black-50 float-right">List of Agent</a>
+                    <a href="{{ path("list_agents", {'postid': postid}) }}" type="button" class="btn btn-default text-black-50 float-right">List of Agent</a>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                {{ form_start(form, { 'action': path('add_agent'), 'method': 'POST'}) }}
+                {{ form_start(form, { 'action': path('add_agent' , {'postid': postid}), 'method': 'POST'}) }}
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
@@ -43,13 +43,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <label >Governorate </label>
                             {{ form_widget(form.region, { 'attr': {'class': "custom-select form-control-border" , 'placeholder': "Choose Governorate"} }) }}
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <label >Role</label>
                             {{ form_widget(form.userRole, { 'attr': {'class': "custom-select form-control-border",  'placeholder': "Role"} }) }}
+                        </div>
+                        <div class="col-sm-4">
+                            <label >Post</label>
+                            {{ form_widget(form.post, { 'attr': {'class': "custom-select form-control-border"} }) }}
                         </div>
                     </div>
                     <br>
@@ -63,6 +67,7 @@
                             {{ form_widget(form.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
                         </div>
                     </div>
+
                     <br>
                     <h4>Optional Information</h4>
                     <div class="row">

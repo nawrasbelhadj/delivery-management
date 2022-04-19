@@ -7,6 +7,7 @@ use App\Form\Agent\AddAgentFormType;
 use App\Form\Agent\UpdateAgentProfileType;
 use App\Form\User\UpdatePasswordFormType;
 use App\Service\AgentService;
+use App\Service\PostService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -18,32 +19,44 @@ class AgentController extends BackendController
 {
     private AgentService $agentService;
     private UserPasswordHasherInterface $passwordHasher;
+    private PostService $postService;
 
-    public function __construct(AgentService $agentService, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(AgentService $agentService, UserPasswordHasherInterface $passwordHasher , PostService $postService)
     {
         $this->agentService = $agentService;
         $this->passwordHasher = $passwordHasher;
+        $this->postService = $postService;
     }
     /**
-     * @Route("/post/agents/list", name="list_agents")
+     * @Route("/post/agents/list/{postid}", name="list_agents")
      */
-    public function index(): Response
+    public function index($postid): Response
     {
+
         $agents = $this->agentService->getListeAgents();
 
         return $this->renderViewBackend('users/agents/agents.html.twig', [
             'agents' => $agents,
             'title' => "Agents List",
             'separator' => ' | ',
+            'postid' => $postid,
         ]);
     }
 
     /**
-     * @Route("/post/agent/add", name="add_agent")
+     * @Route("/post/agent/add/{postid}", name="add_agent")
      */
-    public function addAgent(Request $request): Response
+    public function addAgent($postid , Request $request): Response
     {
+        $post = $this->postService->getPost($postid);
+        if ($post == null){
+            $this->addFlash('errors', 'post not found');
+
+            return $this->redirectToRoute('list_posts');
+        }
+
         $agent = new Agent();
+        $agent->setPost($post);
         $form = $this->createForm(AddAgentFormType::class, $agent);
         $form->handleRequest($request);
 
@@ -67,7 +80,8 @@ class AgentController extends BackendController
         }
         return $this->renderFormBackend('users/agents/addagent.html.twig', [
             'name' => "Nawras",
-            'form' => $form
+            'form' => $form,
+            'postid' => $postid
         ]);
     }
 
