@@ -31,12 +31,11 @@ class PostService
     }
 
     /**
-     * @param $id
+     * @param Post $post
      * @return void
      */
-    public function deletePost($id): void
+    public function deletePost(Post $post): void
     {
-        $post =  $this->postRepository->find($id);
         $this->postRepository->deletePost($post);
     }
 
