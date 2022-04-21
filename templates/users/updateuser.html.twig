@@ -10,7 +10,7 @@
                     <h4 class="card-title card-title-dash">Update user</h4>
                 </div>
                 <div>
-                    <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>List of Users</a>
+                    <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("list_users") }}"><i class="mdi mdi-view-list"></i>List of Users</a>
                 </div>
             </div>
             {{ form_start(form, {'class': 'form-sample', 'action': path('update_user', {'id' : user.id}), 'method': 'POST'}) }}

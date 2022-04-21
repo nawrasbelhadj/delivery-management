@@ -3,6 +3,8 @@
 namespace App\Form\Deliverer;
 
 use App\Entity\Deliverer;
+use App\Entity\Post;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -89,6 +91,14 @@ class AddDelivererFormType extends AbstractType
             ->add('city', TextType::class, array(
                 "mapped" => false,
             ))
+
+            ->add('post', EntityType::class, [
+                'required' => true,
+                'class' => Post::class,
+                'choice_label' => function(?Post $post) {
+                    return $post != null ? $post->getNamePost() : '';
+                },
+            ])
 
 
             ->add('save', SubmitType::class, ['label' => 'Save'])

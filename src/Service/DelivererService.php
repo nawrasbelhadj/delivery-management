@@ -20,6 +20,7 @@ class DelivererService
     {
         return $this->deliverersRepository->findAll();
     }
+
     /**
      * @param $id
      * @return void
@@ -31,7 +32,7 @@ class DelivererService
     }
 
     /**
-     * @param Deliverer $user
+     * @param Deliverer $deliverer
      * @return Deliverer
      */
     public function saveDeliverer(Deliverer $deliverer): Deliverer

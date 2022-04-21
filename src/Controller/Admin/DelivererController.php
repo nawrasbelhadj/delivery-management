@@ -25,14 +25,14 @@ class DelivererController extends BackendController
         $this->passwordHasher = $passwordHasher;
     }
     /**
-     * @Route("/deliverers", name="list_deliverers")
+     * @Route("/deliverers/list", name="list_deliverers")
      */
     public function index(): Response
     {
-        $deliverers = $this->delivererService->getListDeliverers();
+        $deliverer = $this->delivererService->getListDeliverers();
 
         return $this->renderViewBackend('users/deliverers/deliverers.html.twig', [
-            'Deliverers' => $deliverers,
+            'deliverers' => $deliverer,
             'title' => "Liste Deliverers",
             'separator' => ' | ',
         ]);
@@ -63,7 +63,7 @@ class DelivererController extends BackendController
             $this->delivererService->saveDeliverer($deliverer);
             $this->addFlash('success', "Deliverer Added");
 
-            return $this->redirectToRoute('deliverers_list');
+            return $this->redirectToRoute('list_deliverers');
         }
 
         return $this->renderFormBackend('users/deliverers/adddeliverer.html.twig', [

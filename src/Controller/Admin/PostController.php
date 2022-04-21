@@ -40,7 +40,7 @@ class PostController extends BackendController
     {
         $post = $this->postService->getListePosts();
 
-        return $this->renderViewBackend('post/postss.html.twig', [
+        return $this->renderViewBackend('post/posts.html.twig', [
             'posts' => $post,
             'title' => "Posts list",
             'separator' => ' | ',

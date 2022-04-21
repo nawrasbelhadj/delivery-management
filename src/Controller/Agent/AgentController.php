@@ -76,7 +76,7 @@ class AgentController extends BackendController
             $this->agentService->saveAgent($agent);
             $this->addFlash('success', "New agent was added");
 
-            return $this->redirectToRoute('users_list');
+            return $this->redirectToRoute('list_agents');
         }
         return $this->renderFormBackend('users/agents/addagent.html.twig', [
             'name' => "Nawras",
