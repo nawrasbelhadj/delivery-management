@@ -63,7 +63,7 @@ class UsersController extends BackendController
             $this->userService->saveUser($user);
             $this->addFlash('success', "OK");
 
-            return $this->redirectToRoute('users_list');
+            return $this->redirectToRoute('list_users');
         }
 
         return $this->renderFormBackend('users/adduser.html.twig', [
@@ -120,7 +120,7 @@ class UsersController extends BackendController
             $this->userService->saveUser($User);
             $this->addFlash('success', "OK");
 
-            return $this->redirectToRoute('users_list');
+            return $this->redirectToRoute('list_users');
         }
 
 
@@ -136,7 +136,7 @@ class UsersController extends BackendController
             $this->userService->saveUser($User);
             $this->addFlash('success', "OK");
 
-            return $this->redirectToRoute('users_list');
+            return $this->redirectToRoute('list_users');
         }
 
         return $this->renderFormBackend('users/updateuser.html.twig', [
@@ -148,39 +148,6 @@ class UsersController extends BackendController
         ]);
 
     }
-///**
-//     * @Route("/user/update/{id}", name="update_user")
-//     */
-//    public function updatePassword($id): Response
-//    {
-//        $User = new User();
-//        $User = $this->userService->getUserData($id);
-//        $form = $this->createForm(UpdatePasswordFormType::class, $User);
-// //       $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()==false ) {
-//
-//            foreach ($form->getErrors(true) as $error) {
-//                $this->addFlash('errors', $error->getMessage());
-//            }
-//        }
-//        elseif ($form->isSubmitted() && $this->isValid())
-//        {
-//            $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
-//            $user->setPassword($hashedPassword);
-//            $this->userService->saveUser($user);
-//            $this->addFlash('success', "OK");
-//
-//            return $this->redirectToRoute('users_list');
-//        }
-//
-//        return $this->renderForm('users/updateuser.html.twig', [
-//            'user'=>$User,
-//            'name' => "Nawras",
-//            'form' => $form
-//
-//        ]);
-//    }
 
     /**
      * @Route("/user/remove/{id}", name="remove_user")
@@ -191,6 +158,6 @@ class UsersController extends BackendController
         $this->userService->deleteUser($user);
         $this->addFlash('success', 'User has been deleted successfully !');
 
-        return $this->redirectToRoute('users_list');
+        return $this->redirectToRoute('list_users');
     }
 }

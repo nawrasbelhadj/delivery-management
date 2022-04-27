@@ -86,9 +86,9 @@ class AgentController extends BackendController
     }
 
     /**
-     * @Route("/post/agent/update/{id}", name="update_agent")
+     * @Route("/post/agent/update/{postid}/{id}", name="update_agent")
      */
-    public function updateagent($id , Request $request): Response
+    public function updateagent($postid ,$id , Request $request): Response
     {
         $agent = $this->agentService->getAgent($id);
         $form = $this->createForm(UpdateAgentProfileType::class, $agent);
@@ -128,11 +128,12 @@ class AgentController extends BackendController
             return $this->redirectToRoute('users_list');
         }
 
-        return $this->renderFormBackend('users/updateagent.html.twig', [
+        return $this->renderFormBackend('users/agents/updateagent.html.twig', [
             'agent' => $agent,
             'name' => "Nawras",
             'form' => $form,
-            'formpassword' => $formPassword
+            'formpassword' => $formPassword,
+            'postid' => $postid
 
         ]);
 

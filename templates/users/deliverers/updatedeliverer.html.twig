@@ -10,12 +10,12 @@
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
-                <h4 class="card-title">Update User</h4>
-                <a href="{{ path("list_users") }}" type="button" class="btn btn-default text-black-50 float-right">List of Users</a>
+                <h4 class="card-title">Update Agent</h4>
+                <a href="{{ path("list_agents", {'postid': postid}) }}" type="button" class="btn btn-default text-black-50 float-right">List of Agent</a>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            {{ form_start(form, { 'action': path('update_user' , {'id' : user.id}), 'method': 'POST'}) }}
+            {{ form_start(form, { 'action': path('update_agent' , {'postid': postid}, {'id' : agent.id}), 'method': 'POST'}) }}
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
@@ -51,8 +51,31 @@
                         <label >Role</label>
                         {{ form_widget(form.userRole, { 'attr': {'class': "custom-select form-control-border",  'placeholder': "Role"} }) }}
                     </div>
-
+                    <div class="col-sm-4">
+                        <label >Post</label>
+                        {{ form_widget(form.post, { 'attr': {'class': "custom-select form-control-border"} }) }}
+                    </div>
                 </div>
+                <br>
+
+
+                <br>
+                <h4>Optional Information</h4>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label >Phone Number </label>
+                        {{ form_widget(form.phoneNumber, { 'attr': {'class': "form-control" , 'placeholder': "Phone Number"} }) }}
+                    </div>
+                    <div class="col-sm-4">
+                        <label > Adress </label>
+                        {{ form_widget(form.adress, { 'attr': {'class': "form-control",  'placeholder': "Adress"} }) }}
+                    </div>
+                    <div class="col-sm-4">
+                        <label >City</label>
+                        {{ form_widget(form.city, { 'attr': {'class': "form-control",  'placeholder': "City"} }) }}
+                    </div>
+                </div>
+
 
             </div>
             <!-- /.card-body -->
@@ -66,28 +89,27 @@
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4 class="card-title">Update Password</h4>
+                <h4 class="card-title">Update Agent</h4>
             </div>
-            {{ form_start(formpassword, {'class': 'form-sample', 'action': path('update_user', {'id' : user.id}), 'method': 'POST'}) }}
+            {{ form_start(formpassword, {'class': 'form-sample', 'action': path('update_agent', {'id' : agent.id}), 'method': 'POST'}) }}
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label >New Password</label>
-                        {{ form_widget(formpassword.password.first, { 'attr': {'class': "form-control", 'placeholder': "Password"} }) }}
+                        <label >Password</label>
+                        {{ form_widget(form.password.first, { 'attr': {'class': "form-control", 'placeholder': "Password"} }) }}
                     </div>
                     <div class="col-sm-6">
-                        <label >Confirm New Password</label>
-                        {{ form_widget(formpassword.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
+                        <label >Confirm Password</label>
+                        {{ form_widget(form.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
                     </div>
                 </div>
             </div>
             <div class="card-footer">
 
-                {{ form_widget(formpassword.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
-                {{ form_widget(formpassword.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
+                {{ form_widget(form.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
+                {{ form_widget(form.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
             </div>
             {{ form_end(form) }}
-        </div>
         </div>
     </div>
     <!-- /.card -->

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form\User;
+namespace App\Form\Courrier;
 
-use App\Entity\User;
+use App\Entity\Courrier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
@@ -12,30 +12,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class UpdateUserProfileType extends AbstractType
+class UpdateCourrierFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('cin', TextType::class )
-            ->add('email', TextType::class)
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
-
-            ->add('userRole', type: ChoiceType::class, options: [
-                'placeholder' => 'User Role',
+            ->add('codeBarre', TextType::class)
+            ->add('postDeparture', TextType::class)
+            ->add('postArrival', TextType::class)
+            ->add('typeCourrier', type: ChoiceType::class, options: [
+                'placeholder' => 'Type',
                 'choices'  => [
-                    'Post Agent' => 'ROLE_AGENT',
-                    'Deliverer' => 'ROLE_USER',
-                    'Administrator' => 'ROLE_ADMIN'
+                    'Simple Courier' => 'Courrier_Simple',
+                    'Large Courier' => 'Grand_Courrier',
+                    'Multiple Couriers' => 'Courrier_Multiples'
                 ],
-                "mapped" => false,
-
             ])
-
-
-            ->add('region', type: TextType::class)
-
+            ->add('status', TextType::class)
+            ->add('situation', TextType::class)
 
             ->add('save', SubmitType::class, ['label' => 'Save Changes'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);
@@ -45,9 +39,7 @@ class UpdateUserProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Courrier::class,
         ]);
     }
-
-
 }

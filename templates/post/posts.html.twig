@@ -20,12 +20,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for agent in agents %}
+                {% for post in posts %}
                     <tr>
                         <td>         <a href="{{ path('list_agents', {'postid': post.id}) }}" > {{ post.namePost }} </a>   </td>
                         <td>{{ post.city }}    </td>
-                        <td>{#         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('update_post', {'id' : post.id} ) }}"><i class="mdi mdi-pencil text-info "></i></a>#}
-                            {#         <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('list_agents', {'id' : post.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>#}
+                        <td>{#         <a type="button" class="btn btn-info btn-sm" href="{{ path('update_post', {'id' : post.id} ) }}"><i class="fas fa-pencil-alt "></i></a>#}
+                            {#         <a type="button" class="btn btn-primary btn-sm" href="{{ path('list_agents', {'id' : post.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>#}
                             <a class="btn btn-danger btn-sm" href="{{ path('remove_post', {'id' : post.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
                         </td>
 

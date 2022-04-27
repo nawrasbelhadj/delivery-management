@@ -20,9 +20,6 @@ class UpdateAgentProfileType extends AbstractType
             ->add('email', TextType::class)
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('phoneNumber', TextType::class, array(
-                'required' => false
-            ))
             ->add('region', type: TextType::class)
 
             ->add('save', SubmitType::class, ['label' => 'Save Changes'])

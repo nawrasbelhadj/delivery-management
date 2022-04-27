@@ -183,7 +183,7 @@ class DelivererController extends BackendController
 //    }
 
     /**
-     * @Route("/deliverer/remove/{id}", name="remove_user")
+     * @Route("/deliverer/remove/{id}", name="remove_deliverer")
      */
     public function deleteDeliverer($id): Response
     {
