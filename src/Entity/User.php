@@ -206,11 +206,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->updatedAt;
     }
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function setType(string $type): self
     {
         $this->type = $type;
 
         return $this;
+    }
+
+    public function rolesToString(): string
+    {
+        $roles = "";
+
+        foreach ($this->getRoles() as $role) {
+            if ($role === "ROLE_AGENTADMIN") $roles = "Agent";
+            if ($role === "ROLE_AGENT") $roles = "Agent";
+            if ($role === "ROLE_ADMIN") $roles = "Administrator";
+        }
+
+        return $roles;
     }
 
 

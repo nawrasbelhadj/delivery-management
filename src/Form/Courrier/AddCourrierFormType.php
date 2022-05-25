@@ -3,6 +3,9 @@
 namespace App\Form\Courrier;
 
 use App\Entity\Courrier;
+use App\Entity\Deliverer;
+use App\Entity\Post;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
@@ -10,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 
 class AddCourrierFormType extends AbstractType
@@ -18,8 +23,26 @@ class AddCourrierFormType extends AbstractType
     {
         $builder
             ->add('codeBarre', TextType::class)
-            ->add('postDeparture', TextType::class)
-            ->add('postArrival', TextType::class)
+
+            ->add('postDeparture', EntityType::class, [
+                'required' => true,
+                'class' => Post::class,
+                'disabled' => true,
+                'choice_label' => function(?Post $post) {
+                    return $post != null ? $post->getNamePost() : '';
+                },
+            ])
+
+            ->add('postArrival', EntityType::class, [
+                'required' => true,
+                'class' => Post::class,
+                'choice_label' => function(?Post $post) {
+                    return $post != null ? $post->getNamePost() : '';
+                },
+            ])
+
+
+
             ->add('typeCourrier', type: ChoiceType::class, options: [
                 'placeholder' => 'Type',
                 'choices'  => [
@@ -31,6 +54,8 @@ class AddCourrierFormType extends AbstractType
 
             ->add('status', TextType::class)
             ->add('situation', TextType::class)
+
+
             ->add('save', SubmitType::class, ['label' => 'Save'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);
 

@@ -83,7 +83,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                       * show role *
+                                       {{ user.rolesToString }}
                                 </td>
                                 <td>
                                     <strong>
@@ -103,7 +103,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                   {{ user.createdAt }}
+                                   {{ user.createdAt|date("d-m-Y") }}
                                 </td>
                                 <td>
                                     <strong>
@@ -112,7 +112,7 @@
                                     </strong>
                                 </td>
                                 <td >
-                                   {{ user.updatedAt }}
+                                   {{ user.updatedAt|date("d-m-Y") }}
                                 </td>
                             </tr>
                             </tbody>

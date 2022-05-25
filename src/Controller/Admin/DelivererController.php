@@ -97,7 +97,7 @@ class DelivererController extends BackendController
     }
 
     /**
-     * @Route("/deliverer/update/{id}", name="update_user")
+     * @Route("/deliverer/update/{id}", name="update_deliverer")
      */
     public function updatedeliverer($id , Request $request): Response
     {
@@ -115,7 +115,7 @@ class DelivererController extends BackendController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $role = $request->request->get('update_user_profile')['userRole'];
+            $role = $request->request->get('update_deliverer_form')['userRole'];
             $deliverer->setRoles(array($role));
             $this->delivererService->saveDeliverer($deliverer);
             $this->addFlash('success', "OK");

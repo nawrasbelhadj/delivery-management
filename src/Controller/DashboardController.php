@@ -10,6 +10,6 @@ class DashboardController extends BackendController
     #[Route('/', name: 'dashboard')]
     public function index(): Response
     {
-        return $this->renderViewBackend('dashboard/index.html.twig',['name' => "nawras"]);
+        return $this->renderViewBackend('dashboard/index.html.twig');
     }
 }

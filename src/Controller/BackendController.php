@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class BackendController extends AbstractController
 {
-    private const PREFIX = "Delevery Manager";
+    private const PREFIX = "Delivery Management";
     private const SEPARATOR =  "-";
     private array $defaultParameters = [];
 

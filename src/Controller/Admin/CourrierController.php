@@ -3,10 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Controller\BackendController;
+use App\Entity\Agent;
 use App\Entity\Courrier;
 use App\Form\Courrier\AddCourrierFormType;
 use App\Form\Courrier\UpdateCourrierFormType;
 use App\Service\CourrierService;
+use App\Service\PostService;
+use App\Service\DelivererService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,10 +18,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class CourrierController extends BackendController
 {
     private CourrierService $courrierService;
+    private PostService $postService;
+    private DelivererService $delivererService;
 
-    public function __construct(CourrierService $courrierService)
+    public function __construct(CourrierService $courrierService, PostService $postService, DelivererService $delivererService)
     {
         $this->courrierService = $courrierService;
+        $this->postService = $postService;
+        $this->delivererService = $delivererService;
     }
 
     /**
@@ -29,7 +36,7 @@ class CourrierController extends BackendController
         $courriers = $this->courrierService->getListeCourriers();
         
         return $this->renderViewBackend('courrier/history.html.twig', [
-            'name' => "nawras",
+
             'courriers' => $courriers
         ]);
     }
@@ -66,17 +73,24 @@ class CourrierController extends BackendController
     {
         $courrier = $this->courrierService->getCourrier($id);
 
-        return $this->renderViewBackend('courrier/showcourrier.html.twig', [
-            'courrier' => $courrier
+        return $this->renderViewBackend('courrier/bordereau.html.twig', [
+            'courriers' => $courrier
         ]);
     }
 
     /**
      * @Route("/courrier/add", name="add_courrier")
      */
-    public function addCourrier(Request $request): Response
+    public function addCourrier( Request $request): Response
     {
+        $agent = $this->getUser();
+        $post = null;
+        if ($agent instanceof Agent == true){
+            $post = $agent->getPost();
+        }
+
         $courrier = new Courrier();
+        $courrier->setPostDeparture($post);
         $form = $this->createForm(AddCourrierFormType::class, $courrier);
         $form->handleRequest($request);
 

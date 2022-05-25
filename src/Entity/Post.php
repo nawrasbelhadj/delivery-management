@@ -15,18 +15,17 @@ class Post
     #[ORM\Column(type: 'integer')]
     private $id;
 
-
-    #[ORM\Column(type: 'bigint')]
+    #[ORM\Column(type: 'string', length: 100)]
     private $namePost;
+
+    #[ORM\Column(type: 'string', length: 50)]
+    private $regionPost;
 
     #[ORM\Column(type: 'string', length: 50)]
     private $city;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $street;
-
-    #[ORM\Column(type: 'string', length: 50)]
-    private $regionPost;
 
 
 
@@ -37,7 +36,6 @@ class Post
         return $this->id;
     }
 
-
     public function getNamePost(): ?string
     {
         return $this->namePost;
@@ -46,6 +44,18 @@ class Post
     public function setNamePost(string $namePost): self
     {
         $this->namePost = $namePost;
+
+        return $this;
+    }
+
+    public function getRegionPost(): ?string
+    {
+        return $this->regionPost;
+    }
+
+    public function setRegionPost(string $regionPost): self
+    {
+        $this->regionPost = $regionPost;
 
         return $this;
     }
@@ -67,24 +77,15 @@ class Post
         return $this->street;
     }
 
-    public function setStreet(string $street): self
+    public function setStreet(?string $street): self
     {
         $this->street = $street;
 
         return $this;
     }
 
-    public function getRegionPost(): ?string
-    {
-        return $this->regionPost;
-    }
 
-    public function setRegionPost(string $regionPost): self
-    {
-        $this->regionPost = $regionPost;
 
-        return $this;
-    }
 
 
 

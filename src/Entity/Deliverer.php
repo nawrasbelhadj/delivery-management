@@ -8,19 +8,5 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: DelivererRepository::class)]
 class Deliverer extends User
 {
-    #[ORM\ManyToOne(targetEntity: Post::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private $post;
 
-    public function getPost(): ?post
-    {
-        return $this->post;
-    }
-
-    public function setPost(?post $post): self
-    {
-        $this->post = $post;
-
-        return $this;
-    }
 }

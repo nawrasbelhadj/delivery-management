@@ -3,7 +3,6 @@
 namespace App\Form\Deliverer;
 
 use App\Entity\Deliverer;
-use App\Entity\Post;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,6 +22,7 @@ class AddDelivererFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
             ->add('cin', TextType::class )
             ->add('email', TextType::class)
             ->add('firstName', TextType::class)
@@ -92,13 +92,7 @@ class AddDelivererFormType extends AbstractType
                 "mapped" => false,
             ))
 
-            ->add('post', EntityType::class, [
-                'required' => true,
-                'class' => Post::class,
-                'choice_label' => function(?Post $post) {
-                    return $post != null ? $post->getNamePost() : '';
-                },
-            ])
+
 
 
             ->add('save', SubmitType::class, ['label' => 'Save'])

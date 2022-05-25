@@ -33,46 +33,41 @@
         {% endblock %}
     </head>
     <body>
-
-        <!-- partial:partials/topbar.html.twig -->
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-
-            <!-- partial -->
-            <!-- partial:partials/sidebar.html -->
-            {% if is_granted('ROLE_ADMIN') %} ... {% endif %}
-            {{ include('partials/sidebar.html.twig') }}
-            {{ include('partials/topbar.html.twig') }}
-
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="home-tab">
-                                {% for message in app.flashes('success') %}
-                                    <div class="alert alert-success">
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                                {% for message in app.flashes('errors') %}
-                                    <div class="alert alert-warning">
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                                {% block body %}
-                                {% endblock %}
+    {{ include('partials/sidebar.html.twig') }}
+    {{ include('partials/topbar.html.twig') }}
+        <section class="content">
+            <div class="container-fluid page-body-wrapper">
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="home-tab">
+                                    {% for message in app.flashes('success') %}
+                                        <div class="alert alert-success">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                    {% for message in app.flashes('errors') %}
+                                        <div class="alert alert-warning">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                    {% block body %}
+                                    {% endblock %}
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div id="sidebar-overlay"></div>
                 </div>
+                <!-- main-panel ends -->
+                {{ include('partials/footer.html.twig') }}
 
-                <div id="sidebar-overlay"></div>
             </div>
-            <!-- main-panel ends -->
-            {{ include('partials/footer.html.twig') }}
+        </section>
 
-        </div>
 
     <!-- page-body-wrapper ends -->
 

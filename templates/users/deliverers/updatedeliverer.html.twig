@@ -10,12 +10,12 @@
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
-                <h4 class="card-title">Update Agent</h4>
-                <a href="{{ path("list_agents", {'postid': postid}) }}" type="button" class="btn btn-default text-black-50 float-right">List of Agent</a>
+                <h4 class="card-title">Update Deliverer</h4>
+                <a href="{{ path("list_deliverers") }}" type="button" class="btn btn-default text-black-50 float-right">List of Deliverers</a>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            {{ form_start(form, { 'action': path('update_agent' , {'postid': postid}, {'id' : agent.id}), 'method': 'POST'}) }}
+            {{ form_start(form, { 'action': path('update_deliverer' , {'id' : deliverer.id}), 'method': 'POST'}) }}
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
@@ -89,9 +89,9 @@
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4 class="card-title">Update Agent</h4>
+                <h4 class="card-title">Change Password</h4>
             </div>
-            {{ form_start(formpassword, {'class': 'form-sample', 'action': path('update_agent', {'id' : agent.id}), 'method': 'POST'}) }}
+            {{ form_start(formpassword, {'class': 'form-sample', 'action': path('update_password', {'id' : deliverer.id}), 'method': 'POST'}) }}
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">

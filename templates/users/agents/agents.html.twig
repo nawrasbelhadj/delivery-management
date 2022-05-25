@@ -26,7 +26,7 @@
                         <td>{{ agent.firstName }}</td>
 {#                        <td>{{ agent.userRole }} </td>#}
                         <td>
-                            <a class="btn btn-info btn-sm" href="{{ path('update_agent', {'postid' : postid}, {'id' : agent.id} ) }}"><i class="fas fa-user-edit"></i> Edit</a>
+                            <a class="btn btn-info btn-sm" href="{{ path('update_agent', {'postid' : postid, 'id' : agent.id} ) }}"><i class="fas fa-user-edit"></i> Edit</a>
 {#                            <a class="btn btn-primary btn-sm" href="{{ path('info_user', {'id' : user.id}) }}"><i class="fas fa-user"></i> View</a>#}
                             <a class="btn btn-danger btn-sm" href="{{ path('remove_agent', {'id' : agent.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
                         </td>

@@ -5,7 +5,9 @@ use App\Controller\BackendController;
 use App\Entity\User;
 use App\Form\User\AddUserFormType;
 use App\Form\User\UpdatePasswordFormType;
+use App\Form\User\UpdateUserFormType;
 use App\Form\User\UpdateUserProfileType;
+use App\Service\AgentService;
 use App\Service\UserService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,11 +20,14 @@ class UsersController extends BackendController
 {
     private UserService $userService;
     private UserPasswordHasherInterface $passwordHasher;
+    private AgentService $agentService;
 
-    public function __construct(UserService $userService, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(UserService $userService, UserPasswordHasherInterface $passwordHasher, AgentService $agentService)
     {
         $this->userService = $userService;
         $this->passwordHasher = $passwordHasher;
+        $this->agentService = $agentService;
+
     }
     /**
      * @Route("/users", name="list_users")
@@ -85,23 +90,12 @@ class UsersController extends BackendController
     }
 
     /**
-     * @Route("/user/MyProfile/{id}", name="my_profile")
+     * @Route("/user/MyProfile", name="my_profile")
      */
-    public function myInfo($id): Response
+    public function myProfile( Request $request): Response
     {
-        $Users = $this->userService->getUserData($id);
-
-        return $this->renderViewBackend('users/infouser.html.twig', [
-            'user' => $Users,
-        ]);
-    }
-
-    /**
-     * @Route("/user/update/{id}", name="update_user")
-     */
-    public function updateuser($id , Request $request): Response
-    {
-        $User = $this->userService->getUserData($id);
+        $User = $this->getUser();
+        $agent = $this->agentService->getAgent($User->getId());
         $form = $this->createForm(UpdateUserProfileType::class, $User);
         $form->handleRequest($request);
         $formPassword = $this->createForm(UpdatePasswordFormType::class, $User);
@@ -115,7 +109,57 @@ class UsersController extends BackendController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $role = $request->request->get('update_user_profile')['userRole'];
+
+            $this->userService->saveUser($User);
+            $this->addFlash('success', 'Changes Saved Successfully!');
+
+            return $this->redirectToRoute('my_profile');
+        }
+
+        if ($formPassword->isSubmitted() && $formPassword->isValid() == false) {
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('errors', $error->getMessage());
+            }
+        }
+
+        if ($formPassword->isSubmitted() && $formPassword->isValid()) {
+            $hashedPassword = $this->passwordHasher->hashPassword($User, $User->getPassword());
+            $User->setPassword($hashedPassword);
+            $this->userService->saveUser($User);
+            $this->addFlash('success', 'Password Updated!');
+
+            return $this->redirectToRoute('my_profile');
+        }
+
+
+        return $this->renderFormBackend('users/profileUser.html.twig', [
+            'user' => $User,
+            'agent' => $agent,
+            'form' => $form,
+            'formpassword' => $formPassword
+        ]);
+    }
+
+    /**
+     * @Route("/user/update/{id}", name="update_user")
+     */
+    public function updateuser($id , Request $request): Response
+    {
+        $User = $this->userService->getUserData($id);
+        $form = $this->createForm(UpdateUserFormType::class, $User);
+        $form->handleRequest($request);
+        $formPassword = $this->createForm(UpdatePasswordFormType::class, $User);
+        $formPassword->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() == false) {
+
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('errors', $error->getMessage());
+            }
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $role = $request->request->get('update_user_form')['userRole'];
             $User->setRoles(array($role));
             $this->userService->saveUser($User);
             $this->addFlash('success', "OK");
@@ -134,14 +178,13 @@ class UsersController extends BackendController
             $hashedPassword = $this->passwordHasher->hashPassword($User, $User->getPassword());
             $User->setPassword($hashedPassword);
             $this->userService->saveUser($User);
-            $this->addFlash('success', "OK");
+            $this->addFlash('success', 'User has been updated successfully!');
 
             return $this->redirectToRoute('list_users');
         }
 
         return $this->renderFormBackend('users/updateuser.html.twig', [
             'user' => $User,
-            'name' => "Nawras",
             'form' => $form,
             'formpassword' => $formPassword
 

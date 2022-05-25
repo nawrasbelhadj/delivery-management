@@ -23,9 +23,7 @@
             <p>
                 <input type="password" id="password" name="password" placeholder="Your Password" required><i class="validation"><span></span><span></span></i>
             </p>
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}"
-            >
+            <input type="hidden" name="_csrf_token"  value="{{ csrf_token('authenticate') }}" >
             <p>
                 <input type="submit" id="login" value="Login">
             </p>
