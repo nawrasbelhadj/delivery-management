@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 use App\Controller\BackendController;
 use App\Entity\Deliverer;
+use App\Entity\User;
 use App\Form\Deliverer\AddDelivererFormType;
 use App\Form\User\UpdatePasswordFormType;
 use App\Form\Deliverer\UpdateDelivererProfileType;
@@ -19,10 +20,13 @@ class DelivererController extends BackendController
     private DelivererService $delivererService;
     private UserPasswordHasherInterface $passwordHasher;
 
-    public function __construct(DelivererService $delivererService, UserPasswordHasherInterface $passwordHasher)
+
+
+    public function __construct(DelivererService $delivererService, UserPasswordHasherInterface $passwordHasher )
     {
         $this->delivererService = $delivererService;
         $this->passwordHasher = $passwordHasher;
+
     }
     /**
      * @Route("/deliverers/list", name="list_deliverers")
@@ -73,28 +77,18 @@ class DelivererController extends BackendController
 
 
     /**
-     * @Route("/deliverer/info/{id}", name="info_deliverer")
+     * @Route("/deliverer/view/{id}", name="info_deliverer")
      */
     public function infouser($id): Response
     {
         $deliverer = $this->delivererService->getDeliverer($id);
 
-        return $this->renderViewBackend('users/infouser.html.twig', [
+        return $this->renderViewBackend('users/deliverers/infoDeliverer.html.twig', [
             'deliverer' => $deliverer,
         ]);
     }
 
-    /**
-     * @Route("/deliverer/MyProfile/{id}", name="my_profile")
-     */
-    public function myInfo($id): Response
-    {
-        $deliverer = $this->delivererService->getDeliverer($id);
 
-        return $this->renderViewBackend('users/infouser.html.twig', [
-            'deliverer' => $deliverer,
-        ]);
-    }
 
     /**
      * @Route("/deliverer/update/{id}", name="update_deliverer")
@@ -115,10 +109,10 @@ class DelivererController extends BackendController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $role = $request->request->get('update_deliverer_form')['userRole'];
+            $role = $request->request->get('update_deliverer_profile')['userRole'];
             $deliverer->setRoles(array($role));
             $this->delivererService->saveDeliverer($deliverer);
-            $this->addFlash('success', "OK");
+            $this->addFlash('success', "Deliverer Updated");
 
             return $this->redirectToRoute('deliverers_list');
         }
@@ -134,14 +128,13 @@ class DelivererController extends BackendController
             $hashedPassword = $this->passwordHasher->hashPassword($deliverer, $deliverer->getPassword());
             $deliverer->setPassword($hashedPassword);
             $this->delivererService->saveDeliverer($deliverer);
-            $this->addFlash('success', "OK");
+            $this->addFlash('success', "Password Changed");
 
             return $this->redirectToRoute('deliverers_list');
         }
 
-        return $this->renderFormBackend('users/updateuser.html.twig', [
-            'user' => $deliverer,
-            'name' => "Nawras",
+        return $this->renderFormBackend('users/deliverers/updatedeliverer.html.twig', [
+            'deliverer' => $deliverer,
             'form' => $form,
             'formpassword' => $formPassword
 

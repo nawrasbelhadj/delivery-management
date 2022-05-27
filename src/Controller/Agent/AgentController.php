@@ -79,7 +79,7 @@ class AgentController extends BackendController
             return $this->redirectToRoute('list_agents', $postid);
         }
         return $this->renderFormBackend('users/agents/addagent.html.twig', [
-            'name' => "Nawras",
+
             'form' => $form,
             'postid' => $postid
         ]);
@@ -104,10 +104,10 @@ class AgentController extends BackendController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $role = $request->request->get('update_user_profile')['userRole'];
+            $role = $request->request->get('update_agent_profile')['userRole'];
             $agent->setRoles(array($role));
             $this->agentService->saveAgent($agent);
-            $this->addFlash('success', "Agent updated");
+            $this->addFlash('success', "Agent Updated");
 
             return $this->redirectToRoute('users_list');
         }
@@ -123,14 +123,13 @@ class AgentController extends BackendController
             $hashedPassword = $this->passwordHasher->hashPassword($agent, $agent->getPassword());
             $agent->setPassword($hashedPassword);
             $this->agentService->saveAgent($agent);
-            $this->addFlash('success', "Password updated");
+            $this->addFlash('success', "Password Changed");
 
             return $this->redirectToRoute('users_list');
         }
 
         return $this->renderFormBackend('users/agents/updateagent.html.twig', [
             'agent' => $agent,
-            'name' => "Nawras",
             'form' => $form,
             'formpassword' => $formPassword,
             'postid' => $postid
@@ -138,6 +137,21 @@ class AgentController extends BackendController
         ]);
 
     }
+
+
+    /**
+     * @Route("/agent/view/{postid}/{id}", name="info_agent")
+     */
+    public function infouser($postid , $id): Response
+    {
+        $agent = $this->agentService->getAgent($id);
+
+        return $this->renderViewBackend('users/agents/infoAgent.html.twig', [
+            'agent' => $agent,
+            'postid'=> $postid
+        ]);
+    }
+
 
     /**
      * @Route("/post/agent/remove/{id}", name="remove_agent")

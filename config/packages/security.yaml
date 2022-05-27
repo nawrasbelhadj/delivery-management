@@ -43,8 +43,8 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 target: app_login
-#                 invalidate_session: true
 
+            # invalidate_session: true
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -61,29 +61,31 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
-        - { path: ^/, roles: [ROLE_ADMIN, ROLE_AGENTADMIN , ROLE_DELIVERER , ROLE_USER] }
+        - { path: ^/reset-password, roles: PUBLIC_ACCESS}
+
+        - { path: ^/, roles: [ROLE_SUPADMIN , ROLE_ADMIN , ROLE_AGENTADMIN , ROLE_AGENT , ROLE_DELIVERER , ROLE_USER] }
 
         - { path: ^/my_profile, roles: ROLE_USER }
 
-        - { path: ^/list_users, roles: ROLE_ADMIN}
-        - { path: ^/add_user, roles: ROLE_ADMIN }
-        - { path: ^/update_user, roles: ROLE_ADMIN }
+        - { path: ^/list_users, roles: [ROLE_SUPADMIN , ROLE_ADMIN] }
+        - { path: ^/add_user, roles: ROLE_SUPADMIN }
+        - { path: ^/update_user, roles: ROLE_SUPADMIN }
 
-        - { path: ^/list_agents, roles: [ROLE_ADMIN , ROLE_AGENTADMIN , ROLE_AGENT ] }
-        - { path: ^/add_agent, roles: [ ROLE_ADMIN , ROLE_AGENTADMIN ] }
-        - { path: ^/update_agent, roles: [ ROLE_ADMIN , ROLE_AGENTADMIN ] }
+        - { path: ^/list_agents, roles: [ROLE_SUPADMIN , ROLE_ADMIN , ROLE_AGENTADMIN , ROLE_AGENT ] }
+        - { path: ^/add_agent, roles: [ROLE_SUPADMIN , ROLE_ADMIN , ROLE_AGENTADMIN ] }
+        - { path: ^/update_agent, roles: [ROLE_SUPADMIN , ROLE_ADMIN , ROLE_AGENTADMIN ] }
 
-        - { path: ^/list_posts, roles: [ROLE_ADMIN , ROLE_AGENTADMIN , ROLE_AGENT]}
-        - { path: ^/add_post, roles: ROLE_ADMIN }
-        - { path: ^/update_post, roles: ROLE_ADMIN }
+        - { path: ^/list_posts, roles: [ROLE_SUPADMIN , ROLE_ADMIN , ROLE_AGENTADMIN , ROLE_AGENT]}
+        - { path: ^/add_post, roles: [ROLE_SUPADMIN , ROLE_ADMIN] }
+        - { path: ^/update_post, roles: [ROLE_SUPADMIN , ROLE_ADMIN] }
 
         - { path: ^/history_courrier, roles: [ ROLE_AGENTADMIN , ROLE_AGENT] }
         - { path: ^/add_courrier, roles: [ ROLE_AGENTADMIN , ROLE_AGENT ] }
         - { path: ^/update_courrier, roles: [ ROLE_AGENTADMIN , ROLE_AGENT ] }
 
-        - { path: ^/list_deliverers, roles: ROLE_ADMIN}
-        - { path: ^/add_deliverer, roles: ROLE_ADMIN }
-        - { path: ^/update_deliverer, roles: ROLE_ADMIN }
+        - { path: ^/list_deliverers, roles: [ROLE_SUPADMIN , ROLE_ADMIN]}
+        - { path: ^/add_deliverer, roles: [ROLE_SUPADMIN , ROLE_ADMIN] }
+        - { path: ^/update_deliverer, roles: [ROLE_SUPADMIN , ROLE_ADMIN] }
 
 
 

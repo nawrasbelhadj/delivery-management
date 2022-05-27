@@ -223,9 +223,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = "";
 
         foreach ($this->getRoles() as $role) {
-            if ($role === "ROLE_AGENTADMIN") $roles = "Agent";
+            if ($role === "ROLE_AGENTADMIN") $roles = "SUP Agent";
             if ($role === "ROLE_AGENT") $roles = "Agent";
             if ($role === "ROLE_ADMIN") $roles = "Administrator";
+            if ($role === "ROLE_DELIVERER") $roles = "DELIVERER";
         }
 
         return $roles;

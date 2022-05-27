@@ -42,40 +42,23 @@
                         {{ form_widget(form.lastName, { 'attr': {'class': "form-control",  'placeholder': "Last Name"} }) }}
                     </div>
                 </div>
+
                 <div class="row">
+
                     <div class="col-sm-4">
                         <label >Governorate </label>
                         {{ form_widget(form.region, { 'attr': {'class': "custom-select form-control-border" , 'placeholder': "Choose Governorate"} }) }}
                     </div>
                     <div class="col-sm-4">
-                        <label >Role</label>
-                        {{ form_widget(form.userRole, { 'attr': {'class': "custom-select form-control-border",  'placeholder': "Role"} }) }}
-                    </div>
-                    <div class="col-sm-4">
-                        <label >Post</label>
-                        {{ form_widget(form.post, { 'attr': {'class': "custom-select form-control-border"} }) }}
-                    </div>
-                </div>
-                <br>
-
-
-                <br>
-                <h4>Optional Information</h4>
-                <div class="row">
-                    <div class="col-sm-4">
                         <label >Phone Number </label>
                         {{ form_widget(form.phoneNumber, { 'attr': {'class': "form-control" , 'placeholder': "Phone Number"} }) }}
                     </div>
                     <div class="col-sm-4">
-                        <label > Adress </label>
-                        {{ form_widget(form.adress, { 'attr': {'class': "form-control",  'placeholder': "Adress"} }) }}
+                        <label >Role</label>
+                        {{ form_widget(form.userRole, { 'attr': {'class': "custom-select form-control-border"} }) }}
                     </div>
-                    <div class="col-sm-4">
-                        <label >City</label>
-                        {{ form_widget(form.city, { 'attr': {'class': "form-control",  'placeholder': "City"} }) }}
-                    </div>
-                </div>
 
+                </div>
 
             </div>
             <!-- /.card-body -->
@@ -91,23 +74,23 @@
             <div class="card-header">
                 <h4 class="card-title">Change Password</h4>
             </div>
-            {{ form_start(formpassword, {'class': 'form-sample', 'action': path('update_password', {'id' : deliverer.id}), 'method': 'POST'}) }}
+            {{ form_start(formpassword, {'class': 'form-sample', 'action': path('update_deliverer', {'id' : deliverer.id}), 'method': 'POST'}) }}
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
                         <label >Password</label>
-                        {{ form_widget(form.password.first, { 'attr': {'class': "form-control", 'placeholder': "Password"} }) }}
+                        {{ form_widget(formpassword.password.first, { 'attr': {'class': "form-control", 'placeholder': "Password"} }) }}
                     </div>
                     <div class="col-sm-6">
                         <label >Confirm Password</label>
-                        {{ form_widget(form.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
+                        {{ form_widget(formpassword.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
                     </div>
                 </div>
             </div>
             <div class="card-footer">
 
-                {{ form_widget(form.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
-                {{ form_widget(form.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
+                {{ form_widget(formpassword.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
+                {{ form_widget(formpassword.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
             </div>
             {{ form_end(form) }}
         </div>

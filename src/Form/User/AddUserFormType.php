@@ -29,9 +29,9 @@ class AddUserFormType extends AbstractType
             ->add('userRole', type: ChoiceType::class, options: [
                 'placeholder' => 'User Role',
                 'choices'  => [
-                   'Post Agent' => 'ROLE_AGENT',
-                    'Deliverer' => 'ROLE_USER',
+                    'Sup Administrator' => 'ROLE_SUPADMIN',
                     'Administrator' => 'ROLE_ADMIN'
+
                 ],
                 "mapped" => false,
 
