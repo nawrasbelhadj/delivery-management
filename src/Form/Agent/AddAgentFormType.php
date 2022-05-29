@@ -31,7 +31,7 @@ class AddAgentFormType extends AbstractType
                 'placeholder' => 'Agent ROLE',
                 'choices'  => [
                     'Agent Responsable' => 'ROLE_AGENTADMIN',
-                    'Agent Normal' => 'ROLE_AGENT'
+                    'Agent ' => 'ROLE_AGENT'
                 ],
                 "mapped" => false,
 

@@ -6,6 +6,7 @@ use App\Entity\Agent;
 use App\Form\Agent\AddAgentFormType;
 use App\Form\Agent\UpdateAgentProfileType;
 use App\Form\User\UpdatePasswordFormType;
+use App\Repository\AgentRepository;
 use App\Service\AgentService;
 use App\Service\PostService;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +21,14 @@ class AgentController extends BackendController
     private AgentService $agentService;
     private UserPasswordHasherInterface $passwordHasher;
     private PostService $postService;
+    private AgentRepository $agentRepository;
 
-    public function __construct(AgentService $agentService, UserPasswordHasherInterface $passwordHasher , PostService $postService)
+    public function __construct(AgentService $agentService, UserPasswordHasherInterface $passwordHasher , PostService $postService, AgentRepository $agentRepository)
     {
         $this->agentService = $agentService;
         $this->passwordHasher = $passwordHasher;
         $this->postService = $postService;
+        $this->agentRepository = $agentRepository;
     }
     /**
      * @Route("/post/agents/list/{postid}", name="list_agents")
@@ -42,6 +45,24 @@ class AgentController extends BackendController
             'postid' => $postid,
         ]);
     }
+
+
+    /**
+     * @Route("/post/agents/list/{postId}", name="list_agents_post")
+     */
+    public function listeByPost($postId): Response
+    {
+
+        $agents = $this->agentRepository->findBy(['postId'=> $postId]);
+
+        return $this->renderViewBackend('post/agentsPost.html.twig', [
+            'agents' => $agents,
+            'title' => "Agents List",
+            'separator' => ' | ',
+            'postId' => $postId,
+        ]);
+    }
+
 
     /**
      * @Route("/post/agent/add/{postid}", name="add_agent")

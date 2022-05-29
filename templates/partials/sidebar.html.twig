@@ -109,18 +109,30 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        {% if is_granted('ROLE_ADMIN') == true  %}
                         <li class="nav-item">
                             <a href="{{ path('list_posts') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List of Posts</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="{{path('add_post')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Post</p>
                             </a>
                         </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_AGENTADMIN') == true or is_granted ('ROLE_AGENT')%}
+                        <li class="nav-item">
+                            <a href="{{ path('list_agents_post', {'postId' : app.user.post.id }) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List of Agents</p>
+                            </a>
+                        </li>
+                         {% endif %}
+
                     </ul>
                 </li>
 

@@ -20,36 +20,31 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label >Barcode</label>
+                                <label >Barcode *</label>
                                 {{ form_widget(form.codeBarre, { 'attr': {'class': "form-control" , 'placeholder': "Barcode"} }) }}
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label >Type</label>
+                            <label >Type *</label>
                             {{ form_widget(form.typeCourrier, { 'attr': {'class': "custom-select form-control-border", 'id' : "exampleInputEmail1" , 'placeholder': "Select Type"} }) }}
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-group">
-                                <label >Source</label>
-                                {{ form_widget(form.postDeparture, { 'attr': {'class': "form-control" , 'placeholder': "Source"} }) }}
-                            </div>
+                            <label >Titre *</label>
+                            {{ form_widget(form.title, { 'attr': {'class': "form-control" , 'placeholder': "Title"} }) }}
                         </div>
                         <div class="col-sm-6">
-                            <label >Destination</label>
+                            <label >Arrival Post * </label>
                             {{ form_widget(form.postArrival, { 'attr': {'class': "form-control",  'placeholder': "Destination"} }) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
-                            <label >Status </label>
-                            {{ form_widget(form.status, { 'attr': {'class': "form-control" , 'placeholder': "Status"} }) }}
-                        </div>
-                        <div class="col-sm-6">
-                            <label >Situation</label>
-                            {{ form_widget(form.situation, { 'attr': {'class': "form-control",  'placeholder': "Situation"} }) }}
+
+                        <div class="col-sm-12">
+                            <label >Message</label>
+                            {{ form_widget(form.message, { 'attr': {'class': "form-control", 'rows' : '3' , 'placeholder': "Insert Message"} }) }}
                         </div>
                     </div>
 

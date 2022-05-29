@@ -52,6 +52,12 @@ class Courrier
     #[ORM\ManyToOne(targetEntity: bordereau::class)]
     private $bordereau;
 
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $title;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $message;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -192,6 +198,30 @@ public function getBordereau(): ?bordereau
 public function setBordereau(?bordereau $bordereau): self
 {
     $this->bordereau = $bordereau;
+
+    return $this;
+}
+
+public function getTitle(): ?string
+{
+    return $this->title;
+}
+
+public function setTitle(?string $title): self
+{
+    $this->title = $title;
+
+    return $this;
+}
+
+public function getMessage(): ?string
+{
+    return $this->message;
+}
+
+public function setMessage(?string $message): self
+{
+    $this->message = $message;
 
     return $this;
 }
