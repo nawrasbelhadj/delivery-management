@@ -22,6 +22,14 @@ class CourrierService {
     }
 
     /**
+     * @return Courrier[] Returns an array of Courrier objects
+     */
+    public function getCourriersByType(string $typeCourrier): array
+    {
+        return $this->courrierRepository->findByTypeCourrier($typeCourrier);
+    }
+
+    /**
     * @return Courrier Returns an Courrier objects
     */
     public function getCourrier($id): ?Courrier 

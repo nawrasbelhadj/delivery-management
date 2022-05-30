@@ -41,8 +41,8 @@ class AddCourrierFormType extends AbstractType
                 'placeholder' => 'Type',
                 'choices'  => [
                     'Simple Courier' => 'Courrier_Simple',
-                    'Large Courier' => 'Grand_Courrier',
-                    'Multiple Couriers' => 'Courrier_Multiples'
+                    'Large Courier' => 'Courrier_Grand',
+                    'Multiple Couriers' => 'Courrier_Multiple'
                 ],
             ])
 
