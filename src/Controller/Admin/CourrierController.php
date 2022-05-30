@@ -105,7 +105,7 @@ class CourrierController extends BackendController
             $this->courrierService->saveCourrier($courrier);
             $this->addFlash('success', "New Courier Has Been Added");
 
-            return $this->redirectToRoute('details_courrier' );
+            return $this->redirectToRoute('details_courrier' , ['id' => $courrier->getId()]);
         }
 
         return $this->renderFormBackend('courrier/addCourrier.html.twig', [
@@ -168,4 +168,6 @@ class CourrierController extends BackendController
 
         return $this->redirectToRoute('history_courrier');
     }
+
+
 }

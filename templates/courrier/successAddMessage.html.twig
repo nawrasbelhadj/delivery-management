@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <h6 class="card-title"></h6>
 
-                            <p class="card-text"> Title: {{ title }} <br> Message: {{ message }} <br> Sent from {{ app.user.post.namePost }} to {{ postArriv }}</p>
+                            <p class="card-text"> Title: {{ courrier.title }} <br> Message: {{ courrier.message }} <br> Sent from {{ app.user.post.namePost }} to {{ courrier.postArrival.namePost }}</p>
                             <a href="{{ path('add_courrier') }}" class="btn btn-primary">Add Another Courier</a>
                             <a href="{{ path('history_courrier') }}" class="btn btn-default">Go Back</a>
                         </div>

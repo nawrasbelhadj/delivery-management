@@ -35,18 +35,18 @@ class Courrier
     #[ORM\Column(type: 'string', length: 15)]
     private $typeCourrier;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 20 , nullable: true)]
     private $status;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 20 , nullable: true)]
     private $situation;
 
     #[ORM\ManyToOne(targetEntity: post::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $post;
 
     #[ORM\ManyToOne(targetEntity: deliverer::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $deliverer;
 
     #[ORM\ManyToOne(targetEntity: bordereau::class)]
