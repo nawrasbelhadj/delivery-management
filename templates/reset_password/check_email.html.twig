@@ -1,0 +1,38 @@
+
+ {%  block stylesheet %}
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+     <!-- Font Awesome Icons -->
+     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+     <!-- Theme style -->
+     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+{% endblock %}
+{% block body %}
+ <div class="wrapper">
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Check email</h5>
+
+                        <p class="card-text">
+                        <p>
+                            If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+                            This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                        </p>
+                        <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+                        </p>
+
+                    </div>
+                </div><!-- /.card -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

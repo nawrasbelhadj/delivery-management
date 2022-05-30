@@ -7,11 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
-/**
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
- */
-#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields : ["email"], message : "There is already an account with this email")]
+#[ORM\Entity(repositoryClass : UserRepository::class)]
+#[ORM\InheritanceType(value : "JOINED")]
+#[ORM\DiscriminatorColumn(name : 'type', type : 'string' )]
+#[ORM\DiscriminatorMap(value : ["user" => "User", "agent" => "Agent", "deliverer" => "Deliverer"])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -42,6 +44,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'bigint')]
     private $cin;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on: 'create')]
+    private ?\DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on: 'update')]
+    private ?\DateTimeImmutable $updatedAt;
 
     public function getId(): ?int
     {
@@ -184,4 +194,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function rolesToString(): string
+    {
+        $roles = "";
+
+        foreach ($this->getRoles() as $role) {
+            if ($role === "ROLE_AGENTADMIN") $roles = "SUP Agent";
+            if ($role === "ROLE_AGENT") $roles = "Agent";
+            if ($role === "ROLE_ADMIN") $roles = "Administrator";
+            if ($role === "ROLE_DELIVERER") $roles = "DELIVERER";
+        }
+
+        return $roles;
+    }
+
+
 }

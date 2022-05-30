@@ -15,7 +15,15 @@ class PostService
     }
 
     /**
-     * @return Post[] Returns an array of User objects
+     * @return Post[] Returns an array of Post objects
+     */
+    public function getListPostsByRegion($regionPost): array
+    {
+        return $this->postRepository->findByRegionPost($regionPost);
+    }
+
+    /**
+     * @return Post[] Returns an array of Post objects
      */
     public function getListePosts(): array
     {
@@ -23,12 +31,11 @@ class PostService
     }
 
     /**
-     * @param $id
+     * @param Post $post
      * @return void
      */
-    public function deletePost($id): void
+    public function deletePost(Post $post): void
     {
-        $post =  $this->postRepository->find($id);
         $this->postRepository->deletePost($post);
     }
 
@@ -42,7 +49,7 @@ class PostService
     }
 
     /**
-     * @return Posts Returns an Post objects
+     * @return Post Returns a Post objects
      */
     public function getPost($id): ?Post
     {

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">List Of Deliverer</h3>
+            <a class="btn btn-primary float-right" type="button" href="{{ path("add_deliverer" ) }}"><i class="fas fa-plus"></i> Add Deliverer</a>
+        </div>
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+
+                <thead>
+                <tr>
+                    <th>Deliverer id</th>
+                    <th>Full Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for deliverer in deliverers %}
+                    <tr>
+                        <td>{{ deliverer.id }}</td>
+                        <td>{{ deliverer.firstName }} {{ deliverer.lastName }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{{ path('update_deliverer', {'id' : deliverer.id} ) }}"><i class="fas fa-user-edit"></i>  Edit</a>
+                            <a class="btn btn-info btn-sm" href="{{ path('info_deliverer', {'id' : deliverer.id}) }}"><i class="fas fa-user"></i>  View</a>
+                            <a class="btn btn-danger btn-sm" href="{{ path('remove_deliverer', {'id' : deliverer.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
+                        </td>
+
+
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>Deliverer id</th>
+                    <th>Full Name</th>
+                    <th>Actions</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+{% endblock body %}
+
+{% block script %}
+    <script src="{{ path('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ path('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ path('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{path(' plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{ path('plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ path('plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ path('plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
+    </script>
+
+{% endblock script %}

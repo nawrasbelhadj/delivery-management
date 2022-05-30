@@ -1,71 +1,97 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('css/material-design-iconic-font.min.css') }} >
-  <link rel="stylesheet" href="{{ asset('css/addpagestyle.css') }} >
+
 {% endblock %}
 
 {% block body %}
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
+    <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h4 class="card-title">Add User</h4>
+                <a type="button" href="{{ path("list_users") }}"  class="btn btn-default text-black-50 float-right">List of Users</a>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+                {{ form_start(form, { 'action': path('add_user'), 'method': 'POST'}) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                               <label >CIN *</label>
+                            {{ form_widget(form.cin, { 'attr': {'class': "form-control" , 'placeholder': "CIN"} }) }}
+                             </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="exampleInputEmail1">Email *</label>
+                            {{ form_widget(form.email, { 'attr': {'class': "form-control", 'id' : "exampleInputEmail1" , 'placeholder': "Enter email"} }) }}
+                        </div>
+                        </div>
 
-            <div class="card-body">
-                <div class="d-sm-flex justify-content-between align-items-start">
-                    <div>
-                        <h4 class="card-title card-title-dash">Add user</h4>
-                    </div>
-                    <div>
-                        <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("users_list") }}"><i class="mdi mdi-view-list"></i>Lis of Users</a>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label >First Name *</label>
+                        {{ form_widget(form.firstName, { 'attr': {'class': "form-control" , 'placeholder': "First Name"} }) }}
                     </div>
                 </div>
-
-                    {{ form_start(form, {'action': path('add_user'), 'method': 'POST'}) }}
-
-                    <div class="form-group-1">
-                        <div class="col">
-
-                            {{ form_widget(form.cin, { 'attr': {'class': "span12", 'placeholder': "cin"} }) }}
-                        </div>
-                        <div class="col">
-
-                            {{ form_widget(form.email, { 'attr': {'class': "span12", 'placeholder': "Email"} }) }}
-                        </div>
-
-                        {{ form_widget(form.firstName, { 'attr': {'class': "span12", 'placeholder': "First Name"} }) }}
-                        <div class="col">
-
-                            {{ form_widget(form.lastName, { 'attr': {'class': "span12", 'placeholder': "Last Name"} }) }}
-                        </div>
-                        {{ form_widget(form.phoneNumber, { 'attr': {'class': "span12", 'placeholder': "Phone Number"} }) }}
-
-
-                    </div>
-                    <div class="form-group-2">
-                        <h3>Region ?</h3>
-                        <div class="select-list">
-                            <select name="region" id="region">
-                                <option seleected value="region1">Tunis</option>
-                                <option value="region2">Gabes</option>
-                            </select>
-                        </div>
-{#                        <div class="select-list">#}
-{#                            <select name="hour_appointment" id="hour_appointment">#}
-{#                                <option seleected value="">Hours : 8am 10pm</option>#}
-{#                                <option value="9h-11h">Hours : 9am 11pm</option>#}
-{#                            </select>#}
-{#                        </div>#}
-                    </div>
-
-                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-icon-text'}}) }}
-                    {{ form_end(form) }}
-
-
-
-
-
-
-
-
+                <div class="col-sm-6">
+                    <label for="exampleInputEmail1">Last Name *</label>
+                    {{ form_widget(form.lastName, { 'attr': {'class': "form-control",  'placeholder': "Last Name"} }) }}
+                </div>
             </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <label >Governorate *</label>
+                                {{ form_widget(form.region, { 'attr': {'class': "custom-select form-control-border" , 'placeholder': "Choose Governorate"} }) }}
+                        </div>
+                        <div class="col-sm-6">
+                            <label >Role *</label>
+                            {{ form_widget(form.userRole, { 'attr': {'class': "custom-select form-control-border",  'placeholder': "Role"} }) }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                    <div class="col-sm-6">
+                        <label >Password *</label>
+                        {{ form_widget(form.password.first, { 'attr': {'class': "form-control", 'placeholder': "Password"} }) }}
+                    </div>
+                        <div class="col-sm-6">
+                            <label >Confirm Password *</label>
+                            {{ form_widget(form.password.second, { 'attr': {'class': "form-control", 'placeholder': "Confirm Password"} }) }}
+                        </div>
+                    </div>
+                    <br>
+                    <h4>Optional Information</h4>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label >Phone Number </label>
+                            {{ form_widget(form.phoneNumber, { 'attr': {'class': "form-control" , 'placeholder': "Phone Number"} }) }}
+                        </div>
+                        <div class="col-sm-4">
+                            <label > Adress </label>
+                            {{ form_widget(form.adress, { 'attr': {'class': "form-control",  'placeholder': "Adress"} }) }}
+                        </div>
+                        <div class="col-sm-4">
+                            <label >City</label>
+                            {{ form_widget(form.city, { 'attr': {'class': "form-control",  'placeholder': "City"} }) }}
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+
+                    {{ form_widget(form.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
+                    {{ form_widget(form.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
+                </div>
+            {{ form_end(form) }}
         </div>
     </div>
+    </div>
+        <!-- /.card -->
 {% endblock %}

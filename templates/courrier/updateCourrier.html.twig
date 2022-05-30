@@ -1,37 +1,74 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
+
 {% endblock %}
 
 {% block body %}
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4 class="card-title">Update Courier</h4>
+                    <a href="{{ path("history_courrier") }}" type="button" class="btn btn-default text-black-50 float-right">List of Couriers</a>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                {{ form_start(form, { 'action': path('update_courrier', {'id': courrier.id}), 'method': 'POST'}) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Barcode</label>
+                                {{ form_widget(form.codeBarre, { 'attr': {'class': "form-control" , 'placeholder': "Barcode"} }) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label >Type</label>
+                            {{ form_widget(form.typeCourrier, { 'attr': {'class': "custom-select form-control-border", 'id' : "exampleInputEmail1" , 'placeholder': "Select Type"} }) }}
+                        </div>
+                    </div>
 
-            <div class="card-body">
-                <div class="d-sm-flex justify-content-between align-items-start">
-                    <div>
-                        <h4 class="card-title card-title-dash">Ajouter courrier</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Source</label>
+                                {{ form_widget(form.postDeparture, { 'attr': {'class': "form-control" , 'placeholder': "Source"} }) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label >Destination</label>
+                            {{ form_widget(form.postArrival, { 'attr': {'class': "form-control",  'placeholder': "Destination"} }) }}
+                        </div>
                     </div>
-                    <div>
-                        <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("history_courrier") }}"><i class="mdi mdi-view-list"></i>Liste Courrier</a>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label >Status </label>
+                            {{ form_widget(form.status, { 'attr': {'class': "form-control" , 'placeholder': "Status"} }) }}
+                        </div>
+                        <div class="col-sm-6">
+                            <label >Situation</label>
+                            {{ form_widget(form.situation, { 'attr': {'class': "form-control",  'placeholder': "Situation"} }) }}
+                        </div>
                     </div>
+                    <br>
+
+                    <br>
+
+
+
                 </div>
-                <div class="form-group row">
-                    <div class="my-custom-class-for-errors">
-                        {{ form_errors(form) }}
-                    </div>
-                    {{ form_start(form, {'action': path('history_courrier'), 'method': 'GET'}) }}
-                    <div class="col">
-                        <label>{{ form_label(form.codeBarre) }}</label>
-                        {{ form_widget(form.codeBarre) }}
-                    </div>
-                    <div class="col">
-                        <label>{{ form_label(form.postDeparture) }}</label>
-                        {{ form_widget(form.postDeparture) }}
-                    </div>
-                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-icon-text'}}) }}
-                    {{ form_end(form) }}
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+
+                    {{ form_widget(form.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
+                    {{ form_widget(form.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
                 </div>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
+    <!-- /.card -->
 {% endblock %}

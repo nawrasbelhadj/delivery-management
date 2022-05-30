@@ -33,7 +33,7 @@ class UpdatePasswordFormType extends AbstractType
             ))
 
 
-            ->add('save', SubmitType::class, ['label' => 'Save'])
+            ->add('save', SubmitType::class, ['label' => 'Change Password'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);
 
     }

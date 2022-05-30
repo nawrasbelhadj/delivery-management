@@ -1,56 +1,79 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-{% endblock %}
+
 
 {% block body %}
-        <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="d-sm-flex justify-content-between align-items-start">
-                        <div>
-                            <h4 class="card-title card-title-dash">Pending Requests</h4>
-                            <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
-                        </div>
-                        <div>
-                            <a class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" href="{{ path("addcourrier_courrier") }}"><i class="mdi mdi-plus-circle-outline"></i>Ajouter Courrier</a>
-                        </div>
-                    </div>
-                    <div class="table-responsive pt-3">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>
-                                    #
-                                </th>
-                                <th>
-                                    Code barre
-                                </th>
-                                <th>
-                                    Message
-                                </th>
-                                <th>
-                                    Actions
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for courrier in courriers %}
-                                <tr>
-                                    <td>{{ courrier.id }}</td>
-                                    <td>{{ courrier.codeBarre }}</td>
-                                    <td>{{ courrier.postDeparture }}</td>
-                                    <td>
-                                        <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('timeline_courrier', {'id' : courrier.id}) }}"><i class="ti-eye text-danger"></i></a>
-                                        <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('updatecourrier_courrier', {'id' : courrier.id}) }}"><i class="ti-pencil text-danger"></i></a>
-                                        <a type="button" class="btn btn-outline-secondary btn-rounded btn-icon" href="{{ path('delete_courrier', {'id' : courrier.id}) }}"><i class="ti-trash text-danger"></i></a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">List Of Couriers</h3>
+            <a class="btn btn-primary float-right" type="button" href="{{ path("add_courrier") }}"><i class="fas fa-plus"></i>  Add Courier</a>
         </div>
-    {% endblock %}
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Barcode</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for courrier in courriers %}
+                    <tr>
+                        <td> {{ courrier.id}}  </td>
+                        <td>{{ courrier.codeBarre }}    </td>
+                        <td>
+                            <a type="button" class="btn btn-info btn-sm" href="{{ path('update_courrier', {'id' : courrier.id} ) }}"><i class="fas fa-pencil-alt "></i> Edit</a>
+{#                            #}{#         <a type="button" class="btn btn-primary btn-sm" href="{{ path('list_agents', {'id' : post.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>#}
+                            <a class="btn btn-danger btn-sm" href="{{ path('remove_courrier', {'id' : courrier.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Barcode</th>
+                    <th>Actions</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+{% endblock body %}
+
+{% block script %}
+    <script src="{{ path('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ path('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ path('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{path(' plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{ path('plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ path('plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ path('plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ path('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
+    </script>
+
+{% endblock script %}

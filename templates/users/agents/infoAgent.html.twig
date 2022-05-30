@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Profile</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ path('dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Agent  {{ agent.id }} Profile</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="{{ asset('image/user.png') }}"
+                                     alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center"> {{ agent.firstName }}  {{  agent.lastName  }}</h3>
+
+                            <p class="text-muted text-center"> {{ agent.rolesToString }}</p>
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>CIN</b> <a class="float-right"> {{ agent.cin }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="float-right">{{ agent.Email }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b> Phone Number</b> <a class="float-right">  {{ agent.phoneNumber }}</a>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+
+                            <ul class="nav nav-pills">
+
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Deliverer Info </a></li>
+                                <a class="btn btn-info float-right" href="{{ path('update_agent' ,  {'postid' : postid, 'id' : agent.id} )  }}" >Update Agent </a>
+
+                            </ul>
+
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+
+                                <!-- info -->
+                                <div class="active tab-pane" id="activity">
+                                    {% if  agent is not null  %}
+
+                                        <strong><i class="fas fa-building mr-1"></i> Post </strong>
+
+                                        <p class="text-muted">
+
+                                            {{ agent.post.namePost }}
+
+                                        </p>
+
+                                        <hr>
+
+                                    {% endif %}
+                                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Region</strong>
+
+                                    <p class="text-muted">{{ agent.region }}</p>
+
+                                    <hr>
+
+                                    <strong><i class="fas fa-pencil-alt mr-1"></i> Created At </strong>
+
+                                    <p class="text-muted">
+                                        <span class="tag tag-danger"> {{ agent.createdAt|date("d-m-Y") }} </span> <br>
+
+                                    </p>
+
+                                    <hr>
+
+                                    <strong><i class="fas fa-user-clock mr-1"></i> Modified At </strong>
+
+                                    <p class="text-muted">
+                                        <span class="tag tag-danger"> {{ agent.updatedAt|date("d-m-Y") }} </span> <br>
+
+                                    </p>
+
+
+
+
+
+                                </div>
+                                <!-- /.tab-pane info -->
+
+
+
+
+
+
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

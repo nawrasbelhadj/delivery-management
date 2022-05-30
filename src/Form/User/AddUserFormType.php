@@ -25,13 +25,13 @@ class AddUserFormType extends AbstractType
             ->add('email', TextType::class)
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-
+//            ->add('type', TextType::class)
             ->add('userRole', type: ChoiceType::class, options: [
                 'placeholder' => 'User Role',
                 'choices'  => [
-                   'Post Agent' => 'ROLE_AGENT',
-                    'Deliverer' => 'ROLE_USER',
+                    'Sup Administrator' => 'ROLE_SUPADMIN',
                     'Administrator' => 'ROLE_ADMIN'
+
                 ],
                 "mapped" => false,
 
@@ -85,7 +85,7 @@ class AddUserFormType extends AbstractType
             ->add('adress', TextType::class, array(
                 "mapped" => false,
             ))
-            ->add('postCode', TextType::class, array(
+            ->add('city', TextType::class, array(
                 "mapped" => false,
             ))
 

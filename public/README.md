@@ -1,55 +1,105 @@
+# [AdminLTE - Bootstrap 4 Admin Dashboard](https://adminlte.io)
+
+[![npm version](https://img.shields.io/npm/v/admin-lte/latest.svg)](https://www.npmjs.com/package/admin-lte)
+[![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
+[![cdn version](https://data.jsdelivr.com/v1/package/npm/admin-lte/badge)](https://www.jsdelivr.com/package/npm/admin-lte)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/ColorlibHQ/AdminLTE)
+[![Discord Invite](https://img.shields.io/badge/discord-join%20now-green)](https://discord.gg/jfdvjwFqfz)
+
+**AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 4.6](https://getbootstrap.com/)** framework and also the JS/jQuery plugin.
+Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
+
+**Preview on [AdminLTE.io](https://adminlte.io/themes/v3)**
+
+## Looking for Premium Templates?
+
+AdminLTE.io just opened a new premium templates page. Hand picked to ensure the best quality and the most affordable
+prices. Visit <https://adminlte.io/premium> for more information.
+
+!["AdminLTE Presentation"](https://adminlte.io/AdminLTE3.png "AdminLTE Presentation")
+
+**AdminLTE** has been carefully coded with clear comments in all of its JS, SCSS and HTML files.
+SCSS has been used to increase code customizability.
+
+## Quick start
+There are multiple ways to install AdminLTE.
+
+### Download & Changelog:
+Always Recommended to download from GitHub latest release [AdminLTE 3](https://github.com/ColorlibHQ/AdminLTE/releases/latest) for bug free and latest features.\
+Visit the [releases](https://github.com/ColorlibHQ/AdminLTE/releases) page to view the changelog.\
+Legacy Releases are [AdminLTE 2](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.4.18) / [AdminLTE 1](https://github.com/ColorlibHQ/AdminLTE/releases/tag/1.3.1).
+
+## Stable release
+### Grab from [jsdelivr](https://www.jsdelivr.com/package/npm/admin-lte) CDN:
+_**Important Note**: You needed to add separately cdn links for plugins in your project._
+```html
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+```
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+```
+### Using The Command Line:
+_**Important Note**: To install it via npm/Yarn, you need at least Node.js 14 or higher._
+#### Via npm
+```bash
+npm install admin-lte@^3.2 --save
+```
+#### Via Yarn
+```bash
+yarn add admin-lte@^3.2
+```
+#### Via Composer
+```bash
+composer require "almasaeed2010/adminlte=~3.2"
+```
+#### Via Git
+```bash
+git clone https://github.com/ColorlibHQ/AdminLTE.git
+```
+
+## Documentation
+
+Visit the [online documentation](https://adminlte.io/docs/3.2/) for the most
+updated guide. Information will be added on a weekly basis.
+
+## Browsers support
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Samsung | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_48x48.png" alt="Vivaldi" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Vivaldi | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Electron |
+| --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+
+## Light Mode (Only Dark Mode Removed)
+You can use light-mode-only version, if you are not using dark mode and also file size less without dark-mode.
+
+File Location `./dist/css/alt/adminlte.light.css`
 
 
-<h1>Star Admin2 Free Bootstrap Admin Template</h1>
-Star Admin 2 Free is an open-source, admin dashboard template built with <a href="https://getbootstrap.com/" target="_blank">Bootstrap 5</a>  created by <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>.
+## Compile dist files
 
-<h2>Preview</h2>
-<a href="https://www.bootstrapdash.com/demo/star-admin2-free/template/" target="_blank"><img src="screenshot.jpg"></a>
+To compile the dist files you need Node.js/npm, clone/download the repo then:
 
-<h2>Download and installation</h2>
-
-
-1 - Install node package. If you don’t know the installation steps, please click <a href="https://nodejs.org/en/">here</a>.
-
-2 - Click the Clone or Download button in GitHub and download as a ZIP file or you can enter the command git clone https://github.com/BootstrapDash/star-admin2-free-admin-template.git in your terminal to get a copy of this template.
-
-3 - After the files have been downloaded you will get a folder with all the required files
-
-4 - Open your terminal (Run as Administrator). You can install all the dependencies in the template by running the command npm install. All the required files are in the node modules. If you didn't run with admin authorities, you can see errors.
-
-5 - Find the file named index.html, check what all components you need. Open the file in a text editor and you can start editing.
-
-6 - Now that your project has now kick-started, all you need to do now is to code, code, and code to your heart's content.
-
-Star Admin 2 Free is a free admin dashboard template built with Bootstrap 5. We took the original Star Admin Pro and gave it a design overhaul along with newly written code to create our best template yet. This is a modern-looking dashboard with a clean and elegant design. The template is well crafted, with all the components neatly and carefully designed and arranged within the template. Star Admin 2 Free comes with a clean and well-commented code that makes it easy to work with the template. Thus making it an ideal pick for jump-starting your project.
-
-<h2>Browser Support:</h2>
-
-Star Admin 2 Free is designed to work flawlessly with all the latest and modern web browsers.
-
-<h2>License Information:</h2>
+1. `npm install` (install npm deps)
+2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
+3. `npm run production` (compile css/js files)
 
 
-Star Admin 2 Free is released under MIT license. This is a free Bootstrap 5 admin template developed from BootstrapDash. Feel free to download, use, share, and get creative with it.
+## Contributing
+
+Please read through our [contributing guidelines](https://github.com/ColorlibHQ/AdminLTE/tree/master/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+
+Editor preferences are available in the [editor config](https://github.com/twbs/bootstrap/blob/main/.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
 
 
+## License
 
-<h2>How to Contribute?:</h2>
+AdminLTE is an open source project by [AdminLTE.io](https://adminlte.io) that is licensed under [MIT](https://opensource.org/licenses/MIT).
+AdminLTE.io reserves the right to change the license of future releases.
 
+## Image Credits
 
-We love your contributions and we welcome them wholeheartedly. We believe the more the merrier. To contribute make sure you have Node.js and npm installed. Now run the command gulp --version. If the command returns with the Gulp version number, it means you have Gulp installed. If not you need to run the command npm install --global gulp-cli to install Gulp.
-
-
-After Gulp has been installed, follow the steps below to contribute.
-  <br>
-	1 -  Fork and clone the repo of Star Admin 2 Free
-  <br>
-	2 - Run the command npm install to install all the dependencies.
-  <br>
-	3 - Enter the command gulp serve. This will open Star Admin 2 Free in your default browser.
-  <br>
-	4 - Make your valuable contribution
-  <br>
-	5 - Submit a pull request
-  <hr>
-Do you need a template with more features and functionalities? Check out the premium version of Star Admin 2! Visit <a href="https://www.bootstrapdash.com" target="_blank">https://www.bootstrapdash.com</a> for more admin templates.
+- [Pixeden](http://www.pixeden.com/psd-web-elements/flat-responsive-showcase-psd)
+- [Graphicsfuel](https://www.graphicsfuel.com/2013/02/13-high-resolution-blur-backgrounds/)
+- [Pickaface](https://pickaface.net/)
+- [Unsplash](https://unsplash.com/)
+- [Uifaces](http://uifaces.com/)

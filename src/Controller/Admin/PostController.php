@@ -19,16 +19,30 @@ class PostController extends BackendController
         $this->postService = $postService;
     }
 
+//    /**
+//     * @Route("/post/gov", name="list_gov")
+//     */
+//    public function index(): Response
+//    {
+//        $post = $this->postService->getListePosts();
+//
+//        return $this->renderViewBackend('post/listPosts.html.twig', [
+//            'posts' => $post,
+//            'title' => "Governorates list",
+//            'separator' => ' | ',
+//        ]);
+//    }
+
     /**
      * @Route("/post/list", name="list_posts")
      */
-    public function index(): Response
+    public function listPosts(): Response
     {
         $post = $this->postService->getListePosts();
 
         return $this->renderViewBackend('post/posts.html.twig', [
             'posts' => $post,
-            'title' => "Liste posts",
+            'title' => "Posts list",
             'separator' => ' | ',
         ]);
     }

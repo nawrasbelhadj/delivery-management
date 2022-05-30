@@ -13,13 +13,15 @@ class Courrier
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'bigint')]
+    #[ORM\Column(type: 'string')]
     private $codeBarre;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\ManyToOne(targetEntity: Post::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private $postDeparture;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\ManyToOne(targetEntity: Post::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private $postArrival;
 
 
@@ -33,11 +35,28 @@ class Courrier
     #[ORM\Column(type: 'string', length: 15)]
     private $typeCourrier;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 20 , nullable: true)]
     private $status;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 20 , nullable: true)]
     private $situation;
+
+    #[ORM\ManyToOne(targetEntity: post::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private $post;
+
+    #[ORM\ManyToOne(targetEntity: deliverer::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private $deliverer;
+
+    #[ORM\ManyToOne(targetEntity: bordereau::class)]
+    private $bordereau;
+
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $title;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $message;
 
     public function getId(): ?int
     {
@@ -56,24 +75,24 @@ class Courrier
         return $this;
     }
 
-    public function getPostDeparture(): ?string
+    public function getPostDeparture(): ?Post
     {
         return $this->postDeparture;
     }
 
-    public function setPostDeparture(string $postDeparture): self
+    public function setPostDeparture(?Post $postDeparture): self
     {
         $this->postDeparture = $postDeparture;
 
         return $this;
     }
 
-    public function getPostArrival(): ?string
+    public function getPostArrival(): ?Post
     {
         return $this->postArrival;
     }
 
-    public function setPostArrival(string $postArrival): self
+    public function setPostArrival(?Post $postArrival): self
     {
         $this->postArrival = $postArrival;
 
@@ -129,6 +148,18 @@ class Courrier
         return $this;
     }
 
+    public function getPost(): ?post
+    {
+        return $this->post;
+    }
+
+    public function setPost(?post $post): self
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
     /**
      * @return mixed
      */
@@ -146,4 +177,52 @@ class Courrier
 //
 //        return $this;
 //    }
+
+public function getDeliverer(): ?deliverer
+{
+    return $this->deliverer;
+}
+
+public function setDeliverer(?deliverer $deliverer): self
+{
+    $this->deliverer = $deliverer;
+
+    return $this;
+}
+
+public function getBordereau(): ?bordereau
+{
+    return $this->bordereau;
+}
+
+public function setBordereau(?bordereau $bordereau): self
+{
+    $this->bordereau = $bordereau;
+
+    return $this;
+}
+
+public function getTitle(): ?string
+{
+    return $this->title;
+}
+
+public function setTitle(?string $title): self
+{
+    $this->title = $title;
+
+    return $this;
+}
+
+public function getMessage(): ?string
+{
+    return $this->message;
+}
+
+public function setMessage(?string $message): self
+{
+    $this->message = $message;
+
+    return $this;
+}
 }
