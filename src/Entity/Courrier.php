@@ -32,7 +32,7 @@ class Courrier
 //    #[ORM\Column(type: 'date', nullable: true)]
 //    private $creationDate;
 
-    #[ORM\Column(type: 'string', length: 15)]
+    #[ORM\Column(type: 'string', length: 20)]
     private $typeCourrier;
 
     #[ORM\Column(type: 'string', length: 20 , nullable: true)]
@@ -41,15 +41,15 @@ class Courrier
     #[ORM\Column(type: 'string', length: 20 , nullable: true)]
     private $situation;
 
-    #[ORM\ManyToOne(targetEntity: post::class)]
+    #[ORM\ManyToOne(targetEntity: Post::class)]
     #[ORM\JoinColumn(nullable: true)]
     private $post;
 
-    #[ORM\ManyToOne(targetEntity: deliverer::class)]
+    #[ORM\ManyToOne(targetEntity: Deliverer::class)]
     #[ORM\JoinColumn(nullable: true)]
     private $deliverer;
 
-    #[ORM\ManyToOne(targetEntity: bordereau::class)]
+    #[ORM\ManyToOne(targetEntity: Bordereau::class)]
     private $bordereau;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]

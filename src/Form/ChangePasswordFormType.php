@@ -30,7 +30,7 @@ class ChangePasswordFormType extends AbstractType
                             'max' => 4096,
                         ]),
                     ],
-                    'label' => 'New password',
+                    'label' => 'New password ',
                 ],
                 'second_options' => [
                     'attr' => ['autocomplete' => 'new-password'],
