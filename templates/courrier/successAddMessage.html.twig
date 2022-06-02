@@ -11,21 +11,18 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
                             <h5 class="m-0">Success!</h5>
                         </div>
                         <div class="card-body">
                             <h6 class="card-title"></h6>
-
                             <p class="card-text"> Title: {{ courrier.title }} <br> Message: {{ courrier.message }} <br> Sent from {{ app.user.post.namePost }} to {{ courrier.postArrival.namePost }}</p>
                             <a href="{{ path('add_courrier') }}" class="btn btn-primary">Add Another Courier</a>
-                            <a href="{{ path('history_courrier') }}" class="btn btn-default">Go Back</a>
+                            <a href="{{ path('history_courrier') }}" class="btn btn-default float-right">Go Back</a>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

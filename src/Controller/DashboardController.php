@@ -18,7 +18,7 @@ class DashboardController extends BackendController
     #[Route('/', name: 'dashboard')]
     public function index(): Response
     {
-        $visitorsChartLabel = ['test', '20th', '22nd', '24th', '26th', '28th', '30th'];
+        $visitorsChartLabel = ['week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'week7'];
         $visitorsChartDataSets = [
             [
                 'type' => 'line',
@@ -31,7 +31,7 @@ class DashboardController extends BackendController
             ],
             [
                 'type' => 'line',
-                'data'=> [60, 80, 70, 67, 80, 77, 100],
+                'data'=> [60, 80, 100, 140, 145, 150, 150],
                 'backgroundColor' => 'transparent',
                 'borderColor'=> '#ced4da',
                 'pointBorderColor'=> '#007bff',
