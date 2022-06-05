@@ -23,8 +23,13 @@ class UpdateCourrierFormType extends AbstractType
             ->add('codeBarre', TextType::class,[
                 'disabled' => true,
             ] )
-            ->add('postDeparture', TextType::class,[
+            ->add('postDeparture', EntityType::class, [
+                'required' => true,
                 'disabled' => true,
+                'class' => Post::class,
+                'choice_label' => function(?Post $post) {
+                    return $post != null ? $post->getNamePost() : '';
+                },
             ])
             ->add('postArrival', EntityType::class, [
                 'required' => true,

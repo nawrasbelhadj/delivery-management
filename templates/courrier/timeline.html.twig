@@ -33,17 +33,18 @@
                             <span class="bg-red">{{ "now"|date("m/d/Y") }}</span>
                         </div>
                         <!-- /.timeline-label -->
+                        {% for event in events %}
                         <!-- timeline item -->
                         <div>
                             <i class="fas fa-envelope bg-blue"></i>
                             <div class="timeline-item">
-                                <span class="time"><i class="fas fa-clock"></i> 08:05</span>
-                                <h3 class="timeline-header"><a href="#">Courier {{ courrier.codeBarre }} Sent At {{ "now"|date("m/d/Y") }}</a> from {{  courrier.postDeparture.namePost }} to {{ courrier.postArrival.namePost }}</h3>
+                                <span class="time"><i class="fas fa-clock"></i> {{  event.updatedAt|date("H:i:s") }}</span>
+                                <h3 class="timeline-header"><a href="#">Courier {{ event.courrier.codeBarre }} Sent At {{ event.updatedAt|date("m/d/Y") }}</a> from {{  event.postFrom }} to {{ event.postTo }}</h3>
 
                                 <div class="timeline-body">
                                   Status: Out for delivery
                                     <br>
-                                  Type: {{ courrier.typeCourrier }}
+                                  Type: {{ event.type }}
 
                                 </div>
 {#                                <div class="timeline-footer">#}
@@ -52,6 +53,7 @@
 {#                                </div>#}
                             </div>
                         </div>
+                        {% endfor %}
                         <!-- END timeline item -->
                         <!-- timeline item -->
 

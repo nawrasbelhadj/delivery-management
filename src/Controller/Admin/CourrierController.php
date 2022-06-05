@@ -5,11 +5,13 @@ namespace App\Controller\Admin;
 use App\Controller\BackendController;
 use App\Entity\Agent;
 use App\Entity\Courrier;
+use App\Entity\TimeLine;
 use App\Form\Courrier\AddCourrierFormType;
 use App\Form\Courrier\UpdateCourrierFormType;
 use App\Service\CourrierService;
 use App\Service\PostService;
 use App\Service\DelivererService;
+use App\Service\TimeLineService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,8 +59,12 @@ class CourrierController extends BackendController
     {
         $courrier = $this->courrierService->getCourrier($id);
 
+        $events = $this->courrierService->getEventsCourrier($courrier);
+
+
         return $this->renderViewBackend('courrier/timeline.html.twig', [
-            'courrier' => $courrier
+            'courrier' => $courrier,
+            'events' => $events
         ]);
     }
 
@@ -106,6 +112,7 @@ class CourrierController extends BackendController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $courrier->setCreatedAt(new \DateTimeImmutable());
             $this->courrierService->saveCourrier($courrier);
             $this->addFlash('success', "New Courier Has Been Added");
 

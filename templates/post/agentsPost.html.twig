@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">List Of Agents</h3>
-            <a class="btn btn-primary float-right" type="button" href="{{ path("add_agent" , {'postid' : postid }) }}"><i class="fas fa-plus"></i> Add Agent</a>
+            <a class="btn btn-primary float-right" type="button" href="{{ path("add_agent" , {'postid' : postId }) }}"><i class="fas fa-plus"></i> Add Agent</a>
         </div>
 
         <!-- /.card-header -->
@@ -27,8 +27,8 @@
                         <td>{{ agent.firstName }} {{ agent.lastName }}</td>
                         <td>{{ agent.rolesToString }} </td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="{{ path('update_agent', {'postid' : postid, 'id' : agent.id} ) }}"><i class="fas fa-user-edit"></i> Edit</a>
-                            <a class="btn btn-primary btn-sm" href="{{ path('info_agent', {'postid' : postid, 'id' : agent.id}) }}"><i class="fas fa-user"></i> View</a>
+                            <a class="btn btn-info btn-sm" href="{{ path('update_agent', {'postid' : postId, 'id' : agent.id} ) }}"><i class="fas fa-user-edit"></i> Edit</a>
+                            <a class="btn btn-primary btn-sm" href="{{ path('info_agent', {'postid' : postId, 'id' : agent.id}) }}"><i class="fas fa-user"></i> View</a>
                             <a class="btn btn-danger btn-sm" href="{{ path('remove_agent', {'id' : agent.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
                         </td>
 
