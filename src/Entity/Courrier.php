@@ -56,8 +56,12 @@ class Courrier
     #[ORM\ManyToMany(targetEntity: Bordereau::class, mappedBy: 'courriers')]
     private $bordereaus;
 
+    #[ORM\OneToMany(mappedBy: 'courierObsolete', targetEntity: Alert::class)]
+    private $alertsCourrier;
+
     public function __construct()
     {
+        $this->alertsCourrier = new ArrayCollection();
         $this->bordereaus = new ArrayCollection();
     }
 
@@ -245,6 +249,36 @@ class Courrier
     {
         if ($this->bordereaus->removeElement($bordereau)) {
             $bordereau->removeCourrier($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Alert>
+     */
+    public function getAlertsCourrier(): Collection
+    {
+        return $this->alertsCourrier;
+    }
+
+    public function addAlertsCourrier(Alert $alertsCourrier): self
+    {
+        if (!$this->alertsCourrier->contains($alertsCourrier)) {
+            $this->alertsCourrier[] = $alertsCourrier;
+            $alertsCourrier->setCourierObsolete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlertsCourrier(Alert $alertsCourrier): self
+    {
+        if ($this->alertsCourrier->removeElement($alertsCourrier)) {
+            // set the owning side to null (unless already changed)
+            if ($alertsCourrier->getCourierObsolete() === $this) {
+                $alertsCourrier->setCourierObsolete(null);
+            }
         }
 
         return $this;

@@ -32,7 +32,13 @@ class AlertRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function saveAlert(Alert $alert): Alert
+    {
+        $this->getEntityManager()->persist($alert);
+        $this->getEntityManager()->flush();
 
+        return $alert;
+    }
     /**
      * @throws ORMException
      * @throws OptimisticLockException

@@ -30,7 +30,8 @@
                         <td>{{ courrier.codeBarre }}    </td>
                         <td>
                             <a type="button" class="btn btn-info btn-sm" href="{{ path('update_courrier', {'id' : courrier.id} ) }}"><i class="fas fa-pencil-alt "></i> Edit</a>
-                            <a type="button" class="btn btn-primary btn-sm" href="{{ path('timeline_courrier', {'id' : courrier.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i> Timeline</a>
+                            <a type="button" class="btn btn-primary btn-sm" href="{{ path('timeline_courrier', {'id' : courrier.id}) }}"><i class="fas fa-clock "></i> Timeline</a>
+                            <a href="{{ path('alert_courrier' , {'id' : courrier.id}) }}" class="btn btn-sm btn-danger "><i class="fas fa-question "></i> Alert</a>
                             <a class="btn btn-danger btn-sm" href="{{ path('remove_courrier', {'id' : courrier.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
                         </td>
 

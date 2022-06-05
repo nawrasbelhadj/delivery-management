@@ -16,6 +16,9 @@ class Alert
     #[ORM\Column(type: 'string', length: 255)]
     private $typeAlert;
 
+    #[ORM\ManyToOne(targetEntity: Courrier::class, inversedBy: 'alertsCourrier')]
+    private $courierObsolete;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Alert
     public function setTypeAlert(string $typeAlert): self
     {
         $this->typeAlert = $typeAlert;
+
+        return $this;
+    }
+
+    public function getCourierObsolete(): ?Courrier
+    {
+        return $this->courierObsolete;
+    }
+
+    public function setCourierObsolete(?Courrier $courierObsolete): self
+    {
+        $this->courierObsolete = $courierObsolete;
 
         return $this;
     }

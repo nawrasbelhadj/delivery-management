@@ -44,10 +44,11 @@ class CourrierController extends BackendController
     }
 
     /**
-     * @Route("/courrier/alert", name="alert_courrier")
+     * @Route("/courrier/alert/{id}", name="alert_courrier")
      */
-    public function list(): Response
+    public function makeAlert(): Response
     {
+
         return $this->renderViewBackend('courrier/alert.html.twig', ['name' => "nawras"]);
     }
 
