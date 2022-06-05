@@ -21,16 +21,18 @@
                 </thead>
                 <tbody>
                 {% for courrier in courriers %}
+                    {% if (courrier.postDeparture.namePost)==(app.user.post.namePost) %}
                     <tr>
                         <td> {{ courrier.id}}  </td>
                         <td>{{ courrier.codeBarre }}    </td>
                         <td>
                             <a type="button" class="btn btn-info btn-sm" href="{{ path('update_courrier', {'id' : courrier.id} ) }}"><i class="fas fa-pencil-alt "></i> Edit</a>
-{#                            #}{#         <a type="button" class="btn btn-primary btn-sm" href="{{ path('list_agents', {'id' : post.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i></a>#}
+                            <a type="button" class="btn btn-primary btn-sm" href="{{ path('timeline_courrier', {'id' : courrier.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i> Timeline</a>
                             <a class="btn btn-danger btn-sm" href="{{ path('remove_courrier', {'id' : courrier.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
                         </td>
 
                     </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
                 <tfoot>

@@ -13,24 +13,30 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('dist/img/user5-128x128.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                {% if is_granted('ROLE_SUPADMIN') or is_granted('ROLE_ADMIN') %}
+                     <img src="{{ asset('image/user1.png') }}" class="img-circle elevation-2" alt="User Image">
+                {% elseif  is_granted('ROLE_AGENTADMIN') or is_granted('ROLE_AGENT')%}
+                    <img src="{{ asset('image/user2.png') }}" class="img-circle elevation-2" alt="User Image">
+                {% else %}
+                    <img src="{{ asset('image/user3.png') }}" class="img-circle elevation-2" alt="User Image">
+                {% endif %}
             </div>
             <div class="info">
                 <a href="{{ path('my_profile', {'id': app.user.id}) }}" class="d-block"> {{ name }}</a>
             </div>
         </div>
 
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+{#        <!-- SidebarSearch Form -->#}
+{#        <div class="form-inline">#}
+{#            <div class="input-group" data-widget="sidebar-search">#}
+{#                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">#}
+{#                <div class="input-group-append">#}
+{#                    <button class="btn btn-sidebar">#}
+{#                        <i class="fas fa-search fa-fw"></i>#}
+{#                    </button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -50,7 +56,7 @@
                 </li>
 
 
-                {% if is_granted('ROLE_AGENTADMIN') == true %}
+                {% if is_granted('ROLE_AGENTADMIN') == true or is_granted('ROLE_AGENT') %}
 
                     <!-- Courier -->
                 <li class="nav-item">
@@ -72,7 +78,7 @@
                         <li class="nav-item">
                             <a href="{{ path('history_courrier') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>History</p>
+                                <p>List of Couriers</p>
                             </a>
                         </li>
 {#                        <li class="nav-item">#}
@@ -81,22 +87,22 @@
 {#                                <p>Timeline</p>#}
 {#                            </a>#}
 {#                        </li>#}
-                        <li class="nav-item">
-                            <a href="{{ path('alert_courrier') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Alert</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('archive_courrier') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Archive</p>
-                            </a>
-                        </li>
+{#                        <li class="nav-item">#}
+{#                            <a href="{{ path('alert_courrier') }}" class="nav-link">#}
+{#                                <i class="far fa-circle nav-icon"></i>#}
+{#                                <p>Alert</p>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a href="{{ path('archive_courrier') }}" class="nav-link">#}
+{#                                <i class="far fa-circle nav-icon"></i>#}
+{#                                <p>Archive</p>#}
+{#                            </a>#}
+{#                        </li>#}
                     </ul>
                 </li>
                 {% endif %}
-                {% if is_granted('ROLE_ADMIN') == true or is_granted('ROLE_AGENTADMIN')%}
+                {% if is_granted('ROLE_ADMIN') == true or is_granted('ROLE_AGENTADMIN') or is_granted('ROLE_AGENT')%}
 
                 <!-- Post -->
                 <li class="nav-item">

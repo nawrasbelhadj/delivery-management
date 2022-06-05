@@ -24,14 +24,6 @@ class Courrier
     #[ORM\JoinColumn(nullable: true)]
     private $postArrival;
 
-
-
-//    #[ORM\Column(type: 'date')]
-//    private $departureDate;
-//
-//    #[ORM\Column(type: 'date', nullable: true)]
-//    private $creationDate;
-
     #[ORM\Column(type: 'string', length: 20)]
     private $typeCourrier;
 
@@ -40,10 +32,6 @@ class Courrier
 
     #[ORM\Column(type: 'string', length: 20 , nullable: true)]
     private $situation;
-
-    #[ORM\ManyToOne(targetEntity: Post::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private $post;
 
     #[ORM\ManyToOne(targetEntity: Deliverer::class)]
     #[ORM\JoinColumn(nullable: true)]
@@ -57,6 +45,12 @@ class Courrier
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $message;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -222,6 +216,30 @@ public function getMessage(): ?string
 public function setMessage(?string $message): self
 {
     $this->message = $message;
+
+    return $this;
+}
+
+public function getCreatedAt(): ?\DateTimeImmutable
+{
+    return $this->createdAt;
+}
+
+public function setCreatedAt(\DateTimeImmutable $createdAt): self
+{
+    $this->createdAt = $createdAt;
+
+    return $this;
+}
+
+public function getUpdatedAt(): ?\DateTimeImmutable
+{
+    return $this->updatedAt;
+}
+
+public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+{
+    $this->updatedAt = $updatedAt;
 
     return $this;
 }

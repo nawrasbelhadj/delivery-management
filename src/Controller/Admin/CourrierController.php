@@ -51,11 +51,15 @@ class CourrierController extends BackendController
 
 
     /**
-     * @Route("/courrier/timeline", name="timeline_courrier")
+     * @Route("/courrier/timeline/{id}", name="timeline_courrier")
      */
-    public function show(): Response
+    public function show($id): Response
     {
-        return $this->renderViewBackend('courrier/timeline.html.twig', ['name' => "nawras"]);
+        $courrier = $this->courrierService->getCourrier($id);
+
+        return $this->renderViewBackend('courrier/timeline.html.twig', [
+            'courrier' => $courrier
+        ]);
     }
 
     /**

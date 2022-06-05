@@ -69,9 +69,10 @@
 
                             <ul class="nav nav-pills">
 
-                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Deliverer Info </a></li>
-                                <a class="btn btn-info float-right" href="{{ path('update_agent' ,  {'postid' : postid, 'id' : agent.id} )  }}" >Update Agent </a>
-
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Agent Info </a></li>
+                                {% if is_granted('ROLE_AGENTADMIN') == true or is_granted('ROLE_ADMIN') %}
+                                <li class="nav-item">   <a class="btn btn-info float-right" href="{{ path('update_agent' ,  {'postid' : postid, 'id' : agent.id} )  }}" >Update Agent </a> </li>
+                                {% endif %}
                             </ul>
 
                         </div><!-- /.card-header -->

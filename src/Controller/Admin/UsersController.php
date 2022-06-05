@@ -82,10 +82,12 @@ class UsersController extends BackendController
      */
     public function infouser($id): Response
     {
-        $Users = $this->userService->getUserData($id);
+        $User = $this->getUser();
+        $agent = $this->agentService->getAgent($User->getId());
 
         return $this->renderViewBackend('users/infouser.html.twig', [
-            'user' => $Users,
+            'user' => $User,
+            'agent' => $agent
         ]);
     }
 
