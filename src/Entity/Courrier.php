@@ -39,9 +39,6 @@ class Courrier
     #[ORM\JoinColumn(nullable: true)]
     private $deliverer;
 
-    #[ORM\ManyToOne(targetEntity: Bordereau::class)]
-    private $bordereau;
-
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $title;
 
@@ -56,12 +53,16 @@ class Courrier
     #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt;
 
+    #[ORM\ManyToMany(targetEntity: Bordereau::class, mappedBy: 'courriers')]
+    private $bordereaus;
+
     #[ORM\OneToMany(mappedBy: 'courierObsolete', targetEntity: alert::class)]
     private $alertsCourrier;
 
     public function __construct()
     {
         $this->alertsCourrier = new ArrayCollection();
+        $this->bordereaus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,18 +179,6 @@ class Courrier
         return $this;
     }
 
-    public function getBordereau(): ?bordereau
-    {
-        return $this->bordereau;
-    }
-
-    public function setBordereau(?bordereau $bordereau): self
-    {
-        $this->bordereau = $bordereau;
-
-        return $this;
-    }
-
     public function getTitle(): ?string
     {
         return $this->title;
@@ -234,6 +223,33 @@ class Courrier
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Bordereau>
+     */
+    public function getBordereaus(): Collection
+    {
+        return $this->bordereaus;
+    }
+
+    public function addBordereau(Bordereau $bordereau): self
+    {
+        if (!$this->bordereaus->contains($bordereau)) {
+            $this->bordereaus[] = $bordereau;
+            $bordereau->addCourrier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBordereau(Bordereau $bordereau): self
+    {
+        if ($this->bordereaus->removeElement($bordereau)) {
+            $bordereau->removeCourrier($this);
+        }
 
         return $this;
     }

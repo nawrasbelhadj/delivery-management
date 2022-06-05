@@ -52,8 +52,15 @@ class UpdateCourrierFormType extends AbstractType
                 'disabled' => true,
             ])
 
-            ->add('status', TextType::class)
+            ->add('status', type: ChoiceType::class, options: [
+                'choices'  => [
+                    'Out For Delevery' => 'Out For Delevery',
+                    'Delivred' => 'Delivred',
 
+                ],
+                "mapped" => false,
+
+            ])
 
             ->add('save', SubmitType::class, ['label' => 'Save Changes'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);

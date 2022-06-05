@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4 class="card-title">Create bordereau</h4>
+                    <a href="{{ path("history_courrier") }}" type="button" class="btn btn-default text-black-50 float-right">List of Couriers</a>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                {{ form_start(form, { 'action': path('create_bordereau'), 'method': 'POST'}) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label >List of Couriers *</label>
+                            {{ form_widget(form.courriers, { 'attr': {'class': "form-control"} }) }}
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label >List of deliverers * </label>
+                            {{ form_widget(form.deliverer, { 'attr': {'class': "form-control"} }) }}
+                        </div>
+                    </div>
+                    <br>
+
+                    <br>
+
+
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+
+                    {{ form_widget(form.save, {'attr': {'type': 'submit','class': 'btn btn-primary'}}) }}
+                    {{ form_widget(form.reset, {'attr': {'class': 'btn btn-default float-right'}}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <!-- /.card -->
+{% endblock %}

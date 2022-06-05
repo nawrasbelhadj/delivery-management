@@ -24,6 +24,7 @@ class TimeLineService
         $timeLine->setStatus($courrier->getStatus());
         $timeLine->setType($courrier->getTypeCourrier());
         $timeLine->setUpdatedAt(new \DateTimeImmutable());
+        $timeLine->setObject("Courrier");
         $this->timelineRepository->add($timeLine);
     }
 
