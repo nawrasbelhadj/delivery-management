@@ -21,7 +21,7 @@ class PostDashboardController extends BackendController
         $this->courrierRepository = $courrierRepository;
     }
 
-    #[Route('/{postid}', name: 'dashboard')]
+    #[Route('/{postid}', name: 'postDashboard')]
     public function index($postid , $postDeparture): Response
     {
 
@@ -72,14 +72,14 @@ class PostDashboardController extends BackendController
             ]
         ];
 
-        $couriers = $this->courrierRepository->findBy(['postDeparture'=> $postDeparture]);
+        $courriers = $this->courrierRepository->findBy(['postDeparture'=> $postDeparture]);
 
-        return $this->renderViewBackend('post/dashboardPost/index.html.twig', [
+        return $this->renderViewBackend('post/dashboardPost.html.twig', [
             "visitorsChartLabel" => json_encode($visitorsChartLabel),
             'visitorsChartDataSets' => json_encode($visitorsChartDataSets),
             "donutData" => json_encode($donutData),
             'postid' => $postid,
-            'couriers' => $couriers,
+            'courriers' => $courriers,
             'postDeparture'=> $postDeparture
         ]);
     }

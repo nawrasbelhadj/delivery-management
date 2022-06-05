@@ -44,8 +44,11 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-
-                    <a href="{{ path('dashboard') }}" class="nav-link">
+                    {% if is_granted('ROLE_AGENTADMIN') == true or is_granted('ROLE_AGENT') %}
+                    <a href="{{ path('postDashboard' , {'postid' : app.user.post.id  } ) }}" class="nav-link">
+                        {% else %}
+                        <a href="{{ path('dashboard') }}" class="nav-link">
+                    {% endif %}
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Dashboard

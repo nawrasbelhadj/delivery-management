@@ -47,10 +47,12 @@ class Courrier
     private $message;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    #[Gedmo\Timestampable(on: 'create')]
+    private ?\DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $updatedAt;
+    #[Gedmo\Timestampable(on: 'update')]
+    private ?\DateTimeImmutable $updatedAt;
 
     public function getId(): ?int
     {
