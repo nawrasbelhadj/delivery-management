@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Courier;
+use App\Entity\Alert;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Courier|null find($id, $lockMode = null, $lockVersion = null)
- * @method Courier|null findOneBy(array $criteria, array $orderBy = null)
- * @method Courier[]    findAll()
- * @method Courier[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Alert|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Alert|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Alert[]    findAll()
+ * @method Alert[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CourierRepository extends ServiceEntityRepository
+class AlertRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Courier::class);
+        parent::__construct($registry, Alert::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Courier $entity, bool $flush = true): void
+    public function add(Alert $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class CourierRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Courier $entity, bool $flush = true): void
+    public function remove(Alert $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class CourierRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Courier[] Returns an array of Courier objects
+    //  * @return Alert[] Returns an array of Alert objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('a.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class CourierRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Courier
+    public function findOneBySomeField($value): ?Alert
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

@@ -30,30 +30,30 @@ class AgentController extends BackendController
         $this->postService = $postService;
         $this->agentRepository = $agentRepository;
     }
-    /**
-     * @Route("/post/agents/list/{postid}", name="list_agents")
-     */
-    public function index($postid): Response
-    {
 
-        $agents = $this->agentService->getListeAgents();
-
-        return $this->renderViewBackend('users/agents/agents.html.twig', [
-            'agents' => $agents,
-            'title' => "Agents List",
-            'separator' => ' | ',
-            'postid' => $postid,
-        ]);
-    }
+//    /**
+//     * @Route("/post/agents/list/{postid}", name="list_agents")
+//     */
+//    public function index($postid): Response
+//    {
+//
+//        $agents = $this->agentService->getListeAgents();
+//
+//        return $this->renderViewBackend('users/agents/agents.html.twig', [
+//            'agents' => $agents,
+//            'title' => "Agents List",
+//            'separator' => ' | ',
+//            'postid' => $postid,
+//        ]);
+//    }
 
 
     /**
      * @Route("/post/agents/list/{postId}", name="list_agents_post")
      */
-    public function listeByPost($postId): Response
+    public function listeByPost(int $postId): Response
     {
-
-        $agents = $this->agentRepository->findBy(['postId'=> $postId]);
+        $agents = $this->agentRepository->findBy(['post'=> $postId]);
 
         return $this->renderViewBackend('post/agentsPost.html.twig', [
             'agents' => $agents,

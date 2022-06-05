@@ -5,7 +5,9 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">List Of Agents</h3>
+            {% if is_granted('ROLE_AGENTADMIN') == true or is_granted('ROLE_ADMIN') %}
             <a class="btn btn-primary float-right" type="button" href="{{ path("add_agent" , {'postid' : postid }) }}"><i class="fas fa-plus"></i> Add Agent</a>
+            {% endif %}
         </div>
 
         <!-- /.card-header -->
@@ -22,19 +24,20 @@
                 </thead>
                 <tbody>
                 {% for agent in agents %}
+                    {% if (agent.post.namePost)==(app.user.post.namePost) and (agent.id)!=(app.user.id) %}
                     <tr>
                         <td>{{ agent.id }}</td>
                         <td>{{ agent.firstName }} {{ agent.lastName }}</td>
                         <td>{{ agent.rolesToString }} </td>
                         <td>
+                            {% if is_granted('ROLE_AGENTADMIN') == true or is_granted('ROLE_ADMIN') %}
                             <a class="btn btn-info btn-sm" href="{{ path('update_agent', {'postid' : postid, 'id' : agent.id} ) }}"><i class="fas fa-user-edit"></i> Edit</a>
+                            {% endif %}
                             <a class="btn btn-primary btn-sm" href="{{ path('info_agent', {'postid' : postid, 'id' : agent.id}) }}"><i class="fas fa-user"></i> View</a>
                             <a class="btn btn-danger btn-sm" href="{{ path('remove_agent', {'id' : agent.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
                         </td>
-
-
-
                     </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
                 <tfoot>

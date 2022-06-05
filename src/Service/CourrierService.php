@@ -3,14 +3,18 @@
 namespace App\Service;
 
 use App\Entity\Courrier;
+use App\Entity\Post;
+use App\Entity\TimeLine;
 use App\Repository\CourrierRepository;
 
 class CourrierService {
     private CourrierRepository $courrierRepository;
+    private TimeLineService $timeLineService;
 
-    public function __construct(CourrierRepository $courrierRepository)
+    public function __construct(CourrierRepository $courrierRepository, TimeLineService $timeLineService)
     {
         $this->courrierRepository = $courrierRepository;
+        $this->timeLineService = $timeLineService;
     }
 
     /**
@@ -24,9 +28,26 @@ class CourrierService {
     /**
      * @return Courrier[] Returns an array of Courrier objects
      */
+    public function getCourrierByPost(Post $post): array
+    {
+        return $this->courrierRepository->findByPostDeparture($post);
+    }
+
+    /**
+     * @return Courrier[] Returns an array of Courrier objects
+     */
     public function getCourriersByType(string $typeCourrier): array
     {
         return $this->courrierRepository->findByTypeCourrier($typeCourrier);
+    }
+
+    /**
+     * @return Courrier[] Returns an array of Courrier objects
+     */
+    public function getCourriersByFiltre(array $filter): array
+    {
+        //return  $this->courrierRepository->findBy($filter);
+        return $this->courrierRepository->findCourrierByFilter($filter);
     }
 
     /**
@@ -54,6 +75,15 @@ class CourrierService {
      */
     public function saveCourrier(Courrier $courrier): Courrier
     {
-        return $this->courrierRepository->saveCourrier($courrier);
+        $courrier = $this->courrierRepository->saveCourrier($courrier);
+
+        $this->timeLineService->createTimeLine($courrier);
+
+        return $courrier;
+    }
+
+    public function getEventsCourrier(Courrier $courrier): array
+    {
+        return $this->timeLineService->getCourrierEvents($courrier);
     }
 }

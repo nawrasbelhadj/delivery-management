@@ -24,14 +24,6 @@ class Courrier
     #[ORM\JoinColumn(nullable: true)]
     private $postArrival;
 
-
-
-//    #[ORM\Column(type: 'date')]
-//    private $departureDate;
-//
-//    #[ORM\Column(type: 'date', nullable: true)]
-//    private $creationDate;
-
     #[ORM\Column(type: 'string', length: 20)]
     private $typeCourrier;
 
@@ -40,10 +32,6 @@ class Courrier
 
     #[ORM\Column(type: 'string', length: 20 , nullable: true)]
     private $situation;
-
-    #[ORM\ManyToOne(targetEntity: Post::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private $post;
 
     #[ORM\ManyToOne(targetEntity: Deliverer::class)]
     #[ORM\JoinColumn(nullable: true)]
@@ -57,6 +45,14 @@ class Courrier
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $message;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    #[Gedmo\Timestampable(on: 'create')]
+    private ?\DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    #[Gedmo\Timestampable(on: 'update')]
+    private ?\DateTimeImmutable $updatedAt;
 
     public function getId(): ?int
     {
@@ -160,69 +156,75 @@ class Courrier
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-//    public function getCreationDate(): ?\DateTimeInterface
-//    {
-//        return $this->creationDate;
-//    }
-//
-//    /**
-//     * @param mixed $creationDate
-//     */
-//    public function setCreationDate(DateTimeInterface $creationDate): self
-//    {
-//        $this->creationDate = $creationDate;
-//
-//        return $this;
-//    }
+    public function getDeliverer(): ?deliverer
+    {
+        return $this->deliverer;
+    }
 
-public function getDeliverer(): ?deliverer
-{
-    return $this->deliverer;
-}
+    public function setDeliverer(?deliverer $deliverer): self
+    {
+        $this->deliverer = $deliverer;
 
-public function setDeliverer(?deliverer $deliverer): self
-{
-    $this->deliverer = $deliverer;
+        return $this;
+    }
 
-    return $this;
-}
+    public function getBordereau(): ?bordereau
+    {
+        return $this->bordereau;
+    }
 
-public function getBordereau(): ?bordereau
-{
-    return $this->bordereau;
-}
+    public function setBordereau(?bordereau $bordereau): self
+    {
+        $this->bordereau = $bordereau;
 
-public function setBordereau(?bordereau $bordereau): self
-{
-    $this->bordereau = $bordereau;
+        return $this;
+    }
 
-    return $this;
-}
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
 
-public function getTitle(): ?string
-{
-    return $this->title;
-}
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
-public function setTitle(?string $title): self
-{
-    $this->title = $title;
+        return $this;
+    }
 
-    return $this;
-}
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
 
-public function getMessage(): ?string
-{
-    return $this->message;
-}
+    public function setMessage(?string $message): self
+    {
+        $this->message = $message;
 
-public function setMessage(?string $message): self
-{
-    $this->message = $message;
+        return $this;
+    }
 
-    return $this;
-}
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
 }

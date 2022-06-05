@@ -43,13 +43,22 @@
                         </div>
                     </div>
                     <div class="row">
+                        {% if is_granted('ROLE_DELIVERER') %}
                         <div class="col-sm-6">
                             <label >Status </label>
                             {{ form_widget(form.status, { 'attr': {'class': "form-control" , 'placeholder': "Status"} }) }}
                         </div>
+                        {% endif %}
                         <div class="col-sm-6">
-                            <label >Situation</label>
-                            {{ form_widget(form.situation, { 'attr': {'class': "form-control",  'placeholder': "Situation"} }) }}
+                            <label >Titre *</label>
+                            {{ form_widget(form.title, { 'attr': {'class': "form-control" , 'placeholder': "Title"} }) }}
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <label >Message</label>
+                            {{ form_widget(form.message, { 'attr': {'class': "form-control", 'rows' : '3' , 'placeholder': "Insert Message"} }) }}
                         </div>
                     </div>
                     <br>

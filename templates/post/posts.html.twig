@@ -27,7 +27,7 @@
                         <td>{{ post.city }}    </td>
                        <td>
 {#                            <a type="button" class="btn btn-info btn-sm" href="{{ path('update_post', {'id' : post.id} ) }}"><i class="fas fa-pencil-alt "></i></a>#}
-                            <a type="button" class="btn btn-primary btn-sm" href="{{ path('list_agents', {'postid' : post.id}) }}"><i class=" fas fa-list "></i>    Agents</a>
+                            <a type="button" class="btn btn-primary btn-sm" href="{{ path('list_agents_post', {'postId' : post.id}) }}"><i class=" fas fa-list "></i>    Agents</a>
                             <a class="btn btn-danger btn-sm" href="{{ path('remove_post', {'id' : post.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
                         </td>
 

@@ -33,6 +33,37 @@ class CourrierRepository extends ServiceEntityRepository
         return $courrier;
     }
 
+    /**
+     * @return Courrier[] Returns an array of Courrier objects
+     *
+     */
+    public function findCourrierByFilter(array $filter)
+    {
+        $query = $this->createQueryBuilder('c');
+
+        if (array_key_exists("postDeparture", $filter)) {
+            $query->andWhere("c.postDeparture = :postDeparture");
+            $query->setParameter('postDeparture', $filter["postDeparture"]);
+        }
+
+        if (array_key_exists("typeCourrier", $filter)) {
+            $query->andWhere("c.typeCourrier = :typeCourrier");
+            $query->setParameter('typeCourrier', $filter["typeCourrier"]);
+        }
+
+        if (array_key_exists("fromDate", $filter) && array_key_exists("toDate", $filter)) {
+            $query->andWhere("c.createdAt BETWEEN :fromDate AND :toDate");
+            $query->setParameter('fromDate', $filter["fromDate"]);
+            $query->setParameter('toDate', $filter["toDate"]);
+        }
+
+        return $query->getQuery()
+            ->getResult();
+    }
+
+
+
+
 
     // /**
     //  * @return Courrier[] Returns an array of Courrier objects

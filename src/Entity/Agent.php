@@ -12,10 +12,6 @@ class Agent extends User
     #[ORM\JoinColumn(nullable: false)]
     private $post;
 
-
-
-
-
     public function getPost(): ?post
     {
         return $this->post;

@@ -1,0 +1,306 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Post Dashboard</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ path('dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ monthlyCourrier }}</h3>
+
+                    <p>Courier per Month</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>75<sup style="font-size: 20px">%</sup></h3>
+
+                    <p>Stored Couriers</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-mail-bulk"></i>
+                </div>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>100</h3>
+
+                    <p>Delivered Courier</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>60</h3>
+
+                    <p>Bordereau per Month</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-file-archive"></i>
+                </div>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+
+                <div class="card">
+                    <div class="card-header border-transparent">
+                        <h3 class="card-title">Latest Couriers</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table m-0">
+                                <thead>
+                                <tr>
+                                    <th>Courier ID</th>
+                                    <th>Code Bare</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    {% for courrier in courriers %}
+                                    {% if (courrier.postDeparture.namePost)==(app.user.post.namePost) %}
+                                <tr>
+                                    <td> {{ courrier.id}}  </td>
+                                    <td>{{ courrier.codeBarre }}    </td>
+                                    <td>{{ courrier.status }}    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-info btn-sm" href="{{ path('update_courrier', {'id' : courrier.id} ) }}"><i class="fas fa-pencil-alt "></i> Edit</a>
+                                        <a type="button" class="btn btn-primary btn-sm" href="{{ path('timeline_courrier', {'id' : courrier.id}) }}"><i class="mdi mdi-account-card-details text-behance "></i> Timeline</a>
+                                        <a class="btn btn-danger btn-sm" href="{{ path('remove_courrier', {'id' : courrier.id}) }}"> <i class="fas fa-trash"> </i>  Delete</a>
+                                    </td>
+
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <a href="{{ path('add_courrier') }}" class="btn btn-sm btn-info ">Add New Courier</a>
+                        <a href="{{ path('history_courrier') }}" class="btn btn-sm btn-secondary ">View All Couriers</a>
+                        <a href="{{ path('add_courrier') }}" class="btn btn-sm btn-primary ">Add New Courier</a>
+                        <a href="{{ path('history_courrier') }}" class="btn btn-sm btn-danger ">Alert</a>
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <!-- Donut chart -->
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="far fa-chart-bar"></i>
+                        Couriers By Type
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div id="donut-chart" style="height: 300px;"></div>
+                </div>
+                <div class=""card-footer>
+                    <div class="d-flex flex-row justify-content-end">
+                          <span class="mr-2">
+                            <i class="fas fa-square" style="color: #3c8dbc!important;"></i> Simple
+                          </span>
+                        <span>
+                            <i class="fas fa-square" style="color: #0073b7!important;"></i> Grand
+                        </span>
+                        <span>
+                            <i class="fas fa-square" style="color: #00c0ef!important;"></i> Multiple
+                        </span>
+                    </div>
+                </div>
+                <!-- /.card-body-->
+            </div>
+            <!-- /.card -->
+
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('plugins/flot/jquery.flot.js') }}"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="{{ asset('plugins/flot/plugins/jquery.flot.resize.js') }}"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="{{ asset('plugins/flot/plugins/jquery.flot.pie.js') }}"></script>
+    <script type="application/javascript">
+        /*
+    * Author: Abdullah A Almsaeed
+    * Date: 4 Jan 2014
+    * Description:
+    *      This is a demo file used only for the main dashboard (index.html)
+    **/
+
+        /* global moment:false, Chart:false, Sparkline:false */
+
+        $(function () {
+            'use strict'
+
+            var ticksStyle = {
+                fontColor: '#495057',
+                fontStyle: 'bold'
+            }
+            var mode = 'index'
+            var intersect = true
+
+            // Make the dashboard widgets sortable Using jquery UI
+            $('.connectedSortable').sortable({
+                placeholder: 'sort-highlight',
+                connectWith: '.connectedSortable',
+                handle: '.card-header, .nav-tabs',
+                forcePlaceholderSize: true,
+                zIndex: 999999
+            })
+            $('.connectedSortable .card-header').css('cursor', 'move')
+
+            // jQuery UI sortable for the todo list
+            $('.todo-list').sortable({
+                placeholder: 'sort-highlight',
+                handle: '.handle',
+                forcePlaceholderSize: true,
+                zIndex: 999999
+            })
+
+            var $visitorsChart = $('#visitors-chart')
+            // eslint-disable-next-line no-unused-vars
+            var visitorsChart = new Chart($visitorsChart, {
+                data: {
+                    labels: {{ visitorsChartLabel|raw }},
+                    datasets: {{ visitorsChartDataSets|raw }}
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            // display: false,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 200
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            function labelFormatter(label, series) {
+                return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
+                    + label
+                    + '<br>'
+                    + Math.round(series.percent) + '%</div>'
+            }
+
+            var donutData = {{ donutData|raw }}
+                $.plot('#donut-chart', donutData, {
+                    series: {
+                        pie: {
+                            show       : true,
+                            radius     : 1,
+                            innerRadius: 0.5,
+                            label      : {
+                                show     : true,
+                                radius   : 2 / 3,
+                                formatter: labelFormatter,
+                                threshold: 0.1
+                            }
+
+                        }
+                    },
+                    legend: {
+                        show: false
+                    }
+                })
+            /*
+             * END DONUT CHART
+             */
+        })
+    </script>
+{% endblock %}
