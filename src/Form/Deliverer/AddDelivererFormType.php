@@ -31,7 +31,7 @@ class AddDelivererFormType extends AbstractType
             ->add('userRole', type: ChoiceType::class, options: [
                 'placeholder' => 'User Role',
                 'choices'  => [
-                    'Deliverer' => 'ROLE_USER',
+                    'Deliverer' => 'ROLE_DELIVERER',
                 ],
                 "mapped" => false,
 

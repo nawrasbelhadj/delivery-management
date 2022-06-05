@@ -232,6 +232,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($role === "ROLE_AGENTADMIN") $roles = "SUP Agent";
             if ($role === "ROLE_AGENT") $roles = "Agent";
             if ($role === "ROLE_ADMIN") $roles = "Administrator";
+            if ($role == "ROLE_SUPADMIN") $roles = "SUP Administrator";
             if ($role === "ROLE_DELIVERER") $roles = "DELIVERER";
         }
 

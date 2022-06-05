@@ -94,18 +94,18 @@ class DashboardController extends BackendController
         $donutData = [
             [
                 'label' => 'Simple',
-                'data' => ($courriersTypeSimpleNumbers  * 100 ) / $allCouriersNumbers,
+                'data' =>  $allCouriersNumbers !== 0 ? ($courriersTypeSimpleNumbers  * 100 ) / $allCouriersNumbers : 0,
                 'color' => '#3c8dbc'
             ],
             [
                 'label' => 'Grand',
-                'data' => ($courriersTypeGrandNumbers  * 100 ) / $allCouriersNumbers,
+                'data' => $allCouriersNumbers !== 0 ? ($courriersTypeGrandNumbers  * 100 ) / $allCouriersNumbers : 0,
                 'color' => '#0073b7'
             ]
             ,
             [
                 'label' => 'Multiple',
-                'data' => ($courriersTypeMultipleNumbers  * 100 ) / $allCouriersNumbers,
+                'data' =>  $allCouriersNumbers !== 0 ? ($courriersTypeMultipleNumbers  * 100 ) / $allCouriersNumbers : 0,
                 'color' => '#00c0ef'
             ]
         ];

@@ -53,7 +53,7 @@ class UpdateCourrierFormType extends AbstractType
             ])
 
             ->add('status', TextType::class)
-            ->add('situation', TextType::class)
+
 
             ->add('save', SubmitType::class, ['label' => 'Save Changes'])
             ->add('reset', ResetType::class, ['label' => 'Reset']);
