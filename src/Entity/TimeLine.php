@@ -34,6 +34,9 @@ class TimeLine
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $type;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $object;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +122,18 @@ class TimeLine
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+    public function setObject(?string $object): self
+    {
+        $this->object = $object;
 
         return $this;
     }

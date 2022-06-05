@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Bordereau</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ path('dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Bordereau</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="callout callout-info">
+                            <div class="col-sm-12 invoice-col">
+                                <b>Bordereau # {{ bordereau.id }}</b> <small class="float-right">Date: {{ bordereau.validatedAt|date('d-m-Y H:i:s') }}</small><br>
+                                <br>
+                                <b>Deliverer:</b> {{  bordereau.deliverer.id }}<br>
+                                <b>Name:</b> {{  bordereau.deliverer.firstName }} <br>
+                                <b>PhoneNumber:</b> {{  bordereau.deliverer.phoneNumber }} <br>
+                                <b> Validated At:</b> {% if bordereau.validatedAt is not null %}{{ bordereau.validatedAt|date('d-m-Y H:i:s') }} {% else %} Not validate {% endif %}
+                            </div>
+                        </div>
+                        <!-- Main content -->
+                        <div class="invoice p-3 mb-3">
+                            <!-- title row -->
+                            <div class="row">
+                                    <h4>
+                                        Courriers :
+                                    </h4>
+                                <!-- /.col -->
+                            </div>
+                            <!-- info row -->
+                            {% for courrier in  bordereau.courriers %}
+                            <div class="row invoice-info">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5>
+                                            <i ><img src="{{ asset('image/logo.png') }}" width="2.5%"></i> {{ courrier.title }}
+                                        </h5>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <div class="col-sm-6 invoice-col">
+                                    From Post
+                                    <address>
+                                        <strong>{{ courrier.postDeparture.namePost }}</strong><br>
+                                        Region : {{ courrier.postDeparture.regionPost }}<br>
+                                        City : {{ courrier.postDeparture.city }}<br>
+                                        Street : {{ courrier.postDeparture.street }}<br>
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-6 invoice-col">
+                                    To Post
+                                    <address>
+                                        <strong>{{ courrier.postArrival.namePost }}</strong><br>
+                                        Region : {{ courrier.postArrival.regionPost }}<br>
+                                        City : {{ courrier.postArrival.city }}<br>
+                                        Street : {{ courrier.postArrival.street }}<br>
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            {% endfor %}
+                        </div>
+                            <!-- /.row -->
+
+                            <!-- this row will not appear when printing -->
+                        <div class="row no-print">
+                                <div class="col-12">
+                                    {% if bordereau.validatedAt is null %}<a href="{{ path('validate_bordereau', {'id' : bordereau.id} ) }}"  class="btn btn-success float-right"><i class="far fa-check-circle"></i>    Validate Bordereau
+                                    </a>{% endif %}
+                                    <button onClick="window.print()" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-download"></i> Generate PDF
+                                    </button>
+                                </div>
+                            </div>
+                        <!-- /.invoice -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </section>
+        <!-- /.content -->
+    <!-- /.content-wrapper -->
+{% endblock body %}

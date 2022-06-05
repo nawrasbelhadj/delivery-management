@@ -77,18 +77,6 @@ class CourrierController extends BackendController
     }
 
     /**
-     * @Route("/courrier/showcourrier/{id}", name="showdemo_courrier")
-     */
-    public function showCorrier($id): Response
-    {
-        $courrier = $this->courrierService->getCourrier($id);
-
-        return $this->renderViewBackend('courrier/bordereau.html.twig', [
-            'courriers' => $courrier
-        ]);
-    }
-
-    /**
      * @Route("/courrier/add", name="add_courrier")
      */
     public function addCourrier( Request $request): Response

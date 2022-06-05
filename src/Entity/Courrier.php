@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CourrierRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CourrierRepository::class)]
@@ -37,9 +39,6 @@ class Courrier
     #[ORM\JoinColumn(nullable: true)]
     private $deliverer;
 
-    #[ORM\ManyToOne(targetEntity: Bordereau::class)]
-    private $bordereau;
-
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $title;
 
@@ -53,6 +52,14 @@ class Courrier
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt;
+
+    #[ORM\ManyToMany(targetEntity: Bordereau::class, mappedBy: 'courriers')]
+    private $bordereaus;
+
+    public function __construct()
+    {
+        $this->bordereaus = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -168,18 +175,6 @@ class Courrier
         return $this;
     }
 
-    public function getBordereau(): ?bordereau
-    {
-        return $this->bordereau;
-    }
-
-    public function setBordereau(?bordereau $bordereau): self
-    {
-        $this->bordereau = $bordereau;
-
-        return $this;
-    }
-
     public function getTitle(): ?string
     {
         return $this->title;
@@ -224,6 +219,33 @@ class Courrier
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Bordereau>
+     */
+    public function getBordereaus(): Collection
+    {
+        return $this->bordereaus;
+    }
+
+    public function addBordereau(Bordereau $bordereau): self
+    {
+        if (!$this->bordereaus->contains($bordereau)) {
+            $this->bordereaus[] = $bordereau;
+            $bordereau->addCourrier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBordereau(Bordereau $bordereau): self
+    {
+        if ($this->bordereaus->removeElement($bordereau)) {
+            $bordereau->removeCourrier($this);
+        }
 
         return $this;
     }

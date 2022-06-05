@@ -35,24 +35,34 @@
                         <!-- /.timeline-label -->
                         {% for event in events %}
                         <!-- timeline item -->
-                        <div>
-                            <i class="fas fa-envelope bg-blue"></i>
-                            <div class="timeline-item">
-                                <span class="time"><i class="fas fa-clock"></i> {{  event.updatedAt|date("H:i:s") }}</span>
-                                <h3 class="timeline-header"><a href="#">Courier {{ event.courrier.codeBarre }} Sent At {{ event.updatedAt|date("m/d/Y") }}</a> from {{  event.postFrom }} to {{ event.postTo }}</h3>
-
-                                <div class="timeline-body">
-                                  Status: Out for delivery
-                                    <br>
-                                  Type: {{ event.type }}
-
+                            {% if event.object == "Bordereau" %}
+                                <div>
+                                    {% if event.type == "Validate Bordereau" %}
+                                        <i class="far fa-check-circle bg-blue"></i>
+                                    {% else %}
+                                        <i class="fas fa-clock bg-blue"></i>
+                                    {% endif %}
+                                    <div class="timeline-item">
+                                        <span class="time"><i class="fas fa-clock"></i> {{  event.updatedAt|date("H:i:s") }}</span>
+                                        <h3 class="timeline-header"><a href="#">{{ event.type }} : Courier {{ event.courrier.codeBarre }} </a></h3>
+                                    </div>
                                 </div>
-{#                                <div class="timeline-footer">#}
-{#                                    <a class="btn btn-primary btn-sm">Update Status</a>#}
-{#                                    <a class="btn btn-danger btn-sm">Validate</a>#}
-{#                                </div>#}
-                            </div>
-                        </div>
+                            {% else %}
+                                    <div>
+                                        <i class="fas fa-envelope bg-blue"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fas fa-clock"></i> {{  event.updatedAt|date("H:i:s") }}</span>
+                                            <h3 class="timeline-header"><a href="#">Courier {{ event.courrier.codeBarre }} Sent At {{ event.updatedAt|date("m/d/Y") }}</a> from {{  event.postFrom }} to {{ event.postTo }}</h3>
+
+                                            <div class="timeline-body">
+                                              Status: Out for delivery
+                                                <br>
+                                              Type: {{ event.type }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
                         {% endfor %}
                         <!-- END timeline item -->
                         <!-- timeline item -->
