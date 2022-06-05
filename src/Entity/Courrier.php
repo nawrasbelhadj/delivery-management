@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CourrierRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CourrierRepository::class)]
@@ -53,6 +55,14 @@ class Courrier
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt;
+
+    #[ORM\OneToMany(mappedBy: 'courierObsolete', targetEntity: alert::class)]
+    private $alertsCourrier;
+
+    public function __construct()
+    {
+        $this->alertsCourrier = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -224,6 +234,36 @@ class Courrier
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, alert>
+     */
+    public function getAlertsCourrier(): Collection
+    {
+        return $this->alertsCourrier;
+    }
+
+    public function addAlertsCourrier(alert $alertsCourrier): self
+    {
+        if (!$this->alertsCourrier->contains($alertsCourrier)) {
+            $this->alertsCourrier[] = $alertsCourrier;
+            $alertsCourrier->setCourierObsolete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlertsCourrier(alert $alertsCourrier): self
+    {
+        if ($this->alertsCourrier->removeElement($alertsCourrier)) {
+            // set the owning side to null (unless already changed)
+            if ($alertsCourrier->getCourierObsolete() === $this) {
+                $alertsCourrier->setCourierObsolete(null);
+            }
+        }
 
         return $this;
     }
